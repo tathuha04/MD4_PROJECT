@@ -10,11 +10,13 @@ public class ConnectSQL {
     private static final String USER = System.getenv("USER");
     private static final String PASSWORD = System.getenv("PASSWORD");
 
-    private static Connection getConnection() {
+    public static Connection getConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(URL,USER,PASSWORD);
+            System.out.println("ket noi thanh cong");
         } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("thất bại");
             throw new RuntimeException(e);
         }
         return connection;
