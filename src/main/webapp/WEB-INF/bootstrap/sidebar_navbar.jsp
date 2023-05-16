@@ -636,8 +636,8 @@
             <i class="uil uil-search"></i>
             <input type="text" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát...">
         </div>
-        <div style="width: 200px;padding-left: 150px">
-            <a href="">
+        <div style="width: 200px;padding-left: 120px">
+            <a href="/user?action=login">
                 <button style="
             border-radius: 25px;
             height:45px;
@@ -652,6 +652,25 @@
             font-weight: 500"
                 >
                     Đăng nhập
+                </button>
+            </a>
+        </div>
+        <div style="width: 200px;padding-left: 70px">
+            <a href="/user?action=register">
+                <button style="
+            border-radius: 25px;
+            height:45px;
+            padding: 0 30px 0 30px;
+            position: absolute;
+            font-size: 15px;
+            z-index: 10;
+            top: 50%;
+            transform: translateY(-50%);
+            color:#FEFFFF;
+            background-color: #9B4DE0;
+            font-weight: 500"
+                >
+                    Đăng kí
                 </button>
             </a>
         </div>

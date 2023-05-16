@@ -5,10 +5,6 @@
     <jsp:include page='WEB-INF/bootstrap/sidebar_navbar.jsp'>
         <jsp:param name="articleId" value=""/>
     </jsp:include>
-<%--    <jsp:include page='WEB-INF/bootstrap/sidebar.jsp'>--%>
-<%--        <jsp:param name="articleId" value=""/>--%>
-<%--    </jsp:include>--%>
-
     <title>JSP - Hello World</title>
 </head>
 <body>
