@@ -598,7 +598,7 @@
             <li><a href="#">
                 <img src="https://img.icons8.com/external-anggara-flat-anggara-putra/32/external-artist-media-anggara-flat-anggara-putra-2.png"
                      alt="external-artist-media-anggara-flat-anggara-putra-2"/>
-                <span class="link-name">Singer</span>
+                <span class="link-name">Singer </span>
             </a></li>
             <li><a href="#">
                 <img src="https://img.icons8.com/fluency/48/music-band.png" alt="music-band"/>
