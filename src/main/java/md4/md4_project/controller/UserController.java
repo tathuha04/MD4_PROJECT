@@ -29,15 +29,24 @@ public class UserController extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
         String action = req.getParameter("action");
+        System.out.println("goi doget" );
+        System.out.println("action--> "+ action);
         if (action == null) {
             action = "";
         }
+        System.out.println("action--> "+ action);
         switch (action) {
             case "register":
                 showFormRegister(req, resp);
                 break;
             case "login":
                 showFormLogin(req,resp);
+                break;
+            case "avatar":
+                showAvatar(req, resp);
+                break;
+            case "logout":
+                logOut(req, resp);
                 break;
         }
     }
@@ -50,6 +59,7 @@ public class UserController extends HttpServlet {
         if (action == null) {
             action = "";
         }
+        System.out.println("action o DoPost"+ action);
         switch (action) {
             case "register":
                 actionRegister(req, resp);
@@ -57,11 +67,14 @@ public class UserController extends HttpServlet {
             case "login":
                 actionLogin(req,resp);
                 break;
+            case "avatar":
+                changeAvatar(req, resp);
+                break;
         }
     }
 
     private void showFormRegister(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/login_form/register.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/loginForm/Register.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -77,10 +90,10 @@ public class UserController extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String role = "admin";
-        String role2 = "pm";
+
         Set<String> strRole = new HashSet<>();
         strRole.add(role);
-        strRole.add(role2);
+
         Set<Role> roleSet = new HashSet<>();
         strRole.forEach(role1 -> {
             switch (role1) {
@@ -109,7 +122,7 @@ public class UserController extends HttpServlet {
             request.setAttribute("password", password);
             showFormRegister(request, response);
         } else {
-            User user = new User(name, username, password, roleSet);
+            User user = new User(name, username,email, password, roleSet);
             userService.save(user);
             request.setAttribute("validate", "Register success!");
             try {
@@ -117,11 +130,13 @@ public class UserController extends HttpServlet {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+//
         }
+
     }
 
     private  void showFormLogin(HttpServletRequest request , HttpServletResponse response){
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/login_form/login.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/loginForm/Login.jsp");
         try {
             requestDispatcher.forward(request,response);
         } catch (ServletException e) {
@@ -145,6 +160,43 @@ public class UserController extends HttpServlet {
         }else {
             request.setAttribute("validate","Login failed! Please check your account!");
             showFormLogin(request,response);
+        }
+    }
+    private void showAvatar(HttpServletRequest request, HttpServletResponse response){
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/upload/upload_avatar.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void changeAvatar(HttpServletRequest request, HttpServletResponse response){
+        String avatar = request.getParameter("avatar");
+
+        HttpSession session = request.getSession(false);
+        User user = (User) session.getAttribute("user");
+        userService.updateAvatar(avatar, user.getId());
+        user.setAvatar(avatar);
+        try {
+            response.sendRedirect("index.jsp");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void logOut(HttpServletRequest request, HttpServletResponse response){
+        // false check session cos ton tai hay ko ? neu ton tai tra ve obj tuong ung, ko thi tra ve null
+        HttpSession session = request.getSession(false);
+        if (session.getAttribute("user") != null) {
+            session.removeAttribute("user");
+            // Xóa các thuộc tính been trong session
+            session.invalidate();
+            try {
+                response.sendRedirect("index.jsp");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

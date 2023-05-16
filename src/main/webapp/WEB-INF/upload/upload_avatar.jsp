@@ -5,19 +5,18 @@
 <head>
 
     <title>Title</title>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 <body>
 
 <form method="post">
+<%--    <label for="formFileDisabled" class="form-label">Disabled file input example</label>--%>
+<%--    <input class="form-control" type="file" id="formFileDisabled" disabled />--%>
 
     <progress value="0" max="100" id="uploader">0%</progress>
-
-    <input type="file" value="upload" accept=".jpg" id="fileButton">
-
-    <input name="avatar" type="text" id="avatar" style="display: none">
-
+    <input class="form-control" type="file" value="upload" accept=".jpg" id="fileButton">
+    <input  class="form-control" name="avatar" type="text" id="avatar" style="display: none">
     <div id="imgDiv"></div>
 
     <button type="submit">Upload</button>
@@ -61,13 +60,13 @@
 <script type="text/javascript">
 
     const firebaseConfig = {
-        apiKey : "AIzaSyCJo5dIGNlRf2LgeqSsxNZMXv78GfTQ4As" ,
-        authDomain : "tathuha-2045b.firebaseapp.com" ,
-        projectId : "tathuha-2045b" ,
-        storageBucket : "tathuha-2045b.appspot.com" ,
-        messagingSenderId : "942219567636" ,
-        appId : "1:942219567636:web:423c9cc1804d5f1ff27d01" ,
-        measurementId : "G-BRNPXXM37E"
+        apiKey: "AIzaSyB2A6FtigGGXUQXV0D_FPouPKY8JKplhnk",
+        authDomain: "projectmd4-deb2e.firebaseapp.com",
+        projectId: "projectmd4-deb2e",
+        storageBucket: "projectmd4-deb2e.appspot.com",
+        messagingSenderId: "1053012108561",
+        appId: "1:1053012108561:web:d7c4f96532e4c6d891d8b0",
+        measurementId: "G-F6LQ7VE1T5"
     };
 
     firebase.initializeApp(firebaseConfig);

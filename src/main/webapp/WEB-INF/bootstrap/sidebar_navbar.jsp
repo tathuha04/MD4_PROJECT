@@ -609,13 +609,6 @@
                     class="link-name">Playlist</span>
             </a></li>
         </ul>
-
-        <ul class="logout-mode">
-            <li><a href="#">
-                <img src="https://img.icons8.com/nolan/64/exit.png" alt="exit"/>
-                <span class="link-name">Logout</span>
-            </a></li>
-        </ul>
     </div>
 </nav>
 
@@ -636,9 +629,36 @@
             <i class="uil uil-search"></i>
             <input type="text" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát...">
         </div>
-        <div style="width: 200px;padding-left: 120px">
-            <a href="/user?action=login">
-                <button style="
+        <c:if test="${sessionScope['user']!=null}">
+            <div>
+                <p style="color: white">${sessionScope['user'].getName()}</p>
+            </div>
+            <div>
+                <a href="/user?action=avatar"><img src="${sessionScope['user'].getAvatar()}" alt=""> </a>
+            </div>
+            <div style="width: 200px;padding-left: 70px">
+                <a href="/user?action=logout">
+                    <button style="
+            border-radius: 25px;
+            height:45px;
+            padding: 0 30px 0 30px;
+            position: absolute;
+            font-size: 15px;
+            z-index: 10;
+            top: 50%;
+            transform: translateY(-50%);
+            color:#FEFFFF;
+            background-color: #9B4DE0;
+            font-weight: 500">
+                        Đăng xuất
+                    </button>
+                </a>
+            </div>
+        </c:if>
+        <c:if test="${sessionScope['user']==null}">
+            <div style="width: 200px;padding-left: 120px">
+                <a href="/user?action=login">
+                    <button style="
             border-radius: 25px;
             height:45px;
             padding: 0 30px 0 30px;
@@ -650,14 +670,14 @@
             color:#FEFFFF;
             background-color: #9B4DE0;
             font-weight: 500"
-                >
-                    Đăng nhập
-                </button>
-            </a>
-        </div>
-        <div style="width: 200px;padding-left: 70px">
-            <a href="/user?action=register">
-                <button style="
+                    >
+                        Đăng nhập
+                    </button>
+                </a>
+            </div>
+            <div style="width: 200px;padding-left: 70px">
+                <a href="/user?action=register">
+                    <button style="
             border-radius: 25px;
             height:45px;
             padding: 0 30px 0 30px;
@@ -669,12 +689,14 @@
             color:#FEFFFF;
             background-color: #9B4DE0;
             font-weight: 500"
-                >
-                    Đăng kí
-                </button>
-            </a>
-        </div>
-        <img src="images/profile.jpg" alt="">
+                    >
+                        Đăng kí
+                    </button>
+                </a>
+            </div>
+        </c:if>
+
+
     </div>
 
     <div class="dash-content">

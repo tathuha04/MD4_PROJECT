@@ -6,7 +6,9 @@ import md4.md4_project.model.User;
 import md4.md4_project.model.UserRole;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -18,9 +20,9 @@ public class UserServiceIMPL implements IUserService{
     private final String SELECT_ALL_USERNAME = "SELECT username FROM user";
     private final String SELECT_ALL_EMAIL = "SELECT email FROM user";
     private final String INSERT_INTO_USER = "INSERT INTO user(name, username, email, password,avatar) VALUES (?,?,?,?,?)";
-    private final String INSERT_INTO_USER_ROLE = "INSERT INTO user_role(user_id, role_id) VALUES (?,?);";
+    private final String INSERT_INTO_USER_ROLE = "INSERT INTO user_role(userId, roleId) VALUES (?,?);";
     private final String SELECT_USER_LOGIN = "SELECT * FROM user WHERE username=? AND password=?;";
-    private final String SELECT_ROLE_BY_USER_ID = "SELECT role.id, role.name FROM role INNER JOIN user_role ur on role.id = ur.role_id WHERE user_id=?;";
+    private final String SELECT_ROLE_BY_USER_ID = "SELECT role.id, role.name FROM role INNER JOIN user_role ur on role.id = ur.roleId WHERE userId=?;";
     private final String UPDATE_AVATAR = "UPDATE user SET avatar=? WHERE id=?;";
     @Override
     public boolean existedByUsername(String username) {
@@ -159,4 +161,5 @@ public class UserServiceIMPL implements IUserService{
         }
         return null;
     }
+
 }

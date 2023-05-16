@@ -15,8 +15,10 @@ public class ConnectSQL {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(URL,USER,PASSWORD);
             System.out.println("ket noi thanh cong");
+            System.out.println("connection-->"+ URL+ USER+ PASSWORD);
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("thất bại");
+
             throw new RuntimeException(e);
         }
         return connection;

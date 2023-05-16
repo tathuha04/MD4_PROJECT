@@ -10,7 +10,7 @@ public class User {
     private String email;
     private String password;
     private boolean status;
-    private String avatar = "https://firebasestorage.googleapis.com/v0/b/chinhcomhut-cff0e.appspot.com/o/avatar.jpg?alt=media&token=b9ed2716-395e-46be-af3c-3571ea1b168b";
+    private String avatar = "https://firebasestorage.googleapis.com/v0/b/projectmd4-deb2e.appspot.com/o/avatardefault.png?alt=media&token=741b462a-a9f6-40fe-a7c6-8c3550650c9c";
     private Set<Role> roleSet = new HashSet<>();
 
     public User(int id, String name, String avatar, Set<Role> roleSet) {
@@ -20,9 +20,10 @@ public class User {
         this.roleSet = roleSet;
     }
 
-    public User(String name, String username, String password, Set<Role> roleSet) {
+    public User(String name, String username, String email, String password, Set<Role> roleSet) {
         this.name = name;
         this.username = username;
+        this.email= email;
         this.password =password;
         this.roleSet = roleSet;
     }
