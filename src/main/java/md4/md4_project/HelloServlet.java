@@ -1,6 +1,11 @@
 package md4.md4_project;
 
+import md4.md4_project.config.ConnectSQL;
+
 import java.io.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
@@ -13,13 +18,14 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
-
-        // Hello
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
-        out.println("</body></html>");
+        Connection connection = ConnectSQL.getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into bang1(name) values (?);");
+            preparedStatement.setString(1,"hà");
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void destroy() {
