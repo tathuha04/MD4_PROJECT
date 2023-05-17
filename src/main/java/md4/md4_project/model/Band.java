@@ -1,2 +1,4 @@
-package md4.md4_project.model;public class Band {
+package md4.md4_project.model;
+
+public class Band {
 }

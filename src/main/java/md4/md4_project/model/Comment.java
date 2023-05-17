@@ -1,2 +1,4 @@
-package md4.md4_project.model;public class Comment {
+package md4.md4_project.model;
+
+public class Comment {
 }
