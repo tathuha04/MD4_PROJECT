@@ -1,5 +1,12 @@
 package md4.md4_project.controller;
 
+import md4.md4_project.service.band.BandServiceIMPL;
+import md4.md4_project.service.band.IBandService;
+import md4.md4_project.service.category.CategoryServiceIMPL;
+import md4.md4_project.service.category.ICategoryService;
+import md4.md4_project.service.singer.ISingerService;
+import md4.md4_project.service.singer.SingerServiceIMPL;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +17,9 @@ import java.io.IOException;
 
 @WebServlet(value = "/song")
 public class SongController extends HttpServlet {
-
+IBandService bandService = new BandServiceIMPL();
+ICategoryService categoryService = new CategoryServiceIMPL();
+ISingerService singerService = new SingerServiceIMPL();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,7 +53,7 @@ public class SongController extends HttpServlet {
         }
     }
     private void showFormCreatSong(HttpServletRequest request,HttpServletResponse response){
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/loginForm/Register.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/loginForm/create.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
