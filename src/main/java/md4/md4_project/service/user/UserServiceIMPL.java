@@ -24,6 +24,7 @@ public class UserServiceIMPL implements IUserService{
     private final String SELECT_USER_LOGIN = "SELECT * FROM user WHERE username=? AND password=?;";
     private final String SELECT_ROLE_BY_USER_ID = "SELECT role.id, role.name FROM role INNER JOIN user_role ur on role.id = ur.roleId WHERE userId=?;";
     private final String UPDATE_AVATAR = "UPDATE user SET avatar=? WHERE id=?;";
+    private final String SELECT_ALL_USER= "SELECT id, name, username, email, status FROM user";
     @Override
     public boolean existedByUsername(String username) {
         try {
@@ -160,6 +161,21 @@ public class UserServiceIMPL implements IUserService{
             return  user;
         }
         return null;
+    }
+
+    @Override
+    public List<User> findAll() {
+        List<User> userList = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USER);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                userList.add(new User(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("username"), resultSet.getString("email"), resultSet.getByte("status")));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return userList;
     }
 
 }

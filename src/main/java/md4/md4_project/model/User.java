@@ -9,9 +9,19 @@ public class User {
     private String username;
     private String email;
     private String password;
-    private boolean status;
+    private byte status;
     private String avatar = "https://firebasestorage.googleapis.com/v0/b/projectmd4-deb2e.appspot.com/o/avatardefault.png?alt=media&token=741b462a-a9f6-40fe-a7c6-8c3550650c9c";
     private Set<Role> roleSet = new HashSet<>();
+    public User() {
+    }
+
+    public User(int id, String name, String username, String email, byte status) {
+        this.id = id;
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.status = status;
+    }
 
     public User(int id, String name, String avatar, Set<Role> roleSet) {
         this.id = id;
@@ -28,6 +38,14 @@ public class User {
         this.roleSet = roleSet;
     }
 
+    public User(int id, String name, String username, String email, String avatar) {
+        this.id= id;
+        this.name = name;
+        this.username = username;
+        this.email= email;
+        this.avatar = avatar;
+    }
+
     public Set<Role> getRoleSet() {
         return roleSet;
     }
@@ -36,7 +54,7 @@ public class User {
         this.roleSet = roleSet;
     }
 
-    public User(int id, String name, String username, String email, String password, boolean status, String avatar, Set<Role> roleSet) {
+    public User(int id, String name, String username, String email, String password, byte status, String avatar, Set<Role> roleSet) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -47,10 +65,9 @@ public class User {
         this.roleSet = roleSet;
     }
 
-    public User() {
-    }
 
-    public User(int id, String name, String username, String email, String password, boolean status, String avatar) {
+
+    public User(int id, String name, String username, String email, String password, byte status, String avatar) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -113,11 +130,12 @@ public class User {
         this.password = password;
     }
 
-    public boolean isStatus() {
+
+    public byte getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(byte status) {
         this.status = status;
     }
 
