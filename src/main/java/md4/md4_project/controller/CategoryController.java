@@ -116,6 +116,7 @@ public class CategoryController extends HttpServlet {
         }
     }
 
+
     private void pageGridCategory(HttpServletRequest request, HttpServletResponse response) {
         int pageNumber = 1;
         if (request.getParameter("page") != null) {

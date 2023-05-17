@@ -19,9 +19,9 @@
           <element id="dir-copy" path="$PROJECT_DIR$/build/resources/main" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Gradle: javax.servlet:jstl:1.2" />
           <element id="library" level="project" name="Gradle: mysql:mysql-connector-java:8.0.23" />
           <element id="library" level="project" name="Gradle: com.google.protobuf:protobuf-java:3.11.4" />
-          <element id="library" level="project" name="Gradle: javax.servlet:jstl:1.2" />
         </element>
       </element>
     </root>
