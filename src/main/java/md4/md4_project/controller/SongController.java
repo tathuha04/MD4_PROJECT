@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @WebServlet(value = "/song")
@@ -95,22 +96,22 @@ public class SongController extends HttpServlet {
 
     private void actionCreateSong(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
-     String[] categoriesStr = request.getParameterValues("categories");
-      int categoryId = 0;
+        String categoriesStr = Arrays.toString(request.getParameterValues("categories"));
+        int categoryId = Integer.parseInt(categoriesStr);
         String[] bandStr = request.getParameterValues("listBand");
-       List<Integer> bandId = new ArrayList<>();
+        List<Integer> bandId = new ArrayList<>();
         for (int i = 0; i < bandStr.length; i++) {
-            bandId.add(Integer.parseInt(bandStr[i])) ;
+            bandId.add(Integer.parseInt(bandStr[i]));
         }
         String[] singerStr = request.getParameterValues("listSinger");
         List<Integer> singerId = new ArrayList<>();
         for (int i = 0; i < singerStr.length; i++) {
-            singerId.add(Integer.parseInt(singerStr[i])) ;
+            singerId.add(Integer.parseInt(singerStr[i]));
         }
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
         int userId = user.getId();
-        Song song = new Song(name,categoryId,bandId,singerId,userId);
+        Song song = new Song(name, categoryId, bandId, singerId, userId);
         songService.save(song);
 
     }
