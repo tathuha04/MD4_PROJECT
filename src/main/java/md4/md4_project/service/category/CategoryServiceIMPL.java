@@ -15,7 +15,7 @@ public class CategoryServiceIMPL implements ICategoryService{
     Connection connection = ConnectSQL.getConnection();
     private int totalElement;
     IUserService userService = new UserServiceIMPL();
-    private final String CREATE_CATEGORY = "INSERT INTO category(name, avatar, user_id) VALUES (?,?,?);";
+    private final String CREATE_CATEGORY = "INSERT INTO category(name, avatar) VALUES (?,?);";
 
     @Override
     public void save(Category category, HttpServletRequest request) {
@@ -24,7 +24,7 @@ public class CategoryServiceIMPL implements ICategoryService{
             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_CATEGORY);
             preparedStatement.setString(1,category.getName());
             preparedStatement.setString(2,category.getAvatar());
-            preparedStatement.setInt(3,category.getId());
+//            preparedStatement.setInt(3,category.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

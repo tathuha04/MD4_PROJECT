@@ -558,10 +558,6 @@
 <body>
 <nav>
     <div class="logo-name">
-        <div class="logo-image">
-            <img src="images/logo.png" alt="">
-        </div>
-
         <span class="logo_name">
             <span style="color: rgb(0,157,220)">
                 Z
@@ -590,7 +586,7 @@
             <li><a href="#">
                 <img src="https://img.icons8.com/office/30/line-chart.png" alt="line-chart"/><span class="link-name">Zingchart</span>
             </a></li>
-            <li><a href="#">
+            <li><a href="/category?action=create">
                 <img src="https://img.icons8.com/external-inkubators-gradient-inkubators/25/external-menu-email-inkubators-gradient-inkubators.png"
                      alt="external-menu-email-inkubators-gradient-inkubators"/>
                 <span class="link-name">Chủ đề & thể loại</span>
@@ -634,7 +630,9 @@
                 <p style="color: white">${sessionScope['user'].getName()}</p>
             </div>
             <div>
-                <a href="/user?action=avatar"><img src="${sessionScope['user'].getAvatar()}" alt=""> </a>
+                <a href="/user?action=avatar">
+                    <img src="${sessionScope['user'].getAvatar()}" alt="">
+                </a>
             </div>
             <div style="width: 200px;padding-left: 70px">
                 <a href="/user?action=logout">
