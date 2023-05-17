@@ -634,7 +634,10 @@
                 <p style="color: white">${sessionScope['user'].getName()}</p>
             </div>
             <div>
-                <a href="/user?action=avatar"><img src="${sessionScope['user'].getAvatar()}" alt=""> </a>
+                <a href="/user?action=avatar"><img  src="${sessionScope['user'].getAvatar()}" alt=""> </a>
+            </div>
+            <div>
+
             </div>
             <div style="width: 200px;padding-left: 70px">
                 <a href="/user?action=logout">
