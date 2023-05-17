@@ -4,11 +4,11 @@ package md4.md4_project.model;
 import java.util.List;
 
 public class Band {
-private int id;
-private String name;
-private String avatar= "https://firebasestorage.googleapis.com/v0/b/projectmd4-deb2e.appspot.com/o/avatardefault.png?alt=media&token=741b462a-a9f6-40fe-a7c6-8c3550650c9c";
+    private int id;
+    private String name;
+    private String avatar = "https://firebasestorage.googleapis.com/v0/b/projectmd4-deb2e.appspot.com/o/avatardefault.png?alt=media&token=741b462a-a9f6-40fe-a7c6-8c3550650c9c";
 
-private List<Song> songOfBand;
+    private List<Song> songOfBand;
 
     public Band() {
     }
