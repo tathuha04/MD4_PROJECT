@@ -1,32 +1,45 @@
 package md4.md4_project.model;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Song {
     private int id;
     private String name;
-    private List<Singer> singers;
-    private Category category;
-    private List<Band> brands;
-    private User user;
+    private List<Integer> singerId;
+    private int categoryId;
+    private List<Integer> bandId;
+    private int userId;
     private int numberOfView;
-    private List<User> likeUser= new ArrayList<>();
-    private List<Comment> comments;
+    private String avatar;
+    private List<Integer> likeUserId=new ArrayList<>();
+    private List<Integer> commentId;
+
+
 
     public Song() {
     }
 
-    public Song(int id, String name, List<Singer> singers, Category category, List<Band> brands, User user, int numberOfView, List<User> likeUser, List<Comment> comments) {
+    public Song(int id, String name, List<Integer> singerId, int categoryId, List<Integer> bandId, int userId, int numberOfView, List<Integer> likeUserId, List<Integer> commentId) {
         this.id = id;
         this.name = name;
-        this.singers = singers;
-        this.category = category;
-        this.brands = brands;
-        this.user = user;
+        this.singerId = singerId;
+        this.categoryId = categoryId;
+        this.bandId = bandId;
+        this.userId = userId;
         this.numberOfView = numberOfView;
-        this.likeUser = likeUser;
-        this.comments = comments;
+        this.likeUserId = likeUserId;
+        this.commentId = commentId;
+    }
+
+    public Song(int id, String name, int categoryId, int userId) {
+        this.id = id;
+        this.name = name;
+        this.categoryId = categoryId;
+        this.userId = userId;
+
     }
 
     public int getId() {
@@ -45,36 +58,36 @@ public class Song {
         this.name = name;
     }
 
-    public List<Singer> getSingers() {
-        return singers;
+    public List<Integer> getSingerId() {
+        return singerId;
     }
 
-    public void setSingers(List<Singer> singers) {
-        this.singers = singers;
+    public void setSingerId(List<Integer> singerId) {
+        this.singerId = singerId;
     }
 
-    public Category getCategory() {
-        return category;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public List<Band> getBrands() {
-        return brands;
+    public List<Integer> getBandId() {
+        return bandId;
     }
 
-    public void setBrands(List<Band> brands) {
-        this.brands = brands;
+    public void setBandId(List<Integer> bandId) {
+        this.bandId = bandId;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getNumberOfView() {
@@ -85,19 +98,19 @@ public class Song {
         this.numberOfView = numberOfView;
     }
 
-    public List<User> getLikeUser() {
-        return likeUser;
+    public List<Integer> getLikeUserId() {
+        return likeUserId;
     }
 
-    public void setLikeUser(List<User> likeUser) {
-        this.likeUser = likeUser;
+    public void setLikeUserId(List<Integer> likeUserId) {
+        this.likeUserId = likeUserId;
     }
 
-    public List<Comment> getComments() {
-        return comments;
+    public List<Integer> getCommentId() {
+        return commentId;
     }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
+    public void setCommentId(List<Integer> commentId) {
+        this.commentId = commentId;
     }
 }
