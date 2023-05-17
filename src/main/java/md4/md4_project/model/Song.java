@@ -42,6 +42,14 @@ public class Song {
 
     }
 
+    public Song(String name, int categoryId, List<Integer> bandId, List<Integer> singerId, int userId) {
+        this.name = name;
+        this.singerId = singerId;
+        this.categoryId = categoryId;
+        this.bandId = bandId;
+        this.userId = userId;
+    }
+
     public int getId() {
         return id;
     }
