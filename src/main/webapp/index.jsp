@@ -11,7 +11,7 @@
 <h1><%= "Hello World!" %>
 </h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+
 </body>
 </html>
 <jsp:include page='WEB-INF/bootstrap/footer.jsp'>

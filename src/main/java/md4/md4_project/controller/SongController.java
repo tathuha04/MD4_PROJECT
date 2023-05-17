@@ -80,7 +80,7 @@ public class SongController extends HttpServlet {
     }
 
     private void showFormCreatSong(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/loginForm/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/loginForm/createSong.jsp");
         request.setAttribute("categories", categoryService.findAll());
         request.setAttribute("listBand", bandService.findAll());
         request.setAttribute("listSinger", singerService.findAll());

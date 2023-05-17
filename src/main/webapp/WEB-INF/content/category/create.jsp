@@ -1,48 +1,77 @@
 <%--
   Created by IntelliJ IDEA.
   User: Admin
-  Date: 5/16/2023
-  Time: 8:37 AM
+  Date: 5/13/2023
+  Time: 9:21 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <html>
+<%--<jsp:include page='../../bootstrap/sidebar_navbar.jsp'>--%>
+<%--    <jsp:param name="articleId" value=""/>--%>
+<%--</jsp:include>--%>
 <head>
-    <title>Page Title</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="format-detection" content="telephone=no" />
+    <title>Title</title>
     <style>
-        .container{
-            margin: 40px 40px;
+        table {
+            margin: 0 auto;
         }
-        .form-group{
-            margin-top: 30px;
-        }
-
     </style>
 </head>
-
-<body style="background-color: #231B2E">
-<H1 style="text-align: center; color: white; margin-top: 30px">Create a new list</H1>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<body>
 <div class="container">
-    <form>
-        <div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Enter the name of Song">
-            </div>
-            <div class="form-group">
-                <select class="form-control" name="categories" id="categories">
-                    <c:forEach items="${categories}" var="c">
-                        <option value="${c.id}">${c.name}</option>
-                    </c:forEach>
-                </select>
-            </div>
+    <div class="row">
+        <div class="col-12" style="text-align: center">
+            <form method="post" >
+                <c:if test="${requestScope['success']==null}">
+                    <label class="alert alert-danger" style="color: red" id="validate">Please fill name to input and upload avatar</label>
+                </c:if>
+                <c:if test="${requestScope['success']!=null}">
+                    <label class="alert alert-primary" style="color: green" >Create category success!</label>
+                </c:if>
+                <c:if test='${requestScope["validate"]!=null}'>
+                    <label style="color: red">${requestScope["validate"]}</label>
+                </c:if>
+                <table>
+                    <tr>
+                        <td>Name</td>
+                        <td><input oninput="validate()" id="name" type="text" name="name" value="${requestScope['name']}"></td>
+                    </tr>
+                    <tr>
+                        <td>Avatar</td>
+                        <td>
+                            <jsp:include page="../../upload/upload_avatar.jsp">
+                                <jsp:param name="articleId" value=""/>
+                            </jsp:include>
+                        </td>
+                    </tr>
+                    <tr style="text-align: center">
+                        <td colspan="2">
+                            <button class="btn btn-primary" id="btn-create" type="submit">Create Category</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
-</body>
 
+<script>
+    function validate() {
+        let name = document.getElementById('name').value;
+        if(name.trim()==''){
+            document.getElementById('validate').innerHTML = 'The name is required!'
+            document.getElementById('validate').className = 'alert alert-danger';
+        } else {
+            document.getElementById('validate').innerHTML = ''
+            document.getElementById('validate').className = '';
+        }
+    }
+</script>
+</body>
+</html>
+<%--<jsp:include page='../../bootstrap/footer.jsp'>--%>
+<%--    <jsp:param name="articleId" value=""/>--%>
+<%--</jsp:include>--%>
+>>>>>>> dev
