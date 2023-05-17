@@ -21,7 +21,7 @@
   <jsp:param name="articleId" value=""/>
 </jsp:include>
 <section class="home-section">
-  <div class="text">ADMIN</div>
+  <div class="text">ADMIN </div>
 </section>
 </body>
 </html>
