@@ -595,12 +595,12 @@
                      alt="external-menu-email-inkubators-gradient-inkubators"/>
                 <span class="link-name">Chủ đề & thể loại</span>
             </a></li>
-            <li><a href="#">
+            <li><a href="/singers?action=singer">
                 <img src="https://img.icons8.com/external-anggara-flat-anggara-putra/32/external-artist-media-anggara-flat-anggara-putra-2.png"
                      alt="external-artist-media-anggara-flat-anggara-putra-2"/>
                 <span class="link-name">Singer </span>
             </a></li>
-            <li><a href="#">
+            <li><a href="/band?action=showband">
                 <img src="https://img.icons8.com/fluency/48/music-band.png" alt="music-band"/>
                 <span class="link-name">Band</span>
             </a></li>
