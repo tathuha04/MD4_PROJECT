@@ -29,18 +29,18 @@ public class UserController extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
         String action = req.getParameter("action");
-        System.out.println("goi doget" );
-        System.out.println("action--> "+ action);
+        System.out.println("goi doget");
+        System.out.println("action--> " + action);
         if (action == null) {
             action = "";
         }
-        System.out.println("action--> "+ action);
+        System.out.println("action--> " + action);
         switch (action) {
             case "register":
                 showFormRegister(req, resp);
                 break;
             case "login":
-                showFormLogin(req,resp);
+                showFormLogin(req, resp);
                 break;
             case "avatar":
                 showAvatar(req, resp);
@@ -59,13 +59,13 @@ public class UserController extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        System.out.println("action o DoPost"+ action);
+        System.out.println("action o DoPost" + action);
         switch (action) {
             case "register":
                 actionRegister(req, resp);
                 break;
             case "login":
-                actionLogin(req,resp);
+                actionLogin(req, resp);
                 break;
             case "avatar":
                 changeAvatar(req, resp);
@@ -122,7 +122,7 @@ public class UserController extends HttpServlet {
             request.setAttribute("password", password);
             showFormRegister(request, response);
         } else {
-            User user = new User(name, username,email, password, roleSet);
+            User user = new User(name, username, email, password, roleSet);
             userService.save(user);
             request.setAttribute("validate", "Register success!");
             try {
@@ -135,21 +135,22 @@ public class UserController extends HttpServlet {
 
     }
 
-    private  void showFormLogin(HttpServletRequest request , HttpServletResponse response){
+    private void showFormLogin(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/loginForm/Login.jsp");
         try {
-            requestDispatcher.forward(request,response);
+            requestDispatcher.forward(request, response);
         } catch (ServletException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    private void actionLogin(HttpServletRequest request, HttpServletResponse response){
+
+    private void actionLogin(HttpServletRequest request, HttpServletResponse response) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        User user = userService.userLogin(username,password);
-        if (user!=null){
+        User user = userService.userLogin(username, password);
+        if (user != null) {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             try {
@@ -157,12 +158,13 @@ public class UserController extends HttpServlet {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }else {
-            request.setAttribute("validate","Login failed! Please check your account!");
-            showFormLogin(request,response);
+        } else {
+            request.setAttribute("validate", "Login failed! Please check your account!");
+            showFormLogin(request, response);
         }
     }
-    private void showAvatar(HttpServletRequest request, HttpServletResponse response){
+
+    private void showAvatar(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/upload/upload_avatar.jsp");
         try {
             dispatcher.forward(request, response);
@@ -172,7 +174,8 @@ public class UserController extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
-    private void changeAvatar(HttpServletRequest request, HttpServletResponse response){
+
+    private void changeAvatar(HttpServletRequest request, HttpServletResponse response) {
         String avatar = request.getParameter("avatar");
 
         HttpSession session = request.getSession(false);
@@ -185,7 +188,8 @@ public class UserController extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
-    private void logOut(HttpServletRequest request, HttpServletResponse response){
+
+    private void logOut(HttpServletRequest request, HttpServletResponse response) {
         // false check session cos ton tai hay ko ? neu ton tai tra ve obj tuong ung, ko thi tra ve null
         HttpSession session = request.getSession(false);
         if (session.getAttribute("user") != null) {
@@ -199,4 +203,5 @@ public class UserController extends HttpServlet {
             }
         }
     }
+
 }

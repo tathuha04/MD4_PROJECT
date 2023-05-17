@@ -1,6 +1,7 @@
 package md4.md4_project.model;
 
-import java.sql.Array;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +13,11 @@ public class Song {
     private List<Integer> bandId;
     private int userId;
     private int numberOfView;
+    private String avatar;
     private List<Integer> likeUserId=new ArrayList<>();
     private List<Integer> commentId;
+
+
 
     public Song() {
     }
@@ -37,7 +41,6 @@ public class Song {
         this.userId = userId;
 
     }
-
 
     public int getId() {
         return id;
