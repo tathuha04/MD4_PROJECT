@@ -82,6 +82,7 @@ public class Song {
         this.src = src;
     }
 
+
     public String getAvatar() {
         return avatar;
     }
