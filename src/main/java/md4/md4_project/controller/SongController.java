@@ -30,7 +30,7 @@ public class SongController extends HttpServlet {
     IBandService bandService = new BandServiceIMPL();
     ICategoryService categoryService = new CategoryServiceIMPL();
     ISingerService singerService = new SingerServiceIMPL();
-    ISongService songService = new SongServiceIMPL();
+    private ISongService songService = new SongServiceIMPL();
     IUserService userService = new UserServiceIMPL();
 
 
@@ -39,13 +39,19 @@ public class SongController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         String action = request.getParameter("action");
-
+        System.out.println(action);
         if (action == null) {
             action = "";
         }
         switch (action) {
             case "creat":
                 showFormCreatSong(request, response);
+                break;
+//            case "songManager":
+//                showSongManager(request, response);
+//                break;
+            case "songManager":
+                showAllSong(request, response);
                 break;
 
         }
@@ -64,13 +70,16 @@ public class SongController extends HttpServlet {
             case "creat":
                 actionCreateSong(request, response);
                 break;
+            case "page_grid":
+                pageGridSong(request,response);
+                break;
 
         }
     }
 
-    private void showAllSong(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/loginForm/allSong.jsp");
-        request.setAttribute("listSong", songService.findAll());
+    private void showSongManager(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/loginForm/songManager.jsp");
+
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -80,6 +89,54 @@ public class SongController extends HttpServlet {
         }
     }
 
+    private void showAllSong(HttpServletRequest request, HttpServletResponse response) {
+        int pageNumber = 1;
+        if (request.getParameter("page") != null) {
+            pageNumber = Integer.parseInt(request.getParameter("page"));
+        }
+        System.out.println("pageNumber --->" + pageNumber);
+        int elementOfPage = 2;
+        int start = (pageNumber - 1) * elementOfPage;
+        List<Song> songList = songService.findAll(start, elementOfPage);
+        int totalElement = songService.getNoOfRecords();
+        int sumOfPage = (int) Math.ceil(totalElement / elementOfPage);
+        System.out.println(sumOfPage);
+        System.out.println(pageNumber);
+        request.setAttribute("listSong", songList);
+        request.setAttribute("sumOfPage", sumOfPage);
+        request.setAttribute("pageNumber", pageNumber);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/song/listSong.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void pageGridSong(HttpServletRequest request, HttpServletResponse response){
+        int pageNumber = 1;
+        if(request.getParameter("page")!=null){
+            pageNumber = Integer.parseInt(request.getParameter("page"));
+        }
+        System.out.println("pageNumber --->"+pageNumber);
+        int elementOfPage = 6;
+        int start = (pageNumber-1)*elementOfPage;
+        List<Song> songList = songService.findAll(start,elementOfPage);
+        int totalElement = songService.getNoOfRecords();
+        int sumOfPage = (int) Math.ceil(totalElement / elementOfPage);
+        request.setAttribute("listSong", songList);
+        request.setAttribute("sumOfPage", sumOfPage);
+        request.setAttribute("pageNumber", pageNumber);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/song/page.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     private void showFormCreatSong(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/song/creatSong.jsp");
         request.setAttribute("categories", categoryService.findAll());
@@ -120,8 +177,9 @@ public class SongController extends HttpServlet {
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
         int userId = user.getId();
-        Song song = new Song(name, categoryId, listBandId, listSingerId, userId,src);
+        Song song = new Song(name, categoryId, listBandId, listSingerId, userId, src);
         songService.save(song);
         showFormCreatSong(request, response);
     }
+
 }

@@ -307,7 +307,7 @@ MzmaWxL+JrxPvt93ySPR4z4f9TsTogsqmwmHIhcJQX/nsA+9phNCY96Mk+DV+kUQl4oF4Qu8LtPbHSa/
       <span class="tooltip">Category</span>
     </li>
     <li>
-      <a href="/song?action=creat">
+      <a href="/song?action=songManager">
         <i class='bx bx-folder' ></i>
         <span class="links_name">Song</span>
       </a>

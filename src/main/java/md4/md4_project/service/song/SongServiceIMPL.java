@@ -9,6 +9,7 @@ import java.util.List;
 
 public class SongServiceIMPL implements ISongService {
     private Connection connection = ConnectSQL.getConnection();
+    private int totalElement;
     private final String SELECT_ALL_SONG = "SELECT * FROM SONG";
     private final String CREAT_NEW_SONG = "INSERT INTO SONG (name,category_Id,bandId,singerId,user_Id,src) values(?,?,?,?,?,?)";
     private final String CREAT_NEW_SONG_1 = "INSERT INTO SONG (name,category_Id,bandId,user_Id,src) values(?,?,?,?,?)";
@@ -159,5 +160,34 @@ public class SongServiceIMPL implements ISongService {
             throw new RuntimeException(e);
         }
 
+    }
+
+    @Override
+    public List<Song> findAll(int start, int elementOfPage) {
+        List<Song> songList = new ArrayList<>();
+        try {
+            Statement statement=connection.createStatement();
+            String PAGE_SONG = "SELECT SQL_CALC_FOUND_ROWS * FROM song LIMIT "+start+","+elementOfPage;
+            ResultSet resultSet = statement.executeQuery(PAGE_SONG);
+            while (resultSet.next()){
+                Song song = new Song();
+                song.setId(resultSet.getInt("id"));
+                song.setName(resultSet.getString("name"));
+                song.setSrc(resultSet.getString("src"));
+                songList.add(song);
+            }
+            resultSet=statement.executeQuery("SELECT FOUND_ROWS()");
+            if (resultSet.next()){
+                this.totalElement=resultSet.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return songList;
+    }
+    public int getNoOfRecords() {
+        return totalElement;
     }
 }
