@@ -53,6 +53,12 @@ public class SongController extends HttpServlet {
             case "songManager":
                 showAllSong(request, response);
                 break;
+            case "page_grid":
+                pageGridSong(request, response);
+                break;
+            case "detail":
+                detailSong(request, response);
+                break;
 
         }
     }
@@ -70,9 +76,8 @@ public class SongController extends HttpServlet {
             case "creat":
                 actionCreateSong(request, response);
                 break;
-            case "page_grid":
-                pageGridSong(request,response);
-                break;
+            default:
+
 
         }
     }
@@ -94,14 +99,20 @@ public class SongController extends HttpServlet {
         if (request.getParameter("page") != null) {
             pageNumber = Integer.parseInt(request.getParameter("page"));
         }
+
         System.out.println("pageNumber --->" + pageNumber);
-        int elementOfPage = 2;
+        int elementOfPage = 6;
         int start = (pageNumber - 1) * elementOfPage;
         List<Song> songList = songService.findAll(start, elementOfPage);
         int totalElement = songService.getNoOfRecords();
-        int sumOfPage = (int) Math.ceil(totalElement / elementOfPage);
-        System.out.println(sumOfPage);
-        System.out.println(pageNumber);
+        int sumOfPage = 0;
+        if (totalElement > elementOfPage) {
+            if (totalElement % elementOfPage == 0) {
+                sumOfPage = (int) Math.ceil(totalElement / elementOfPage);
+            } else {
+                sumOfPage = (int) Math.ceil(totalElement / elementOfPage) + 1;
+            }
+        }
         request.setAttribute("listSong", songList);
         request.setAttribute("sumOfPage", sumOfPage);
         request.setAttribute("pageNumber", pageNumber);
@@ -114,17 +125,25 @@ public class SongController extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
-    private void pageGridSong(HttpServletRequest request, HttpServletResponse response){
+
+    private void pageGridSong(HttpServletRequest request, HttpServletResponse response) {
         int pageNumber = 1;
-        if(request.getParameter("page")!=null){
+        if (request.getParameter("page") != null) {
             pageNumber = Integer.parseInt(request.getParameter("page"));
         }
-        System.out.println("pageNumber --->"+pageNumber);
+        System.out.println("pageNumber --->" + pageNumber);
         int elementOfPage = 6;
-        int start = (pageNumber-1)*elementOfPage;
-        List<Song> songList = songService.findAll(start,elementOfPage);
+        int start = (pageNumber - 1) * elementOfPage;
+        List<Song> songList = songService.findAll(start, elementOfPage);
         int totalElement = songService.getNoOfRecords();
-        int sumOfPage = (int) Math.ceil(totalElement / elementOfPage);
+        int sumOfPage = 0;
+        if (totalElement > elementOfPage) {
+            if (totalElement % elementOfPage == 0) {
+                sumOfPage = (int) Math.ceil(totalElement / elementOfPage);
+            } else {
+                sumOfPage = (int) Math.ceil(totalElement / elementOfPage) + 1;
+            }
+        }
         request.setAttribute("listSong", songList);
         request.setAttribute("sumOfPage", sumOfPage);
         request.setAttribute("pageNumber", pageNumber);
@@ -137,6 +156,7 @@ public class SongController extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
+
     private void showFormCreatSong(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/song/creatSong.jsp");
         request.setAttribute("categories", categoryService.findAll());
@@ -179,7 +199,22 @@ public class SongController extends HttpServlet {
         int userId = user.getId();
         Song song = new Song(name, categoryId, listBandId, listSingerId, userId, src);
         songService.save(song);
-        showFormCreatSong(request, response);
+       showAllSong(request, response);
     }
 
+    private void detailSong(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        System.out.println(id);
+        Song song = (Song) songService.findById(id);
+        System.out.println(song.getSrc());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/song/detail.jsp");
+        request.setAttribute("song", song);
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

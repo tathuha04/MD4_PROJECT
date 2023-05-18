@@ -74,6 +74,14 @@ public class Song {
         this.src = src;
     }
 
+    public Song(int id, String name, int categoryId, int userId, String src) {
+        this.id = id;
+        this.name = name;
+        this.categoryId = categoryId;
+        this.userId = userId;
+        this.src = src;
+    }
+
     public String getAvatar() {
         return avatar;
     }

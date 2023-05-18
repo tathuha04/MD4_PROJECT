@@ -1,16 +1,7 @@
-<%<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 5/15/2023
-  Time: 5:24 AM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-<jsp:include page='../../bootstrap/nav-bar.jsp'>
-  <jsp:param name="articleId" value=""/>
-</jsp:include>
 <head>
   <title>Title</title>
   <style>
@@ -34,16 +25,23 @@
 </head>
 <body>
 <div class="container">
+  <a href="/song?action=creat"><button>CREAT SONG</button></a>
   <div class="col-12" style="margin-top: 20px">
     <div class="row">
-      <c:forEach items="${listSong}" var="ls">
+      <table class="table">
         <tr>
-          <th >${ls.id}</th>
-          <td>${ls.name}</td>
-          <td>
-            <audio controls src="${ls.src}"></audio></td>
+          <th>STT</th>
+          <th>NAME</th>
+          <th></th>
         </tr>
-      </c:forEach>
+        <c:forEach items="${listSong}" var="ls">
+          <tr>
+            <td >${ls.id}</td>
+            <td>${ls.name}</td>
+            <td><a href="/song?action=detail&id=${ls.id}">SHOW</a></td>
+          </tr>
+        </c:forEach>
+      </table>
     </div>
     <nav aria-label="Page navigation example">
       <ul class="pagination">
@@ -69,6 +67,6 @@
     </nav>
   </div>
 </div>
-//?????
+
 </body>
 </html>

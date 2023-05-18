@@ -26,7 +26,7 @@ public class SongServiceIMPL implements ISongService {
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_SONG);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Song song = new Song(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("category_Id"), resultSet.getInt("user_id"));
+                Song song = new Song(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("category_Id"), resultSet.getInt("user_id"),resultSet.getString("src"));
                 songList.add(song);
             }
         } catch (SQLException e) {
@@ -136,15 +136,11 @@ public class SongServiceIMPL implements ISongService {
     @Override
     public Song findById(int id) {
         Song song = new Song();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(FIND_SONG_BY_ID);
-            preparedStatement.setInt(1,id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
-                 song = new Song(resultSet.getInt("id"),resultSet.getString("name"),resultSet.getInt("category_id"),resultSet.getInt("user_id"));
+       List<Song> songList = findAll();
+        for (int i = 0; i < songList.size(); i++) {
+            if (songList.get(i).getId()==id){
+                song= songList.get(i);
             }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
         return song;
     }

@@ -14,20 +14,20 @@
 <body>
 
 <div class="container">
+    <a href="/song?action=creat"><button>CREAT SONG</button></a>
     <div class="row">
         <div class="col-12" style="margin-top: 20px; margin-bottom: 20px">
             <table class="table">
                 <tr>
                     <th>STT</th>
                     <th>NAME</th>
-                    <th>SRC</th>
+                    <th></th>
                 </tr>
                 <c:forEach items="${listSong}" var="ls">
                     <tr>
-                        <th >${ls.id}</th>
+                        <td >${ls.id}</td>
                         <td>${ls.name}</td>
-                        <td>
-                            <audio controls src="${ls.src}"></audio></td>
+                        <td><a href="/song?action=detail&id=${ls.id}">SHOW</a></td>
                     </tr>
                 </c:forEach>
             </table>
@@ -35,21 +35,21 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <c:if test="${pageNumber != 1}">
-                        <li class="page-item"><a class="page-link" href="/song?action=page&page=${pageNumber-1}">Previous</a>
+                        <li class="page-item"><a class="page-link" href="/song?action=page_grid&page=${pageNumber-1}">Previous</a>
                         </li>
                     </c:if>
                     <c:forEach begin="1" end="${sumOfPage}" var="i">
                         <c:choose>
                             <c:when test="${pageNumber eq i}">
-                                <li class="page-item"><a style="color: red" class="page-link" href="/song?action=page&page=${i}">${i}</a></li>
+                                <li class="page-item"><a style="color: red" class="page-link" href="/song?action=page_grid&page=${i}">${i}</a></li>
                             </c:when>
                             <c:otherwise>
-                                <li class="page-item"><a  class="page-link" href="/song?action=page&page=${i}">${i}</a></li>
+                                <li class="page-item"><a  class="page-link" href="/song?action=page_grid&page=${i}">${i}</a></li>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
                     <c:if test="${pageNumber lt sumOfPage}">
-                        <li class="page-item"><a href="/song?action=page&page=${pageNumber + 1}">Next</a></li>
+                        <li class="page-item"><a href="/song?action=page_grid&page=${pageNumber + 1}">Next</a></li>
                     </c:if>
                 </ul>
             </nav>
