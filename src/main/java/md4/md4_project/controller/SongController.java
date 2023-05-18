@@ -96,6 +96,7 @@ public class SongController extends HttpServlet {
 
     private void actionCreateSong(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
+        String src = request.getParameter("audio");
         int categoryId = Integer.parseInt(request.getParameter("categories"));
 
         String[] bandIdStr = request.getParameterValues("listBand");
@@ -119,7 +120,7 @@ public class SongController extends HttpServlet {
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
         int userId = user.getId();
-        Song song = new Song(name, categoryId, listBandId, listSingerId, userId);
+        Song song = new Song(name, categoryId, listBandId, listSingerId, userId,src);
         songService.save(song);
         showFormCreatSong(request, response);
     }

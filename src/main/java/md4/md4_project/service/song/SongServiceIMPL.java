@@ -10,13 +10,13 @@ import java.util.List;
 public class SongServiceIMPL implements ISongService {
     private Connection connection = ConnectSQL.getConnection();
     private final String SELECT_ALL_SONG = "SELECT * FROM SONG";
-    private final String CREAT_NEW_SONG = "INSERT INTO SONG (name,category_Id,bandId,singerId,user_Id) values(?,?,?,?,?)";
-    private final String CREAT_NEW_SONG_1 = "INSERT INTO SONG (name,category_Id,bandId,user_Id) values(?,?,?,?)";
-    private final String CREAT_NEW_SONG_2 = "INSERT INTO SONG (name,category_Id,singerId,user_Id) values(?,?,?,,?)";
+    private final String CREAT_NEW_SONG = "INSERT INTO SONG (name,category_Id,bandId,singerId,user_Id,src) values(?,?,?,?,?,?)";
+    private final String CREAT_NEW_SONG_1 = "INSERT INTO SONG (name,category_Id,bandId,user_Id,src) values(?,?,?,?,?)";
+    private final String CREAT_NEW_SONG_2 = "INSERT INTO SONG (name,category_Id,singerId,user_Id,src) values(?,?,?,?,?)";
     private final String ADD_SONG_ID_TO_BAND = "INSERT INTO SONG_OF_BAND (songId,bandId) values (?,?)";
     private final String ADD_SONG_ID_TO_SINGER = "INSERT INTO SONG_OF_SINGER (songId,singerId) values (?,?)";
     private final String FIND_SONG_BY_ID="SELECT * FROM SONG WHERE ID=?";
-    private final String DELETE_SONG_BY_ID="";
+    private final String DELETE_SONG_BY_ID="DELETE SONG WHERE ID=?";
 
     @Override
     public List findAll() {
@@ -46,6 +46,7 @@ public class SongServiceIMPL implements ISongService {
                 preparedStatement.setInt(2, song.getCategoryId());
                 preparedStatement.setString(3, song.getSingerId().toString());
                 preparedStatement.setInt(4, song.getUserId());
+                preparedStatement.setString(5,song.getSrc());
                 preparedStatement.executeUpdate();
                 int id = 0;
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -71,6 +72,8 @@ public class SongServiceIMPL implements ISongService {
                 preparedStatement.setInt(2, song.getCategoryId());
                 preparedStatement.setString(3, song.getBandId().toString());
                 preparedStatement.setInt(4, song.getUserId());
+                preparedStatement.setString(5,song.getSrc());
+
                 preparedStatement.executeUpdate();
                 int id = 0;
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -97,6 +100,8 @@ public class SongServiceIMPL implements ISongService {
                 preparedStatement.setString(3, song.getSingerId().toString());
                 preparedStatement.setString(4, song.getBandId().toString());
                 preparedStatement.setInt(5, song.getUserId());
+                preparedStatement.setString(6,song.getSrc());
+
                 preparedStatement.executeUpdate();
                 int id = 0;
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -146,7 +151,10 @@ public class SongServiceIMPL implements ISongService {
     @Override
     public void deleteById(int id) {
         try {
+            connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_SONG_BY_ID);
+            preparedStatement.setInt(1,id);
+            connection.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
