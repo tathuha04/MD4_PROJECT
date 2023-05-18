@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(value = {"/category"})
@@ -37,8 +39,13 @@ public class CategoryController extends HttpServlet {
                 break;
             case "page_grid":
                 pageGridCategory(request, response);
+                break;
+            case "createcategoryAD":
+                showFormCategoryAD(request,response);
+                break;
             default:
                 showFormCategory(request, response);
+                break;
         }
     }
 
@@ -53,6 +60,9 @@ public class CategoryController extends HttpServlet {
         switch (action) {
             case "create":
                 actionCreateCategory(request, response);
+                break;
+            case "createCategoryAD":
+                actionCreateCategory(request,response);
                 break;
         }
     }
@@ -134,6 +144,18 @@ public class CategoryController extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/category/page.jsp");
         try {
             dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void showFormCategoryAD(HttpServletRequest request,HttpServletResponse response){
+        List<Category> categoryList = categoryService.findAll();
+        request.setAttribute("listCategory", categoryList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/categoryAdmin.jsp");
+        try {
+            dispatcher.forward(request,response);
         } catch (ServletException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
