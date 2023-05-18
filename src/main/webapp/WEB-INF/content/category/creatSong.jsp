@@ -38,6 +38,16 @@
             <option value="${c.id}">${c.name}</option>
           </c:forEach>
         </select>
+        <select class="form-control" name="listBand" id="listBand">
+          <c:forEach items="${listBand}" var="c">
+            <option value="${c.id}">${c.name}</option>
+          </c:forEach>
+        </select>
+        <select class="form-control" name="listSinger" id="listSinger">
+        <c:forEach items="${listSinger}" var="c">
+          <option value="${c.id}">${c.name}</option>
+        </c:forEach>
+      </select>
       </div>
     </div>
   </form>
