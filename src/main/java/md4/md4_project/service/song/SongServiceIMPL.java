@@ -15,6 +15,8 @@ public class SongServiceIMPL implements ISongService {
     private final String CREAT_NEW_SONG_2 = "INSERT INTO SONG (name,category_Id,singerId,user_Id) values(?,?,?,,?)";
     private final String ADD_SONG_ID_TO_BAND = "INSERT INTO SONG_OF_BAND (songId,bandId) values (?,?)";
     private final String ADD_SONG_ID_TO_SINGER = "INSERT INTO SONG_OF_SINGER (songId,singerId) values (?,?)";
+    private final String FIND_SONG_BY_ID="SELECT * FROM SONG WHERE ID=?";
+    private final String DELETE_SONG_BY_ID="";
 
     @Override
     public List findAll() {
@@ -126,12 +128,28 @@ public class SongServiceIMPL implements ISongService {
 
 
     @Override
-    public Object findById(int id) {
-        return null;
+    public Song findById(int id) {
+        Song song = new Song();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(FIND_SONG_BY_ID);
+            preparedStatement.setInt(1,id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                 song = new Song(resultSet.getInt("id"),resultSet.getString("name"),resultSet.getInt("category_id"),resultSet.getInt("user_id"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return song;
     }
 
     @Override
     public void deleteById(int id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_SONG_BY_ID);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }
