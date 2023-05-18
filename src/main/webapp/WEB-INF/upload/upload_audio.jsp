@@ -16,8 +16,8 @@
 
   <progress value="0" max="100" id="uploader">0%</progress>
   <input class="form-control" type="file" value="upload" accept=".mp3" id="fileButton">
-  <input  class="form-control" name="audio" type="text" id="avatar" style="display: none">
-  <div id="imgDiv"></div>
+  <input  class="form-control" name="audio" type="text" id="audio" style="display: none">
+  <div id="imgDiv" style="background: white;color: white;height: 60px"></div>
 
 </form>
 
@@ -183,19 +183,20 @@
 
               let divLocation = document.getElementById("imgDiv");
 
-              let imgElement = document.createElement("img");
+              let imgElement = document.createElement("audio");
 
               imgElement.src = downloadURL
 
               imgElement.width = 100;
 
               imgElement.height = 100;
+              imgElement.setAttribute("controls","controls");
 
               console.log('pic ==', downloadURL)
 
               divLocation.append(imgElement);
 
-              document.getElementById('avatar').value = downloadURL;
+              document.getElementById('audio').value = downloadURL;
 
             });
 
