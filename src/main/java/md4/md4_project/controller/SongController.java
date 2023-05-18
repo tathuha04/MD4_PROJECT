@@ -56,12 +56,12 @@ public class SongController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         String action = request.getParameter("action");
-
+        System.out.println(action);
         if (action == null) {
             action = "";
         }
         switch (action) {
-            case "create":
+            case "creat":
                 actionCreateSong(request, response);
                 break;
 
@@ -81,8 +81,8 @@ public class SongController extends HttpServlet {
     }
 
     private void showFormCreatSong(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/loginForm/createSong.jsp");
-//        request.setAttribute("categories", categoryService.findAll());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/song/creatSong.jsp");
+        request.setAttribute("categories", categoryService.findAll());
         request.setAttribute("listBand", bandService.findAll());
         request.setAttribute("listSinger", singerService.findAll());
         try {
@@ -95,24 +95,20 @@ public class SongController extends HttpServlet {
     }
 
     private void actionCreateSong(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("actioncreat");
         String name = request.getParameter("name");
-        String categoriesStr = Arrays.toString(request.getParameterValues("categories"));
-        int categoryId = Integer.parseInt(categoriesStr);
-        String[] bandStr = request.getParameterValues("listBand");
-        List<Integer> bandId = new ArrayList<>();
-        for (int i = 0; i < bandStr.length; i++) {
-            bandId.add(Integer.parseInt(bandStr[i]));
-        }
-        String[] singerStr = request.getParameterValues("listSinger");
-        List<Integer> singerId = new ArrayList<>();
-        for (int i = 0; i < singerStr.length; i++) {
-            singerId.add(Integer.parseInt(singerStr[i]));
-        }
+        int categoryId = Integer.parseInt(request.getParameter("categories"));
+        int bandId = Integer.parseInt(request.getParameter("listBand"));
+        List<Integer> listBandId = new ArrayList<>();
+        listBandId.add(bandId);
+        int singerId = Integer.parseInt(request.getParameter("listSinger"));
+        List<Integer> listSingerId = new ArrayList<>();
+        listSingerId.add(singerId);
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
         int userId = user.getId();
-        Song song = new Song(name, categoryId, bandId, singerId, userId);
+        Song song = new Song(name, categoryId, listBandId, listSingerId, userId);
         songService.save(song);
-
+        showFormCreatSong(request, response);
     }
 }

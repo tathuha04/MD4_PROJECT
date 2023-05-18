@@ -83,7 +83,7 @@ public class CategoryServiceIMPL implements ICategoryService{
                 Category category = new Category();
                 category.setId(resultSet.getInt("id"));
                 category.setName(resultSet.getString("name"));
-                category.setAvatar(resultSet.getString("avatar"));
+//                category.setAvatar(resultSet.getString("avatar"));
                 categoryList.add(category);
             }
         } catch (SQLException e) {

@@ -8,12 +8,3 @@
       <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="webnhac@localhost" uuid="f5d60474-959d-4a8c-8e27-18d8cbf1044d">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/webnhac</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-  </component>
-</project>

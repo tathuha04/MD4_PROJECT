@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @WebServlet(value = "/user")
@@ -48,7 +49,11 @@ public class UserController extends HttpServlet {
             case "logout":
                 logOut(req, resp);
                 break;
+            case "usercontroller":
+                showFormUserController(req, resp);
+                break;
         }
+
     }
 
     @Override
@@ -153,11 +158,15 @@ public class UserController extends HttpServlet {
         if (user != null) {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/admin/admin2.jsp");
             try {
-                response.sendRedirect("index.jsp");
+                dispatcher.forward(request, response);
+            } catch (ServletException e) {
+                throw new RuntimeException(e);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+
         } else {
             request.setAttribute("validate", "Login failed! Please check your account!");
             showFormLogin(request, response);
@@ -203,5 +212,16 @@ public class UserController extends HttpServlet {
             }
         }
     }
-
+    public void showFormUserController(HttpServletRequest request, HttpServletResponse response){
+        List<User> userList = userService.findAll();
+        request.setAttribute("userList", userList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/userAdmin.jsp");
+        try {
+            dispatcher.forward(request,response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

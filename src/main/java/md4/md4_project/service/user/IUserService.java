@@ -4,6 +4,7 @@ import md4.md4_project.model.Role;
 import md4.md4_project.model.User;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Set;
 
 public interface IUserService {
@@ -14,4 +15,5 @@ public interface IUserService {
     Set<Role> findRoleByUserId(int user_id);
     void updateAvatar(String avatar, int id);
     User getCurrentUser(HttpServletRequest request);
+    List<User> findAll();
 }
