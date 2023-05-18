@@ -63,7 +63,7 @@ public class SongServiceIMPL implements ISongService {
             }
         } else if (song.getSingerId() == null) {
             try {
-                connection.setAutoCommit(false);
+                 connection.setAutoCommit(false);
                 preparedStatement = connection.prepareStatement(CREAT_NEW_SONG_1, Statement.RETURN_GENERATED_KEYS);
                 preparedStatement.setString(1, song.getName());
                 preparedStatement.setInt(2, song.getCategoryId());
