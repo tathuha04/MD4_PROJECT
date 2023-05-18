@@ -95,15 +95,27 @@ public class SongController extends HttpServlet {
     }
 
     private void actionCreateSong(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("actioncreat");
         String name = request.getParameter("name");
         int categoryId = Integer.parseInt(request.getParameter("categories"));
-        int bandId = Integer.parseInt(request.getParameter("listBand"));
+
+        String[] bandIdStr = request.getParameterValues("listBand");
+        int[] bandIds = new int[bandIdStr.length];
+        for (int i = 0; i < bandIdStr.length; i++) {
+            bandIds[i] = Integer.parseInt(bandIdStr[i]);
+        }
         List<Integer> listBandId = new ArrayList<>();
-        listBandId.add(bandId);
-        int singerId = Integer.parseInt(request.getParameter("listSinger"));
+        for (int i = 0; i < bandIds.length; i++) {
+            listBandId.add(Integer.valueOf(bandIds[i]));
+        }
+        String[] singerIdStr = request.getParameterValues("listSinger");
+        int[] singerIds = new int[singerIdStr.length];
+        for (int i = 0; i < singerIdStr.length; i++) {
+            singerIds[i] = Integer.parseInt(singerIdStr[i]);
+        }
         List<Integer> listSingerId = new ArrayList<>();
-        listSingerId.add(singerId);
+        for (int i = 0; i < singerIds.length; i++) {
+            listSingerId.add(Integer.valueOf(singerIds[i]));
+        }
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
         int userId = user.getId();
