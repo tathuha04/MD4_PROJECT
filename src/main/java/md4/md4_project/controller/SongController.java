@@ -68,7 +68,6 @@ public class SongController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         String action = request.getParameter("action");
-        System.out.println(action);
         if (action == null) {
             action = "";
         }
@@ -77,8 +76,6 @@ public class SongController extends HttpServlet {
                 actionCreateSong(request, response);
                 break;
             default:
-
-
         }
     }
 

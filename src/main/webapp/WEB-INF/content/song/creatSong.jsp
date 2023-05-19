@@ -59,8 +59,6 @@
                             <jsp:param name="articleId" value=""/>
                         </jsp:include>
                     </div>
-
-
                 </select>
             </div>
             <div>
