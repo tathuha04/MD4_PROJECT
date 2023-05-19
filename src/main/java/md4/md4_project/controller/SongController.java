@@ -44,7 +44,7 @@ public class SongController extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "creat":
+            case "create":
                 showFormCreatSong(request, response);
                 break;
 //            case "songManager":
@@ -73,7 +73,7 @@ public class SongController extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "creat":
+            case "create":
                 actionCreateSong(request, response);
                 break;
             default:
@@ -199,12 +199,11 @@ public class SongController extends HttpServlet {
         int userId = user.getId();
         Song song = new Song(name, categoryId, listBandId, listSingerId, userId, src);
         songService.save(song);
-       showAllSong(request, response);
+        showAllSong(request, response);
     }
 
     private void detailSong(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        System.out.println(id);
         Song song = (Song) songService.findById(id);
         System.out.println(song.getSrc());
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/song/detail.jsp");

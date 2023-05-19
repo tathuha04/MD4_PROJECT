@@ -11,4 +11,5 @@ public interface ISongService<Song> {
     void deleteById(int id);
     List<Song> findAll(int start, int elementOfPage);
     int getNoOfRecords();
+    List<md4.md4_project.model.Song> findAllSongOfPlaylistByPlaylistId(int id);
 }
