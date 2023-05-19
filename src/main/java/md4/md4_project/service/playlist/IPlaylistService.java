@@ -12,4 +12,5 @@ public interface IPlaylistService <Playlist> {
 
     Playlist findById(int id);
     void deleteById(int id);
+    List<md4.md4_project.model.Playlist> findAllPlaylistByUserId(int id);
 }

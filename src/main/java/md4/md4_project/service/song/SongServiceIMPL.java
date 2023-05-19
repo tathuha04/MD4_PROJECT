@@ -18,6 +18,7 @@ public class SongServiceIMPL implements ISongService {
     private final String ADD_SONG_ID_TO_SINGER = "INSERT INTO SONG_OF_SINGER (songId,singerId) values (?,?)";
     private final String FIND_SONG_BY_ID="SELECT * FROM SONG WHERE ID=?";
     private final String DELETE_SONG_BY_ID="DELETE SONG WHERE ID=?";
+    private final String GET_ALL_SONG_ID_OF_PLAYLIST_BY_PL_ID="SELECT * FROM SONG_OF_PLAYLIST WHERE PLAYLISTID=?";
 
     @Override
     public List findAll() {
@@ -61,7 +62,7 @@ public class SongServiceIMPL implements ISongService {
                     preparedStatement2.setInt(1, id);
                     preparedStatement2.setInt(2, listSingerId.get(i));
                 }
-
+                connection.commit();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -87,7 +88,7 @@ public class SongServiceIMPL implements ISongService {
                     preparedStatement1.setInt(1, id);
                     preparedStatement1.setInt(2, listBandId.get(i));
                 }
-
+                connection.commit();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -185,5 +186,23 @@ public class SongServiceIMPL implements ISongService {
     }
     public int getNoOfRecords() {
         return totalElement;
+    }
+
+    @Override
+    public List<Song> findAllSongOfPlaylistByPlaylistId(int id) {
+        List<Song> songList = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_SONG_ID_OF_PLAYLIST_BY_PL_ID);
+            preparedStatement.setInt(1,id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+               int idSong = resultSet.getInt("singerId");
+               songList.add(findById(idSong));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return songList;
     }
 }

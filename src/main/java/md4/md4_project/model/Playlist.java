@@ -7,6 +7,12 @@ public class Playlist {
     private byte status = 0;
     private String avatar;
 
+    public Playlist(String playlistName, String avatar, int userId) {
+        this.playlistName = playlistName;
+        this.userId = userId;
+        this.avatar = avatar;
+    }
+
     public String getAvatar() {
         return avatar;
     }
