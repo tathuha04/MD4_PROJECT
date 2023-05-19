@@ -286,7 +286,7 @@ MzmaWxL+JrxPvt93ySPR4z4f9TsTogsqmwmHIhcJQX/nsA+9phNCY96Mk+DV+kUQl4oF4Qu8LtPbHSa/
       <span class="tooltip">User</span>
     </li>
     <li>
-      <a href="#">
+      <a href="singers?action=singer">
         <i class='bx bx-chat' ></i>
         <span class="links_name">Singer</span>
       </a>

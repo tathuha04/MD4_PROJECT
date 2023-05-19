@@ -9,4 +9,8 @@ public interface IBandService {
     List<Band> findAll();
     Band findByName(String name);
     List<Song> showAllSongOfBand(String name);
+
+    void save(String name, String avatar);
+
+    void deleteById(int id);
 }

@@ -27,7 +27,6 @@ public class CategoryServiceIMPL implements ICategoryService {
             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_CATEGORY);
             preparedStatement.setString(1,category.getName());
             preparedStatement.setString(2,category.getAvatar());
-//            preparedStatement.setInt(3,category.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
