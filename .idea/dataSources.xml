@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+<<<<<<< HEAD
     <data-source source="LOCAL" name="@localhost" uuid="c9321bae-47c9-46f9-8a96-5e0954b1fb7c">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
@@ -9,6 +10,9 @@
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
     <data-source source="LOCAL" name="webnhac@localhost" uuid="62487cf5-cf9f-4237-a908-d17ab7600ccf">
+=======
+    <data-source source="LOCAL" name="webnhac@localhost" uuid="5647d174-0987-4619-8515-849df19f389c">
+>>>>>>> c7f6715468c6c712d59d99eadfaa8eb5472b5842
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>

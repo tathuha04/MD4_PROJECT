@@ -1,5 +1,6 @@
 package md4.md4_project.service.band;
 
+import jdk.nashorn.internal.ir.SplitReturn;
 import md4.md4_project.config.ConnectSQL;
 import md4.md4_project.model.Band;
 import md4.md4_project.model.Song;
@@ -14,6 +15,7 @@ import java.util.List;
 public class BandServiceIMPL implements IBandService {
     private Connection connection = ConnectSQL.getConnection();
     private final String SELECT_ALL_BAND = "SELECT * FROM band";
+<<<<<<< HEAD
     private final String DELETE_BY_ID = "DELETE FROM band where id=?";
     private final String INSERT_INTO_BAND = "INSERT INTO BAND (id, name, avatar) values (?, ?, ?,?)";
 
@@ -30,6 +32,10 @@ public class BandServiceIMPL implements IBandService {
         }
     }
 
+=======
+    private final String INSERT_INTO_BAND= "INSERT INTO band (name, avatar) values (?,?)";
+    private final String DELETE_BY_ID= "DELETE FROM band where id= ?";
+>>>>>>> c7f6715468c6c712d59d99eadfaa8eb5472b5842
     @Override
     public List<Band> findAll() {
         List<Band> bandList = new ArrayList<>();
@@ -62,6 +68,23 @@ public class BandServiceIMPL implements IBandService {
     }
 
     @Override
+<<<<<<< HEAD
+=======
+    public void save(String name, String avatar) {
+        try {
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_INTO_BAND);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, avatar);
+            preparedStatement.executeUpdate();
+            connection.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+>>>>>>> c7f6715468c6c712d59d99eadfaa8eb5472b5842
     public void deleteById(int id) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_BY_ID);
@@ -71,5 +94,8 @@ public class BandServiceIMPL implements IBandService {
             throw new RuntimeException(e);
         }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> c7f6715468c6c712d59d99eadfaa8eb5472b5842
 }

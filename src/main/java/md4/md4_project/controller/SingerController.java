@@ -10,19 +10,30 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet( value = "/singers")
+@WebServlet(value = "/singers")
 public class SingerController extends HttpServlet {
     ISingerService singerService = new SingerServiceIMPL();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
         }
+<<<<<<< HEAD
         System.out.println("action o DoGet--> "+ action);
         switch (action){
+=======
+        switch (action) {
+>>>>>>> c7f6715468c6c712d59d99eadfaa8eb5472b5842
             case "singer":
-                showListSinger(request,response);
+                showListSinger(request, response);
+                break;
+            case "delete":
+                deleteSinger(request, response);
+                break;
+            case "create":
+                showFormCreate(request, response);
                 break;
             case "delete":
                 deleteSinger(request, response);
@@ -32,12 +43,28 @@ public class SingerController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action){
+            case "create":
+                createSinger(request, response);
+                break;
+            case "update":
+                updateSinger(request, response);
+                break;
+        }
     }
-    public void showListSinger(HttpServletRequest request, HttpServletResponse response){
+
+    public void showListSinger(HttpServletRequest request, HttpServletResponse response) {
         List<Singer> singerList = singerService.findAll();
         request.setAttribute("singerList", singerList);
+<<<<<<< HEAD
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/singerAdmin.jsp");
+=======
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/admin/singerAdmin.jsp");
+>>>>>>> c7f6715468c6c712d59d99eadfaa8eb5472b5842
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -46,9 +73,42 @@ public class SingerController extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
+<<<<<<< HEAD
     public void deleteSinger(HttpServletRequest request, HttpServletResponse response){
+=======
+
+    public void deleteSinger(HttpServletRequest request, HttpServletResponse response) {
+>>>>>>> c7f6715468c6c712d59d99eadfaa8eb5472b5842
         int id = Integer.parseInt(request.getParameter("id"));
         singerService.deleteById(id);
         showListSinger(request, response);
     }
+<<<<<<< HEAD
+=======
+
+    public void showFormCreate(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/content/singer/create.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void createSinger(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        String avatar = request.getParameter("avatar");
+        singerService.save(name, avatar);
+        showListSinger(request, response);
+    }
+    public void updateSinger(HttpServletRequest request, HttpServletResponse response){
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String avatar = request.getParameter("avatar");
+        singerService.edit(id, name, avatar);
+        showListSinger(request, response);
+    }
+>>>>>>> c7f6715468c6c712d59d99eadfaa8eb5472b5842
 }

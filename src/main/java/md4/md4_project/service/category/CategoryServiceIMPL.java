@@ -25,7 +25,10 @@ public class CategoryServiceIMPL implements ICategoryService{
             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_CATEGORY);
             preparedStatement.setString(1,category.getName());
             preparedStatement.setString(2,category.getAvatar());
+<<<<<<< HEAD
 //            preparedStatement.setInt(3,category.getId());
+=======
+>>>>>>> c7f6715468c6c712d59d99eadfaa8eb5472b5842
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -34,7 +37,17 @@ public class CategoryServiceIMPL implements ICategoryService{
 
     @Override
     public void deleteById(int id) {
+<<<<<<< HEAD
 
+=======
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CATEGORY);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+>>>>>>> c7f6715468c6c712d59d99eadfaa8eb5472b5842
     }
 
     @Override
@@ -83,7 +96,7 @@ public class CategoryServiceIMPL implements ICategoryService{
                 Category category = new Category();
                 category.setId(resultSet.getInt("id"));
                 category.setName(resultSet.getString("name"));
-//                category.setAvatar(resultSet.getString("avatar"));
+                category.setAvatar(resultSet.getString("avatar"));
                 categoryList.add(category);
             }
         } catch (SQLException e) {
@@ -92,4 +105,20 @@ public class CategoryServiceIMPL implements ICategoryService{
         return categoryList;
     }
 
+<<<<<<< HEAD
+=======
+    @Override
+    public void updateCategory(int id, String name, String avatar) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CATEGORY);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, avatar);
+            preparedStatement.setInt(3, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+>>>>>>> c7f6715468c6c712d59d99eadfaa8eb5472b5842
 }

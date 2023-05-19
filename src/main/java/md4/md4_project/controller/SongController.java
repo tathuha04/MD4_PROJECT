@@ -36,7 +36,7 @@ public class SongController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         String action = request.getParameter("action");
-        System.out.println(action);
+        System.out.println("action tren doget --->"+action);
         if (action == null) {
             action = "";
         }
@@ -65,7 +65,6 @@ public class SongController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         String action = request.getParameter("action");
-        System.out.println(action);
         if (action == null) {
             action = "";
         }
@@ -74,8 +73,6 @@ public class SongController extends HttpServlet {
                 actionCreateSong(request, response);
                 break;
             default:
-
-
         }
     }
 
@@ -93,6 +90,7 @@ public class SongController extends HttpServlet {
 
     private void showAllSong(HttpServletRequest request, HttpServletResponse response) {
         int pageNumber = 1;
+        System.out.println("action page -->"+request.getParameter("page"));
         if (request.getParameter("page") != null) {
             pageNumber = Integer.parseInt(request.getParameter("page"));
         }
@@ -102,7 +100,7 @@ public class SongController extends HttpServlet {
         int start = (pageNumber - 1) * elementOfPage;
         List<Song> songList = songService.findAll(start, elementOfPage);
         int totalElement = songService.getNoOfRecords();
-        int sumOfPage = 0;
+        int sumOfPage = 1;
         if (totalElement > elementOfPage) {
             if (totalElement % elementOfPage == 0) {
                 sumOfPage = (int) Math.ceil(totalElement / elementOfPage);
@@ -113,7 +111,7 @@ public class SongController extends HttpServlet {
         request.setAttribute("listSong", songList);
         request.setAttribute("sumOfPage", sumOfPage);
         request.setAttribute("pageNumber", pageNumber);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/song/listSong.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/song/page.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -124,6 +122,7 @@ public class SongController extends HttpServlet {
     }
 
     private void pageGridSong(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("goi page Grid");
         int pageNumber = 1;
         if (request.getParameter("page") != null) {
             pageNumber = Integer.parseInt(request.getParameter("page"));
@@ -171,6 +170,7 @@ public class SongController extends HttpServlet {
     private void actionCreateSong(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         String src = request.getParameter("audio");
+        String avatar = request.getParameter("avatar");
         int categoryId = Integer.parseInt(request.getParameter("categories"));
 
         String[] bandIdStr = request.getParameterValues("listBand");
@@ -194,15 +194,15 @@ public class SongController extends HttpServlet {
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
         int userId = user.getId();
-        Song song = new Song(name, categoryId, listBandId, listSingerId, userId, src);
-        songService.save(song);
+        Song song = new Song(name, categoryId, listBandId, listSingerId, userId,avatar, src);
+        songService.save(song, request);
        showAllSong(request, response);
     }
 
     private void detailSong(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         System.out.println(id);
-        Song song = (Song) songService.findById(id);
+        Song song = songService.findById(id);
         System.out.println(song.getSrc());
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/song/detail.jsp");
         request.setAttribute("song", song);
