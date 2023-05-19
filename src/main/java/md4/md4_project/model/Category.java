@@ -8,6 +8,11 @@ public class Category {
     public Category() {
     }
 
+    public Category(String name, String avatar) {
+        this.name = name;
+        this.avatar = avatar;
+    }
+
     @Override
     public String toString() {
         return "Category{" +
