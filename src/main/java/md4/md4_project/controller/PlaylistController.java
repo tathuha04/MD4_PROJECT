@@ -74,14 +74,25 @@ public class PlaylistController extends HttpServlet {
 
     private void showAllPlaylist(HttpServletRequest request, HttpServletResponse response) {
         List<Playlist> playlists = new ArrayList<>();
+        playlists = playlistService.findAll();
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/playlist/AllPlaylist.jsp");
+        request.setAttribute("playlists", playlists);
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void showAllPlaylistOfUser(HttpServletRequest request, HttpServletResponse response) {
+        List<Playlist> playlists = new ArrayList<>();
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
         int userId = user.getId();
-        if (user==null) {
-            playlists = playlistService.findAll();
-        } else {
-            playlists=playlistService.findAllPlaylistByUserId(userId);
-        }
+        playlists = playlistService.findAllPlaylistByUserId(userId);
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/playlist/AllPlaylist.jsp");
         request.setAttribute("playlists", playlists);
         try {
