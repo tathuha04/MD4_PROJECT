@@ -234,11 +234,13 @@
     </div>
     <!--- right part --->
     <div class="right">
-        <div class="show_song_no">
-            <p id="present">1</p>
-            <p>/</p>
-            <p id="total">5</p>
-        </div>
+        ///// dùng cho playlist
+<%--        <div class="show_song_no">--%>
+<%--            <p id="present">1</p>--%>
+<%--            <p>/</p>--%>
+<%--            <p id="total">5</p>--%>
+<%--        </div>--%>
+        ////////
         <!--- song title & artist name --->
         <p id="title">title.mp3</p>
         <p id="artist">Artist name</p>
@@ -266,9 +268,9 @@
 
     console.log(song)
 
-    let previous = document.querySelector('#pre');
+    // let previous = document.querySelector('#pre');
     let play = document.querySelector('#play');
-    let next = document.querySelector('#next');
+    // let next = document.querySelector('#next');
     let title = document.querySelector('#title');
     let recent_volume = document.querySelector('#volume');
     let volume_show = document.querySelector('#volume_show');
@@ -289,7 +291,7 @@
 
     //create a audio Element
     let track = document.createElement('audio');
-
+    console.log("xuong day ko")
 
     //All songs list
     // let All_song = [
@@ -319,7 +321,7 @@
 
 
     // function load the track
-    function load_track(index_no) {
+    function load_track() {
         clearInterval(timer);
         reset_slider();
 
@@ -330,8 +332,8 @@
         track.load();
 
         timer = setInterval(range_slider, 1000);
-        total.innerHTML = song.length;
-        present.innerHTML = index_no + 1;
+        // total.innerHTML = song.length;
+        // present.innerHTML = index_no + 1;
     }
 
     load_track(index_no);
@@ -339,18 +341,20 @@
 
     //mute sound function
     let mute = false;
+    console.log('mute truoc goi -->', mute)
     function mute_sound() {
+        console.log("gọi mute")
         mute = !mute;
         if (mute){
             document.getElementById("volume_icon").className="bi bi-volume-mute";
             track.volume = 0;
             volume_show.innerHTML="0";
             recent_volume.value=0;
+            console.log()
         }else {
             document.getElementById("volume_icon").className='bi bi-megaphone-fill';
             recent_volume.value=10;
             volume_show.innerHTML="10";
-
         }
 
     }
