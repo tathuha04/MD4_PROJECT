@@ -1,15 +1,12 @@
 package md4.md4_project.service.song;
 
 import md4.md4_project.model.Song;
+import md4.md4_project.service.IGenericService;
 
 import java.util.List;
 
-public interface ISongService<Song> {
+public interface ISongService extends IGenericService<Song> {
     List<Song> findAll();
-    void save(md4.md4_project.model.Song song);
-    Song findById(int id);
-    void deleteById(int id);
-    List<Song> findAll(int start, int elementOfPage);
     int getNoOfRecords();
     List<md4.md4_project.model.Song> findAllSongOfPlaylistByPlaylistId(int id);
 }

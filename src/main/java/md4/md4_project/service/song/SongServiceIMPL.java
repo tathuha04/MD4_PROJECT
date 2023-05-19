@@ -3,6 +3,7 @@ package md4.md4_project.service.song;
 import md4.md4_project.config.ConnectSQL;
 import md4.md4_project.model.Song;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +12,9 @@ public class SongServiceIMPL implements ISongService {
     private Connection connection = ConnectSQL.getConnection();
     private int totalElement;
     private final String SELECT_ALL_SONG = "SELECT * FROM SONG";
-    private final String CREAT_NEW_SONG = "INSERT INTO SONG (name,category_Id,bandId,singerId,user_Id,src) values(?,?,?,?,?,?)";
-    private final String CREAT_NEW_SONG_1 = "INSERT INTO SONG (name,category_Id,bandId,user_Id,src) values(?,?,?,?,?)";
-    private final String CREAT_NEW_SONG_2 = "INSERT INTO SONG (name,category_Id,singerId,user_Id,src) values(?,?,?,?,?)";
+    private final String CREAT_NEW_SONG = "INSERT INTO SONG (name,category_Id,bandId,singerId,user_Id,avatar,src) values(?,?,?,?,?,?,?)";
+    private final String CREAT_NEW_SONG_1 = "INSERT INTO SONG (name,category_Id,bandId,user_Id,avatar,src) values(?,?,?,?,?,?)";
+    private final String CREAT_NEW_SONG_2 = "INSERT INTO SONG (name,category_Id,singerId,user_Id,avatar,src) values(?,?,?,?,?,?)";
     private final String ADD_SONG_ID_TO_BAND = "INSERT INTO SONG_OF_BAND (songId,bandId) values (?,?)";
     private final String ADD_SONG_ID_TO_SINGER = "INSERT INTO SONG_OF_SINGER (songId,singerId) values (?,?)";
     private final String FIND_SONG_BY_ID="SELECT * FROM SONG WHERE ID=?";
@@ -27,7 +28,7 @@ public class SongServiceIMPL implements ISongService {
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_SONG);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Song song = new Song(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("category_Id"), resultSet.getInt("user_id"),resultSet.getString("src"));
+                Song song = new Song(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("category_Id"), resultSet.getInt("user_id"), resultSet.getString("avatar"), resultSet.getString("src"));
                 songList.add(song);
             }
         } catch (SQLException e) {
@@ -38,17 +39,24 @@ public class SongServiceIMPL implements ISongService {
     }
 
     @Override
-    public void save(Song song) {
+    public void save(Song song, HttpServletRequest request) {
+
         PreparedStatement preparedStatement = null;
+        try {
+            connection.setAutoCommit(false);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         if (song.getBandId() == null) {
             try {
-                connection.setAutoCommit(false);
+
                 preparedStatement = connection.prepareStatement(CREAT_NEW_SONG_2, Statement.RETURN_GENERATED_KEYS);
                 preparedStatement.setString(1, song.getName());
                 preparedStatement.setInt(2, song.getCategoryId());
                 preparedStatement.setString(3, song.getSingerId().toString());
                 preparedStatement.setInt(4, song.getUserId());
-                preparedStatement.setString(5,song.getSrc());
+                preparedStatement.setString(5, song.getAvatar());
+                preparedStatement.setString(6,song.getSrc());
                 preparedStatement.executeUpdate();
                 int id = 0;
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -74,7 +82,8 @@ public class SongServiceIMPL implements ISongService {
                 preparedStatement.setInt(2, song.getCategoryId());
                 preparedStatement.setString(3, song.getBandId().toString());
                 preparedStatement.setInt(4, song.getUserId());
-                preparedStatement.setString(5,song.getSrc());
+                preparedStatement.setString(5, song.getAvatar());
+                preparedStatement.setString(6,song.getSrc());
 
                 preparedStatement.executeUpdate();
                 int id = 0;
@@ -102,7 +111,8 @@ public class SongServiceIMPL implements ISongService {
                 preparedStatement.setString(3, song.getSingerId().toString());
                 preparedStatement.setString(4, song.getBandId().toString());
                 preparedStatement.setInt(5, song.getUserId());
-                preparedStatement.setString(6,song.getSrc());
+                preparedStatement.setString(6, song.getAvatar());
+                preparedStatement.setString(7,song.getSrc());
 
                 preparedStatement.executeUpdate();
                 int id = 0;

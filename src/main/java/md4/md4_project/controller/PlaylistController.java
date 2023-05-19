@@ -63,7 +63,6 @@ public class PlaylistController extends HttpServlet {
 
     private void showFormCreatePlaylist(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/playlist/creat.jsp");
-
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {

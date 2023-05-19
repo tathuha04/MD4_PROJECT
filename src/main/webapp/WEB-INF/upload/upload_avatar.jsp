@@ -1,27 +1,32 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-
+<style>
+    form {
+        width: 250px;
+        height: 200px;
+        margin: auto;
+    }
+</style>
 <head>
 
     <title>Title</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-</head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></head>
 
 <body>
 
-<form method="post">
+<%--<form method="post">--%>
 <%--    <label for="formFileDisabled" class="form-label">Disabled file input example</label>--%>
 <%--    <input class="form-control" type="file" id="formFileDisabled" disabled />--%>
+<%--<h1>param: ${param.articleId}</h1>--%>
+    <progress value="0" max="100" id="uploader${param.articleId}">0%</progress>
+    <input class="form-control" type="file" value="upload" accept=".jpg" id="fileButton${param.articleId}">
+    <input  class="form-control" name="avatar" type="text" id="avatar${param.articleId}" style="display: none">
+    <div id="imgDiv${param.articleId}"></div>
 
-    <progress value="0" max="100" id="uploader">0%</progress>
-    <input class="form-control" type="file" value="upload" accept=".jpg" id="fileButton">
-    <input  class="form-control" name="avatar" type="text" id="avatar" style="display: none">
-    <div id="imgDiv"></div>
+<%--    <button type="submit">Upload</button>--%>
 
-    <button type="submit">Upload</button>
-
-</form>
+<%--</form>--%>
 
 <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
 
@@ -59,15 +64,15 @@
 
 <script type="text/javascript">
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyB2A6FtigGGXUQXV0D_FPouPKY8JKplhnk",
-        authDomain: "projectmd4-deb2e.firebaseapp.com",
-        projectId: "projectmd4-deb2e",
-        storageBucket: "projectmd4-deb2e.appspot.com",
-        messagingSenderId: "1053012108561",
-        appId: "1:1053012108561:web:d7c4f96532e4c6d891d8b0",
-        measurementId: "G-F6LQ7VE1T5"
-    };
+    // const firebaseConfig = {
+    //     apiKey: "AIzaSyB2A6FtigGGXUQXV0D_FPouPKY8JKplhnk",
+    //     authDomain: "projectmd4-deb2e.firebaseapp.com",
+    //     projectId: "projectmd4-deb2e",
+    //     storageBucket: "projectmd4-deb2e.appspot.com",
+    //     messagingSenderId: "1053012108561",
+    //     appId: "1:1053012108561:web:d7c4f96532e4c6d891d8b0",
+    //     measurementId: "G-F6LQ7VE1T5"
+    // };
 
     firebase.initializeApp(firebaseConfig);
 
@@ -83,9 +88,9 @@
 
     // get elements
 
-    var uploader = document.getElementById('uploader');
+    var uploader = document.getElementById('uploader${param.articleId}');
 
-    var fileButton = document.getElementById('fileButton');
+    var fileButton = document.getElementById('fileButton${param.articleId}');
 
     // listen for file selection
 
@@ -183,7 +188,7 @@
 
                 console.log('downloadURL ===>', downloadURL);
 
-                let divLocation = document.getElementById("imgDiv");
+                let divLocation = document.getElementById("imgDiv${param.articleId}");
 
                 let imgElement = document.createElement("img");
 
@@ -197,7 +202,7 @@
 
                 divLocation.append(imgElement);
 
-                document.getElementById('avatar').value = downloadURL;
+                document.getElementById('avatar${param.articleId}').value = downloadURL;
 
             });
 

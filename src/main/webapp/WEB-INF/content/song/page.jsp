@@ -27,24 +27,21 @@
   </style>
 </head>
 <body>
+<a href="/song?action=creat">create song</a>
 <div class="container">
-  <a href="/song?action=creat"><button>CREAT SONG</button></a>
   <div class="col-12" style="margin-top: 20px">
     <div class="row">
-      <table class="table">
-        <tr>
-          <th>STT</th>
-          <th>NAME</th>
-          <th></th>
-        </tr>
-        <c:forEach items="${listSong}" var="ls">
-          <tr>
-            <td >${ls.id}</td>
-            <td>${ls.name}</td>
-            <td><a href="/song?action=detail&id=${ls.id}">SHOW</a></td>
-          </tr>
-        </c:forEach>
-      </table>
+      <c:forEach items="${listSong}" var="song">
+        <div class="colum">
+          <a href="/song?action=detail&id=${song.getId()}">
+            <div class="card">
+
+              <img  src="${song.getAvatar()}" alt="">
+              <b>${song.getName()}</b>
+            </div>
+          </a>
+        </div>
+      </c:forEach>
     </div>
     <nav aria-label="Page navigation example">
       <ul class="pagination">
@@ -64,12 +61,11 @@
 
         </c:forEach>
         <c:if test="${pageNumber lt sumOfPage}">
-          <li class="page-item"><a href="/song?action=page_gid&page=${pageNumber + 1}">Next</a></li>
+          <li class="page-item"><a href="/song?action=page_grid&page=${pageNumber + 1}">Next</a></li>
         </c:if>
       </ul>
     </nav>
   </div>
 </div>
-
 </body>
 </html>
