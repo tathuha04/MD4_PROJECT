@@ -9,4 +9,6 @@ public interface ISongService<Song> {
     void save(md4.md4_project.model.Song song);
     Song findById(int id);
     void deleteById(int id);
+    List<Song> findAll(int start, int elementOfPage);
+    int getNoOfRecords();
 }
