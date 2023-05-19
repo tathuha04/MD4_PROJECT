@@ -10,7 +10,7 @@
 
 <body>
 
-<form method="post">
+<%--<form method="post">--%>
   <%--    <label for="formFileDisabled" class="form-label">Disabled file input example</label>--%>
   <%--    <input class="form-control" type="file" id="formFileDisabled" disabled />--%>
 

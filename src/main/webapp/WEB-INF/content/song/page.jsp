@@ -4,6 +4,9 @@
 <html>
 <head>
   <title>Title</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
   <style>
     .colum {
       width: 33.3%;
@@ -24,24 +27,18 @@
   </style>
 </head>
 <body>
+<a href="/song?action=creat">create song</a>
 <div class="container">
-  <a href="/song?action=creat"><button>CREAT SONG</button></a>
   <div class="col-12" style="margin-top: 20px">
     <div class="row">
-      <table class="table">
-        <tr>
-          <th>STT</th>
-          <th>NAME</th>
-          <th></th>
-        </tr>
-        <c:forEach items="${listSong}" var="ls">
-          <tr>
-            <td >${ls.id}</td>
-            <td>${ls.name}</td>
-            <td><a href="/song?action=detail&id=${ls.id}">SHOW</a></td>
-          </tr>
-        </c:forEach>
-      </table>
+      <c:forEach items="${listSong}" var="song">
+        <div class="colum">
+          <div class="card">
+            <img  src="${song.getAvatar()}" alt="">
+            <b>${song.getName()}</b>
+          </div>
+        </div>
+      </c:forEach>
     </div>
     <nav aria-label="Page navigation example">
       <ul class="pagination">
@@ -67,6 +64,5 @@
     </nav>
   </div>
 </div>
-
 </body>
 </html>
