@@ -44,7 +44,7 @@ public class SongController extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "creat":
+            case "create":
                 showFormCreatSong(request, response);
                 break;
 //            case "songManager":
@@ -73,7 +73,7 @@ public class SongController extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "creat":
+            case "create":
                 actionCreateSong(request, response);
                 break;
             default:

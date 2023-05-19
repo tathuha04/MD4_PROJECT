@@ -25,7 +25,7 @@
 </head>
 <body>
 <div class="container">
-  <a href="/song?action=creat"><button>CREAT SONG</button></a>
+  <a href="/song?action=create"><button>CREAT SONG</button></a>
   <div class="col-12" style="margin-top: 20px">
     <div class="row">
       <table class="table">
