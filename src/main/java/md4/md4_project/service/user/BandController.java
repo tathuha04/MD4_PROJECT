@@ -1,4 +1,4 @@
-package md4.md4_project.controller;
+package md4.md4_project.service.user;
 
 import md4.md4_project.model.Band;
 import md4.md4_project.service.band.BandServiceIMPL;

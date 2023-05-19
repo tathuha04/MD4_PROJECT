@@ -4,8 +4,6 @@ import md4.md4_project.model.Song;
 import md4.md4_project.model.User;
 import md4.md4_project.service.band.BandServiceIMPL;
 import md4.md4_project.service.band.IBandService;
-import md4.md4_project.service.category.CategoryServiceIMPL;
-import md4.md4_project.service.category.ICategoryService;
 import md4.md4_project.service.singer.ISingerService;
 import md4.md4_project.service.singer.SingerServiceIMPL;
 import md4.md4_project.service.song.ISongService;
@@ -22,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @WebServlet(value = "/song")
