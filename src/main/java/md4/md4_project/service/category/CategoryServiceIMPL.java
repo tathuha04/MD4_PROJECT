@@ -17,6 +17,8 @@ public class CategoryServiceIMPL implements ICategoryService {
     IUserService userService = new UserServiceIMPL();
     private final String CREATE_CATEGORY = "INSERT INTO category(name, avatar) VALUES (?,?);";
     private final String FIND_ALL_CATEGORY = "SELECT id,name,avatar FROM category";
+    private final String DELETE_CATEGORY = "DELETE from category where id=?";
+    private final String UPDATE_CATEGORY= "update category set name=?,avatar=? where id=?";
 
     @Override
     public void save(Category category, HttpServletRequest request) {
@@ -34,6 +36,13 @@ public class CategoryServiceIMPL implements ICategoryService {
 
     @Override
     public void deleteById(int id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CATEGORY);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
@@ -91,5 +100,21 @@ public class CategoryServiceIMPL implements ICategoryService {
         }
         return categoryList;
     }
+
+    @Override
+    public void updateCategory(int id, String name, String avatar) {
+        try {
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CATEGORY);
+            preparedStatement.setInt(1,id);
+            preparedStatement.setString(2,name);
+            preparedStatement.setString(3,avatar);
+            preparedStatement.executeUpdate();
+            connection.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

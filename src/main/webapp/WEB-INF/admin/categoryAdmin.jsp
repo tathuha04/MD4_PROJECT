@@ -1,11 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 5/18/2023
-  Time: 1:24 AM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,18 +36,62 @@
             color: #E4E9F7;
             border: none;
         }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /*!* Set a style for all buttons *!*/
+        /*button {*/
+        /*    background-color: green;*/
+        /*    color: white;*/
+        /*    padding: 10px;*/
+        /*    border: none;*/
+        /*    cursor: pointer;*/
+        /*    width: 20%;*/
+        /*    opacity: 0.9;*/
+        /*    border-radius: 20px;*/
+        /*}*/
+
+        .buttonDelete{
+            background-color: crimson;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 20%;
+            opacity: 0.9;
+            border-radius: 8px;
+        }
+        .buttonEdit{
+            background-color: orange;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 20%;
+            opacity: 0.9;
+            border-radius: 8px;
+        }
+        button:hover {
+            opacity: 1;
+        }
+
+
     </STYLE>
 
 </head>
 <body>
-<jsp:include page='../admin/sidebar.jsp'>
-    <jsp:param name="articleId" value=""/>
-</jsp:include>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!-- Button trigger modal -->
+
 <section class="home-section">
     <div class="category">
         <p>Category Manager</p>
@@ -61,14 +99,9 @@
             <a href="/category?action=create">
                 <button onclick="document.getElementById('id01').style.display='block'">+ Create Category</button>
             </a>
-            <div id="id01" class="w3-modal">
+            <div id="" class="w3-modal">
                 <div class="w3-modal-content">
                     <div class="w3-container">
-                    <span onclick="document.getElementById('id01').style.display='none'"
-                          class="w3-button w3-display-topright">&times;</span>
-                        <jsp:include page="../content/category/create.jsp">
-                            <jsp:param name="articleId" value=""/>
-                        </jsp:include>
                     </div>
                 </div>
             </div>
@@ -76,36 +109,89 @@
 
     </div>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">STT</th>
-        <th scope="col"></th>
-        <th scope="col">Name</th>
-        <th scope="col">Action</th>
-    </tr>
-    </thead>
-    <c:forEach items='${requestScope["listCategory"]}' var="ctm">
-        <tbody>
+    <table class="table">
+        <thead>
         <tr>
-            <th scope="row">${ctm.getId()}</th>
-            <td><img width="100px" height="100px" style="border-radius: 5px" src="${ctm.getAvatar()}"></td>
-            <td>${ctm.getName()}</td>
-            <td>
-                <button type="button" class="btn btn-primary">Edit</button>
-                <button type="button" class="btn btn-danger">Delete</button>
-            </td>
+            <th scope="col">STT</th>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
         </tr>
-        </tbody>
-    </c:forEach>
+        </thead>
+        <c:forEach items='${requestScope["listCategory"]}' var="ctm">
+            <tbody>
+            <tr>
 
-</table>
-</section>
-</body>
+                <th scope="row">${ctm.getId()}</th>
+                <td><img width="100px" height="100px" style="border-radius: 5px" src="${ctm.getAvatar()}"></td>
+                <td>${ctm.getName()}</td>
+                <td>
+                    <a  data-toggle="modal"
+                       data-target="#edit${ctm.id}">
+                        <button type="button" class="buttonEdit">Edit</button>
+                    </a>
+                    <a  data-toggle="modal"
+                       data-target="#delete${ctm.id}">
+                        <button type="button" class="buttonDelete"> Delete</button>
+                    </a>
+                </td>
+                    <!-- Modal Delete-->
+                    <div class="modal fade" id="delete${ctm.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">FORM DELETE CATEGORY</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Do you want to delete the category with id : ${ctm.id}?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
+                                    <a  href="/category?action=deletecategory&id=${ctm.id}"><button type="button" class="btn btn-danger">Yes</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+<%--                modal edit--%>
+                <div class="modal fade" id="edit${ctm.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" >FORM UPDATE CATEGORY</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Please fill in the following information according to the template to update the information for the category with id : ${ctm.id}.</p>
+                                <form method="post">
+                                    <label>Name</label>
+                                    <input>
+                                    <br>
+                                    <label>Avatar</label>
+                                    <jsp:include page="../upload/upload_avatar.jsp">
+                                        <jsp:param name="articleId" value=""/>
+                                    </jsp:include>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                                <a  href="/category?action=updatecategory&id=${ctm.id}"><button type="button" class="btn btn-danger">Save</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </tr>
+            </tbody>
+        </c:forEach>
 <script>
     function validate() {
         let name = document.getElementById('name').value;
-        if(name.trim()==''){
+        if (name.trim() == '') {
             document.getElementById('validate').innerHTML = 'The name is required!'
             document.getElementById('validate').className = 'alert alert-danger';
         } else {

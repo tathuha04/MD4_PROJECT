@@ -10,7 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +43,12 @@ public class CategoryController extends HttpServlet {
                 pageGridCategory(request, response);
                 break;
             case "createcategoryAD":
-                showFormCategoryAD(request,response);
+                showFormCategoryAD(request, response);
+                break;
+            case "deletecategory":
+                actionDeleteCategory(request, response);
+                break;
+            case "updatecategory":
                 break;
             default:
                 showFormCategory(request, response);
@@ -54,6 +61,7 @@ public class CategoryController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         String action = request.getParameter("action");
+        System.out.println("action --->" + action);
         if (action == null) {
             action = "";
         }
@@ -62,8 +70,12 @@ public class CategoryController extends HttpServlet {
                 actionCreateCategory(request, response);
                 break;
             case "createCategoryAD":
-                actionCreateCategory(request,response);
+                actionCreateCategory(request, response);
                 break;
+            case "updatecategory":
+                formUpdateCategory(request,response);
+                break;
+
         }
     }
 
@@ -108,7 +120,7 @@ public class CategoryController extends HttpServlet {
         }
         System.out.println("pageNumber --->" + pageNumber);
         int elementOfPage = 6;
-        int start = (pageNumber -1) * elementOfPage;
+        int start = (pageNumber - 1) * elementOfPage;
 
         List<Category> categoryList = categoryService.findAll(start, elementOfPage);
         int totalElement = categoryService.getNoOfRecords();
@@ -150,14 +162,42 @@ public class CategoryController extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
-    private void showFormCategoryAD(HttpServletRequest request,HttpServletResponse response){
+
+    private void showFormCategoryAD(HttpServletRequest request, HttpServletResponse response) {
         List<Category> categoryList = categoryService.findAll();
         request.setAttribute("listCategory", categoryList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/categoryAdmin.jsp");
         try {
-            dispatcher.forward(request,response);
+            dispatcher.forward(request, response);
         } catch (ServletException e) {
             throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void actionDeleteCategory(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("goi ham delete");
+        int id = Integer.parseInt(request.getParameter("id"));
+//        String xoa = request.getParameter("delete");
+//        System.out.println("id ---<"+id);
+//        System.out.println("xoa ===>"+xoa);
+        categoryService.deleteById(id);
+        showFormCategoryAD(request, response);
+
+    }
+
+    private void formUpdateCategory(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        String avatar = request.getParameter("avatar");
+
+        HttpSession session = request.getSession(false);
+        Category category = (Category) session.getAttribute("category");
+        categoryService.updateCategory(category.getId(),name, avatar);
+        category.setName(name);
+        category.setAvatar(avatar);
+        try {
+            response.sendRedirect("index.jsp");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

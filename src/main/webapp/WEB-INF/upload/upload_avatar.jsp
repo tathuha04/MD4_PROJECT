@@ -1,7 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
-
+<style>
+    form {
+        width: 250px;
+        height: 200px;
+        margin: auto;
+    }
+</style>
 <head>
 
     <title>Title</title>
@@ -18,7 +24,7 @@
     <input  class="form-control" name="avatar" type="text" id="avatar" style="display: none">
     <div id="imgDiv"></div>
 
-    <button type="submit">Upload</button>
+<%--    <button type="submit">Upload</button>--%>
 
 </form>
 
