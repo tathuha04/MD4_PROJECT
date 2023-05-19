@@ -41,6 +41,17 @@
                     <tr>
                         <td>Avatar</td>
                         <td>
+                            <script>
+                                const firebaseConfig = {
+                                    apiKey: "AIzaSyB2A6FtigGGXUQXV0D_FPouPKY8JKplhnk",
+                                    authDomain: "projectmd4-deb2e.firebaseapp.com",
+                                    projectId: "projectmd4-deb2e",
+                                    storageBucket: "projectmd4-deb2e.appspot.com",
+                                    messagingSenderId: "1053012108561",
+                                    appId: "1:1053012108561:web:d7c4f96532e4c6d891d8b0",
+                                    measurementId: "G-F6LQ7VE1T5"
+                                };
+                            </script>
                             <jsp:include page="../../upload/upload_avatar.jsp">
                                 <jsp:param name="articleId" value=""/>
                             </jsp:include>

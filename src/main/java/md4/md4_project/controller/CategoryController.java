@@ -12,9 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.PreparedStatement;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(value = {"/category"})
@@ -49,6 +46,7 @@ public class CategoryController extends HttpServlet {
                 actionDeleteCategory(request, response);
                 break;
             case "updatecategory":
+
                 break;
             default:
                 showFormCategory(request, response);
@@ -201,5 +199,8 @@ public class CategoryController extends HttpServlet {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    private void actionUpdateCategory(){
+
     }
 }

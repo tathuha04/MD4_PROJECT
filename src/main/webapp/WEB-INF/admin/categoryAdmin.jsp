@@ -45,17 +45,6 @@
             box-sizing: border-box;
         }
 
-        /*!* Set a style for all buttons *!*/
-        /*button {*/
-        /*    background-color: green;*/
-        /*    color: white;*/
-        /*    padding: 10px;*/
-        /*    border: none;*/
-        /*    cursor: pointer;*/
-        /*    width: 20%;*/
-        /*    opacity: 0.9;*/
-        /*    border-radius: 20px;*/
-        /*}*/
 
         .buttonDelete{
             background-color: crimson;
@@ -118,6 +107,17 @@
             <th scope="col">Action</th>
         </tr>
         </thead>
+        <script>
+            const firebaseConfig = {
+                apiKey: "AIzaSyB2A6FtigGGXUQXV0D_FPouPKY8JKplhnk",
+                authDomain: "projectmd4-deb2e.firebaseapp.com",
+                projectId: "projectmd4-deb2e",
+                storageBucket: "projectmd4-deb2e.appspot.com",
+                messagingSenderId: "1053012108561",
+                appId: "1:1053012108561:web:d7c4f96532e4c6d891d8b0",
+                measurementId: "G-F6LQ7VE1T5"
+            };
+        </script>
         <c:forEach items='${requestScope["listCategory"]}' var="ctm">
             <tbody>
             <tr>
@@ -168,13 +168,13 @@
                             </div>
                             <div class="modal-body">
                                 <p>Please fill in the following information according to the template to update the information for the category with id : ${ctm.id}.</p>
-                                <form method="post">
+                                <form method="post" style="height: 50px">
                                     <label>Name</label>
                                     <input>
                                     <br>
                                     <label>Avatar</label>
                                     <jsp:include page="../upload/upload_avatar.jsp">
-                                        <jsp:param name="articleId" value=""/>
+                                        <jsp:param name="articleId" value="${ctm.getId()}"/>
                                     </jsp:include>
                                 </form>
                             </div>

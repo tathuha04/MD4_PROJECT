@@ -36,7 +36,13 @@ public class CategoryServiceIMPL implements ICategoryService {
 
     @Override
     public void deleteById(int id) {
-
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CATEGORY);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -96,7 +102,15 @@ public class CategoryServiceIMPL implements ICategoryService {
 
     @Override
     public void updateCategory(int id, String name, String avatar) {
-
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CATEGORY);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, avatar);
+            preparedStatement.setInt(3, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
