@@ -30,7 +30,7 @@ public class SongController extends HttpServlet {
     IBandService bandService = new BandServiceIMPL();
     ICategoryService categoryService = new CategoryServiceIMPL();
     ISingerService singerService = new SingerServiceIMPL();
-    private ISongService songService = new SongServiceIMPL();
+   ISongService songService = new SongServiceIMPL();
     IUserService userService = new UserServiceIMPL();
 
 
@@ -44,7 +44,7 @@ public class SongController extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "creat":
+            case "create":
                 showFormCreatSong(request, response);
                 break;
 //            case "songManager":
@@ -72,7 +72,7 @@ public class SongController extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "creat":
+            case "create":
                 actionCreateSong(request, response);
                 break;
             default:
@@ -171,6 +171,7 @@ public class SongController extends HttpServlet {
     private void actionCreateSong(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         String src = request.getParameter("audio");
+        System.out.println(src);
         int categoryId = Integer.parseInt(request.getParameter("categories"));
 
         String[] bandIdStr = request.getParameterValues("listBand");
@@ -194,8 +195,8 @@ public class SongController extends HttpServlet {
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
         int userId = user.getId();
-        Song song = new Song(name, categoryId, listBandId, listSingerId, userId, src);
-        songService.save(song);
+        Song song = new Song(name, categoryId,listBandId,listSingerId,userId,src);
+        songService.save(song,request);
        showAllSong(request, response);
     }
 

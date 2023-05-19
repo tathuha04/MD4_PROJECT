@@ -12,7 +12,7 @@
 </head>
 <body>
 <a href="/song?action=showAll">SHOW ALL SONG</a>
-<a href="/song?action=creat">CREATE SONG</a>
+<a href="/song?action=create">CREATE SONG</a>
 <a href="/song?action=update">UPDATE SONG</a>
 <a href="/song?action=delete">DELETE SONG</a>
 

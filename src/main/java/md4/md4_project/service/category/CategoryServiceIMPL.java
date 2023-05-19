@@ -92,4 +92,9 @@ public class CategoryServiceIMPL implements ICategoryService{
         return categoryList;
     }
 
+    @Override
+    public void updateCategory(int id, String name, String avatar) {
+
+    }
+
 }
