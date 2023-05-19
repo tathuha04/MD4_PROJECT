@@ -169,6 +169,7 @@ public class SongServiceIMPL implements ISongService {
                 Song song = new Song();
                 song.setId(resultSet.getInt("id"));
                 song.setName(resultSet.getString("name"));
+                song.setAvatar(resultSet.getString("avatar"));
                 song.setSrc(resultSet.getString("src"));
                 songList.add(song);
             }

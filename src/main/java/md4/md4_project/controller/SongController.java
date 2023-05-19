@@ -102,7 +102,7 @@ public class SongController extends HttpServlet {
         int start = (pageNumber - 1) * elementOfPage;
         List<Song> songList = songService.findAll(start, elementOfPage);
         int totalElement = songService.getNoOfRecords();
-        int sumOfPage = 0;
+        int sumOfPage = 1;
         if (totalElement > elementOfPage) {
             if (totalElement % elementOfPage == 0) {
                 sumOfPage = (int) Math.ceil(totalElement / elementOfPage);
@@ -113,7 +113,7 @@ public class SongController extends HttpServlet {
         request.setAttribute("listSong", songList);
         request.setAttribute("sumOfPage", sumOfPage);
         request.setAttribute("pageNumber", pageNumber);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/song/listSong.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/song/page.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
