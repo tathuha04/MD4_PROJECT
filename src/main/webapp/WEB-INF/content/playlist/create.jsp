@@ -11,6 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-
+<jsp:include page='detail.jsp'>
+    <jsp:param name="articleId" value=""/>
+</jsp:include>
 </body>
 </html>
