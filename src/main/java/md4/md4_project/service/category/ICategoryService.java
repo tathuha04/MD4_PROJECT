@@ -7,5 +7,8 @@ import java.util.List;
 
 public interface ICategoryService extends IGenericService<Category> {
     int getNoOfRecords();
+
     List<Category> findAll();
+
+    void updateCategory(int id, String name, String avatar);
 }

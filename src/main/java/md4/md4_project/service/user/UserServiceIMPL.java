@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class UserServiceIMPL implements IUserService{
+public class UserServiceIMPL implements IUserService {
     private Connection connection = ConnectSQL.getConnection();
     private final String SELECT_ALL_USERNAME = "SELECT username FROM user";
     private final String SELECT_ALL_EMAIL = "SELECT email FROM user";
@@ -24,19 +24,20 @@ public class UserServiceIMPL implements IUserService{
     private final String SELECT_USER_LOGIN = "SELECT * FROM user WHERE username=? AND password=?;";
     private final String SELECT_ROLE_BY_USER_ID = "SELECT role.id, role.name FROM role INNER JOIN user_role ur on role.id = ur.roleId WHERE userId=?;";
     private final String UPDATE_AVATAR = "UPDATE user SET avatar=? WHERE id=?;";
-    private final String SELECT_ALL_USER= "SELECT id, name, username, email, status FROM user";
+    private final String SELECT_ALL_USER = "SELECT id, name, username, email, status FROM user";
+
     @Override
     public boolean existedByUsername(String username) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERNAME);
             List<String> listUsername = new ArrayList<>();
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 listUsername.add(resultSet.getString("username"));
             }
             for (int i = 0; i < listUsername.size(); i++) {
-                if(username.equals(listUsername.get(i))){
-                    return  true;
+                if (username.equals(listUsername.get(i))) {
+                    return true;
                 }
             }
         } catch (SQLException e) {
@@ -51,12 +52,12 @@ public class UserServiceIMPL implements IUserService{
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_EMAIL);
             List<String> listEmail = new ArrayList<>();
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 listEmail.add(resultSet.getString("email"));
             }
             for (int i = 0; i < listEmail.size(); i++) {
-                if(email.equals(listEmail.get(i))){
-                    return  true;
+                if (email.equals(listEmail.get(i))) {
+                    return true;
                 }
             }
         } catch (SQLException e) {
@@ -71,14 +72,14 @@ public class UserServiceIMPL implements IUserService{
             connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_INTO_USER, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2,user.getUsername());
-            preparedStatement.setString(3,user.getEmail());
-            preparedStatement.setString(4,user.getPassword());
-            preparedStatement.setString(5,user.getAvatar());
+            preparedStatement.setString(2, user.getUsername());
+            preparedStatement.setString(3, user.getEmail());
+            preparedStatement.setString(4, user.getPassword());
+            preparedStatement.setString(5, user.getAvatar());
             preparedStatement.executeUpdate();
             int user_id = 0;
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 user_id = resultSet.getInt(1);
             }
             //SET user_id và role_id vào bảng trung gian user_role
@@ -91,7 +92,7 @@ public class UserServiceIMPL implements IUserService{
             }
             for (int i = 0; i < listRoleId.size(); i++) {
                 preparedStatement1.setInt(1, user_id);
-                preparedStatement1.setInt(2,listRoleId.get(i));
+                preparedStatement1.setInt(2, listRoleId.get(i));
                 preparedStatement1.executeUpdate();
             }
             connection.commit();
@@ -108,12 +109,12 @@ public class UserServiceIMPL implements IUserService{
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 String avatar = resultSet.getString("avatar");
                 Set<Role> roleSet = findRoleByUserId(id);
-                user = new User(id,name,avatar,roleSet);
+                user = new User(id, name, avatar, roleSet);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -126,12 +127,12 @@ public class UserServiceIMPL implements IUserService{
         Set<Role> roleSet = new HashSet<>();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ROLE_BY_USER_ID);
-            preparedStatement.setInt(1,user_id);
+            preparedStatement.setInt(1, user_id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 UserRole name = UserRole.valueOf(resultSet.getString("name"));
-                roleSet.add(new Role(id,name));
+                roleSet.add(new Role(id, name));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -144,7 +145,7 @@ public class UserServiceIMPL implements IUserService{
         try {
             connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_AVATAR);
-            preparedStatement.setString(1,avatar);
+            preparedStatement.setString(1, avatar);
             preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
             connection.commit();
@@ -157,8 +158,8 @@ public class UserServiceIMPL implements IUserService{
     public User getCurrentUser(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
-        if(user!=null){
-            return  user;
+        if (user != null) {
+            return user;
         }
         return null;
     }
@@ -169,8 +170,12 @@ public class UserServiceIMPL implements IUserService{
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USER);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
-                userList.add(new User(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("username"), resultSet.getString("email"), resultSet.getByte("status")));
+            while (resultSet.next()) {
+                userList.add(new User(resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("username"),
+                        resultSet.getString("email"),
+                        resultSet.getByte("status")));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

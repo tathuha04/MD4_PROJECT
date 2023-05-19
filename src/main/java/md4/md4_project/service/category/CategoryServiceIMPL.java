@@ -11,12 +11,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryServiceIMPL implements ICategoryService{
+public class CategoryServiceIMPL implements ICategoryService {
     Connection connection = ConnectSQL.getConnection();
     private int totalElement;
     IUserService userService = new UserServiceIMPL();
     private final String CREATE_CATEGORY = "INSERT INTO category(name, avatar) VALUES (?,?);";
-    private final String FIND_ALL_CATEGORY = "SELECT * FROM CATEGORY";
+    private final String FIND_ALL_CATEGORY = "SELECT id,name,avatar FROM category";
+    private final String DELETE_CATEGORY = "DELETE from category where id=?";
+    private final String UPDATE_CATEGORY= "update category set name=?,avatar=? where id=?";
 
     @Override
     public void save(Category category, HttpServletRequest request) {
@@ -34,7 +36,13 @@ public class CategoryServiceIMPL implements ICategoryService{
 
     @Override
     public void deleteById(int id) {
-
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CATEGORY);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -83,13 +91,26 @@ public class CategoryServiceIMPL implements ICategoryService{
                 Category category = new Category();
                 category.setId(resultSet.getInt("id"));
                 category.setName(resultSet.getString("name"));
-//                category.setAvatar(resultSet.getString("avatar"));
+                category.setAvatar(resultSet.getString("avatar"));
                 categoryList.add(category);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return categoryList;
+    }
+
+    @Override
+    public void updateCategory(int id, String name, String avatar) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CATEGORY);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, avatar);
+            preparedStatement.setInt(3, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
