@@ -38,10 +38,16 @@ public class SongServiceIMPL implements ISongService {
 
     @Override
     public void save(Song song) {
+
         PreparedStatement preparedStatement = null;
+        try {
+            connection.setAutoCommit(false);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         if (song.getBandId() == null) {
             try {
-                connection.setAutoCommit(false);
+
                 preparedStatement = connection.prepareStatement(CREAT_NEW_SONG_2, Statement.RETURN_GENERATED_KEYS);
                 preparedStatement.setString(1, song.getName());
                 preparedStatement.setInt(2, song.getCategoryId());

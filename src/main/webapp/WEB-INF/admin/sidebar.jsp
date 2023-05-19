@@ -314,11 +314,11 @@ MzmaWxL+JrxPvt93ySPR4z4f9TsTogsqmwmHIhcJQX/nsA+9phNCY96Mk+DV+kUQl4oF4Qu8LtPbHSa/
       <span class="tooltip">Song</span>
     </li>
     <li>
-      <a href="#">
-        <i class='bx bx-cart-alt' ></i>
-        <span class="links_name">Order</span>
+      <a href="/category?action=create">
+        <i class='/playlist?action=playlistmanager' ></i>
+        <span class="links_name">Playlist</span>
       </a>
-      <span class="tooltip">Order</span>
+      <span class="tooltip">Playlist</span>
     </li>
     <li>
       <a href="#">
