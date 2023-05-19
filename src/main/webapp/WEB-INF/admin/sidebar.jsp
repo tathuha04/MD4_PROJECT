@@ -295,9 +295,9 @@ MzmaWxL+JrxPvt93ySPR4z4f9TsTogsqmwmHIhcJQX/nsA+9phNCY96Mk+DV+kUQl4oF4Qu8LtPbHSa/
     <li>
       <a href="#">
         <i class='bx bx-pie-chart-alt-2' ></i>
-        <span class="links_name">Brand</span>
+        <span class="links_name">Band</span>
       </a>
-      <span class="tooltip">Brand</span>
+      <span class="tooltip">Band</span>
     </li>
     <li>
       <a href="/category?action=createcategoryAD">
@@ -305,6 +305,13 @@ MzmaWxL+JrxPvt93ySPR4z4f9TsTogsqmwmHIhcJQX/nsA+9phNCY96Mk+DV+kUQl4oF4Qu8LtPbHSa/
         <span class="links_name">Category</span>
       </a>
       <span class="tooltip">Category</span>
+    </li>
+    <li>
+      <a href="/song?action=songManager">
+        <i class='bx bx-folder' ></i>
+        <span class="links_name">Song</span>
+      </a>
+      <span class="tooltip">Song</span>
     </li>
     <li>
       <a href="#">

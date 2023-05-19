@@ -14,6 +14,7 @@ public class Song {
     private int userId;
     private int numberOfView;
     private String avatar;
+    private String src;
     private List<Integer> likeUserId=new ArrayList<>();
     private List<Integer> commentId;
 
@@ -40,6 +41,62 @@ public class Song {
         this.categoryId = categoryId;
         this.userId = userId;
 
+    }
+
+    public Song(String name, int categoryId, List<Integer> bandId, List<Integer> singerId, int userId) {
+        this.name = name;
+        this.singerId = singerId;
+        this.categoryId = categoryId;
+        this.bandId = bandId;
+        this.userId = userId;
+    }
+
+    public Song(int id, String name, List<Integer> singerId, int categoryId, List<Integer> bandId, int userId, int numberOfView, String avatar, String src, List<Integer> likeUserId, List<Integer> commentId) {
+        this.id = id;
+        this.name = name;
+        this.singerId = singerId;
+        this.categoryId = categoryId;
+        this.bandId = bandId;
+        this.userId = userId;
+        this.numberOfView = numberOfView;
+        this.avatar = avatar;
+        this.src = src;
+        this.likeUserId = likeUserId;
+        this.commentId = commentId;
+    }
+
+    public Song(String name, int categoryId, List<Integer> bandId, List<Integer> singerId, int userId, String src) {
+        this.name = name;
+        this.singerId = singerId;
+        this.categoryId = categoryId;
+        this.bandId = bandId;
+        this.userId = userId;
+        this.src = src;
+    }
+
+    public Song(int id, String name, int categoryId, int userId, String src) {
+        this.id = id;
+        this.name = name;
+        this.categoryId = categoryId;
+        this.userId = userId;
+        this.src = src;
+    }
+
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getSrc() {
+        return src;
+    }
+
+    public void setSrc(String src) {
+        this.src = src;
     }
 
     public int getId() {

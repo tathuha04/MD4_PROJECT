@@ -71,4 +71,6 @@
 </script>
 </body>
 </html>
-
+<%--<jsp:include page='../../bootstrap/footer.jsp'>--%>
+<%--    <jsp:param name="articleId" value=""/>--%>
+<%--</jsp:include>--%>

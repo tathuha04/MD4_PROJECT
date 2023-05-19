@@ -25,8 +25,8 @@ public class CategoryServiceIMPL implements ICategoryService {
         User user = userService.getCurrentUser(request);
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_CATEGORY);
-            preparedStatement.setString(1, category.getName());
-            preparedStatement.setString(2, category.getAvatar());
+            preparedStatement.setString(1,category.getName());
+            preparedStatement.setString(2,category.getAvatar());
 //            preparedStatement.setInt(3,category.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -36,13 +36,6 @@ public class CategoryServiceIMPL implements ICategoryService {
 
     @Override
     public void deleteById(int id) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CATEGORY);
-            preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
 
     }
 
@@ -57,9 +50,9 @@ public class CategoryServiceIMPL implements ICategoryService {
         List<Category> list = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            String PAGE_CATEGORY = "SELECT SQL_CALC_FOUND_ROWS * FROM category LIMIT " + start + "," + elementOfPage;
+            String PAGE_CATEGORY = "SELECT SQL_CALC_FOUND_ROWS * FROM category LIMIT "+start+","+elementOfPage;
             ResultSet resultSet = statement.executeQuery(PAGE_CATEGORY);
-            while (resultSet.next()) {
+            while (resultSet.next()){
                 Category category = new Category();
                 category.setId(resultSet.getInt("id"));
                 category.setName(resultSet.getString("name"));
@@ -67,7 +60,7 @@ public class CategoryServiceIMPL implements ICategoryService {
                 list.add(category);
             }
             resultSet = statement.executeQuery("SELECT FOUND_ROWS()");
-            if (resultSet.next()) {
+            if (resultSet.next()){
                 this.totalElement = resultSet.getInt(1);
             }
         } catch (SQLException e) {
@@ -89,11 +82,11 @@ public class CategoryServiceIMPL implements ICategoryService {
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL_CATEGORY);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                categoryList.add(
-                        new Category(
-                                resultSet.getInt("id"),
-                                resultSet.getString("name"),
-                                resultSet.getString("avatar")));
+                Category category = new Category();
+                category.setId(resultSet.getInt("id"));
+                category.setName(resultSet.getString("name"));
+                category.setAvatar(resultSet.getString("avatar"));
+                categoryList.add(category);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -103,18 +96,7 @@ public class CategoryServiceIMPL implements ICategoryService {
 
     @Override
     public void updateCategory(int id, String name, String avatar) {
-        try {
-            connection.setAutoCommit(false);
-            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CATEGORY);
-            preparedStatement.setInt(1,id);
-            preparedStatement.setString(2,name);
-            preparedStatement.setString(3,avatar);
-            preparedStatement.executeUpdate();
-            connection.commit();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
+    }
 
 }
