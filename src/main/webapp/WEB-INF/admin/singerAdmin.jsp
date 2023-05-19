@@ -67,12 +67,17 @@
                 <td>${singer.getAvatar()}</td>
                 <td>
                     <button type="button" class="btn btn-primary">Edit</button>
+                    <a href="/singers?action=delete&id=${singer.getId()}">
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </a>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
 </section>
+
+<%--Begin modal--%>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -101,16 +106,18 @@
         </div>
     </div>
 </div>
-<script>
-    $('#exampleModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var recipient = button.data('whatever') // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        var modal = $(this)
-        modal.find('.modal-title').text('New message to ' + recipient)
-        modal.find('.modal-body input').val(recipient)
-    })
-</script>
+<%--End modal--%>
+
+<%--<script>--%>
+<%--    $('#exampleModal').on('show.bs.modal', function (event) {--%>
+<%--        var button = $(event.relatedTarget) // Button that triggered the modal--%>
+<%--        var recipient = button.data('whatever') // Extract info from data-* attributes--%>
+<%--        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).--%>
+<%--        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.--%>
+<%--        var modal = $(this)--%>
+<%--        modal.find('.modal-title').text('New message to ' + recipient)--%>
+<%--        modal.find('.modal-body input').val(recipient)--%>
+<%--    })--%>
+<%--</script>--%>
 </body>
 </html>

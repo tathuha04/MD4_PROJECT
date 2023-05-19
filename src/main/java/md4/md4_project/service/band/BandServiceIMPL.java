@@ -14,6 +14,22 @@ import java.util.List;
 public class BandServiceIMPL implements IBandService {
     private Connection connection = ConnectSQL.getConnection();
     private final String SELECT_ALL_BAND = "SELECT * FROM band";
+    private final String DELETE_BY_ID = "DELETE FROM band where id=?";
+    private final String INSERT_INTO_BAND = "INSERT INTO BAND (id, name, avatar) values (?, ?, ?,?)";
+
+    @Override
+    public void save(Band band) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_INTO_BAND);
+            preparedStatement.setInt(1, band.getId());
+            preparedStatement.setString(2, band.getName());
+            preparedStatement.setString(3, band.getAvatar());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public List<Band> findAll() {
         List<Band> bandList = new ArrayList<>();
@@ -44,4 +60,16 @@ public class BandServiceIMPL implements IBandService {
     public List<Song> showAllSongOfBand(String name) {
         return null;
     }
+
+    @Override
+    public void deleteById(int id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_BY_ID);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

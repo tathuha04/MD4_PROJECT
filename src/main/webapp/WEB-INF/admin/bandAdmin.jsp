@@ -42,12 +42,12 @@
 </jsp:include>
 <section class="home-section">
     <div class="text">
-        <p style="text-align: center"> Singer</p>
+        <p style="text-align: center"> Band</p>
     </div>
     <div style="margin: 20px 30px">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                 data-whatever="@mdo">
-            Create Singer
+            Create New Band
         </button>
     </div>
     <table class="table" style="width: 100%">
@@ -56,17 +56,19 @@
             <th scope="col">STT</th>
             <th scope="col">Name</th>
             <th scope="col">Avatar</th>
-            <th scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items='${requestScope["singerList"]}' var="singer">
+        <c:forEach items='${requestScope["bandList"]}' var="band">
             <tr>
-                <th scope="row">${singer.getId()}</th>
-                <td>${singer.getName()}</td>
-                <td>${singer.getAvatar()}</td>
+                <th scope="row">${band.getId()}</th>
+                <td>${band.getName()}</td>
+                <td>${band.getAvatar()}</td>
                 <td>
                     <button type="button" class="btn btn-primary">Edit</button>
+                    <a href="/band?action=delete&id=${band.getId()}">
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </a>
                 </td>
             </tr>
         </c:forEach>
@@ -83,21 +85,21 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="post">
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Recipient:</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <label class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" placeholder="Enter the name of Band" name="name">
                     </div>
                     <div class="form-group">
-                        <label for="message-text" class="col-form-label">Message:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                        <label class="col-form-label">Avatar:</label>
+                        <input type="text" class="form-control" placeholder="Enter the avatar" name="avatar">
                     </div>
-                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
+            </form>
         </div>
     </div>
 </div>

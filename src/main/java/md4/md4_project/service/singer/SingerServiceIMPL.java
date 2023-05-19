@@ -15,6 +15,7 @@ import java.util.List;
 public class SingerServiceIMPL implements ISingerService {
     private Connection connection = ConnectSQL.getConnection();
     private final String SELECT_ALL_SINGER = "SELECT * from singer";
+    private final String DELETE_SINGER_BY_ID= "DELETE from singer where id=? ";
 
     @Override
     public List<Singer> findAll() {
@@ -56,5 +57,17 @@ public class SingerServiceIMPL implements ISingerService {
             }
         }
         return null;
+    }
+
+    @Override
+    public void deleteById(int id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_SINGER_BY_ID);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

@@ -11,4 +11,5 @@ public interface ISingerService {
     Singer findByName(String name);
     List<Song> showAllSongOfSinger(String name);
     Singer findById(int id);
+    void deleteById(int id);
 }

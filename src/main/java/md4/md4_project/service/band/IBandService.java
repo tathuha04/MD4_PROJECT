@@ -6,7 +6,10 @@ import md4.md4_project.model.Song;
 import java.util.List;
 
 public interface IBandService {
+    void save(Band band);
     List<Band> findAll();
     Band findByName(String name);
     List<Song> showAllSongOfBand(String name);
+    void deleteById(int id);
+
 }

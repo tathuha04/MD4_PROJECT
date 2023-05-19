@@ -22,6 +22,11 @@ public class BandController extends HttpServlet {
             case "showband":
                 showBand(request, response);
                 break;
+            case "delete":
+                deleteById(request, response);
+                break;
+            case "create":
+                break;
         }
     }
 
@@ -32,7 +37,7 @@ public class BandController extends HttpServlet {
     public void showBand(HttpServletRequest request, HttpServletResponse response){
         List<Band> bandList = bandService.findAll();
         request.setAttribute("bandList", bandList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/band/band.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/bandAdmin.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -40,5 +45,10 @@ public class BandController extends HttpServlet {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void deleteById(HttpServletRequest request, HttpServletResponse response){
+        int id = Integer.parseInt(request.getParameter("id"));
+        bandService.deleteById(id);
+        showBand(request, response);
     }
 }
