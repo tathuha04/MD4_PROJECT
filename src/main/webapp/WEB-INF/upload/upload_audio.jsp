@@ -14,12 +14,12 @@
   <%--    <label for="formFileDisabled" class="form-label">Disabled file input example</label>--%>
   <%--    <input class="form-control" type="file" id="formFileDisabled" disabled />--%>
 
-  <progress value="0" max="100" id="uploader">0%</progress>
-  <input class="form-control" type="file" value="upload" accept=".mp3" id="fileButton">
-  <input  class="form-control" name="audio" type="text" id="audio" style="display: none">
-  <div id="imgDiv" style="background: white;color: white;height: 60px"></div>
+  <progress value="0" max="100" id="uploaderMp3">0%</progress>
+  <input class="form-control" type="file" value="upload" accept=".mp3" id="fileButtonMp3">
+  <input  class="form-control" name="audio" type="text" id="audioMp3" style="display: none">
+  <div id="imgDivMp3" style="background: white;color: white;height: 60px"></div>
 
-</form>
+<%--</form>--%>
 
 <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
 
@@ -57,15 +57,15 @@
 
 <script type="text/javascript">
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyB2A6FtigGGXUQXV0D_FPouPKY8JKplhnk",
-    authDomain: "projectmd4-deb2e.firebaseapp.com",
-    projectId: "projectmd4-deb2e",
-    storageBucket: "projectmd4-deb2e.appspot.com",
-    messagingSenderId: "1053012108561",
-    appId: "1:1053012108561:web:d7c4f96532e4c6d891d8b0",
-    measurementId: "G-F6LQ7VE1T5"
-  };
+  // const firebaseConfig = {
+  //   apiKey: "AIzaSyB2A6FtigGGXUQXV0D_FPouPKY8JKplhnk",
+  //   authDomain: "projectmd4-deb2e.firebaseapp.com",
+  //   projectId: "projectmd4-deb2e",
+  //   storageBucket: "projectmd4-deb2e.appspot.com",
+  //   messagingSenderId: "1053012108561",
+  //   appId: "1:1053012108561:web:d7c4f96532e4c6d891d8b0",
+  //   measurementId: "G-F6LQ7VE1T5"
+  // };
 
   firebase.initializeApp(firebaseConfig);
 
@@ -81,13 +81,13 @@
 
   // get elements
 
-  var uploader = document.getElementById('uploader');
+  var uploaderMp3 = document.getElementById('uploaderMp3');
 
-  var fileButton = document.getElementById('fileButton');
+  var fileButtonMp3 = document.getElementById('fileButtonMp3');
 
   // listen for file selection
 
-  fileButton.addEventListener('change', function (e) {
+  fileButtonMp3.addEventListener('change', function (e) {
 
 // what happened
 
@@ -121,7 +121,7 @@
 
               var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
-              uploader.value = progress;
+              uploaderMp3.value = progress;
 
               console.log('Upload is ' + progress + '% done');
 
@@ -181,7 +181,7 @@
 
               console.log('downloadURL ===>', downloadURL);
 
-              let divLocation = document.getElementById("imgDiv");
+              let divLocation = document.getElementById("imgDivMp3");
 
               let imgElement = document.createElement("audio");
 
@@ -196,7 +196,7 @@
 
               divLocation.append(imgElement);
 
-              document.getElementById('audio').value = downloadURL;
+              document.getElementById('audioMp3').value = downloadURL;
 
             });
 

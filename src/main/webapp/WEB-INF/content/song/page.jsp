@@ -33,10 +33,13 @@
     <div class="row">
       <c:forEach items="${listSong}" var="song">
         <div class="colum">
-          <div class="card">
-            <img  src="${song.getAvatar()}" alt="">
-            <b>${song.getName()}</b>
-          </div>
+          <a href="/song?action=detail&id=${song.getId()}">
+            <div class="card">
+
+              <img  src="${song.getAvatar()}" alt="">
+              <b>${song.getName()}</b>
+            </div>
+          </a>
         </div>
       </c:forEach>
     </div>
@@ -58,7 +61,7 @@
 
         </c:forEach>
         <c:if test="${pageNumber lt sumOfPage}">
-          <li class="page-item"><a href="/song?action=page_gid&page=${pageNumber + 1}">Next</a></li>
+          <li class="page-item"><a href="/song?action=page_grid&page=${pageNumber + 1}">Next</a></li>
         </c:if>
       </ul>
     </nav>

@@ -65,23 +65,28 @@ public class Song {
         this.commentId = commentId;
     }
 
-    public Song(String name, int categoryId, List<Integer> bandId, List<Integer> singerId, int userId, String src) {
+    public Song(String name, int categoryId, List<Integer> bandId, List<Integer> singerId, int userId,String avatar, String src) {
         this.name = name;
         this.singerId = singerId;
         this.categoryId = categoryId;
         this.bandId = bandId;
         this.userId = userId;
+        this.avatar = avatar;
         this.src = src;
     }
 
-    public Song(int id, String name, int categoryId, int userId, String src) {
+    public Song(int id, String name, int categoryId, int userId,String avatar, String src) {
         this.id = id;
         this.name = name;
         this.categoryId = categoryId;
         this.userId = userId;
+        this.avatar =avatar;
         this.src = src;
     }
 
+//    public Song(String name, int categoryId, List<Integer> listBandId, List<Integer> listSingerId, int userId, String avatar, String src) {
+//    }
+//
 
     public String getAvatar() {
         return avatar;
