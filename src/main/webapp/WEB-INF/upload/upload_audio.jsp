@@ -19,7 +19,7 @@
   <input  class="form-control" name="audio" type="text" id="audio" style="display: none">
   <div id="imgDiv" style="background: white;color: white;height: 60px"></div>
 
-<%--</form>--%>
+</form>
 
 <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
 
