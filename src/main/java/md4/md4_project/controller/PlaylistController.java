@@ -45,6 +45,9 @@ public class PlaylistController extends HttpServlet {
             case "editPlaylist":
                 showFormEditPlaylist(request, response);
                 break;
+            case "deletePlaylist":
+                deletePlaylist(request, response);
+                break;
 
 
 
@@ -70,6 +73,7 @@ public class PlaylistController extends HttpServlet {
             case "removeSong":
                 actionRemoveSongToPlaylist(request, response);
                 break;
+
 
         }
     }
@@ -191,6 +195,12 @@ public class PlaylistController extends HttpServlet {
             }
             playlistService.removeSongToPlaylist(playlistId, listSongId);
         }
+        showAllPlaylistOfUser(request, response);
+    }
+    private void deletePlaylist(HttpServletRequest request,HttpServletResponse response){
+        int id = Integer.parseInt(request.getParameter("id"));
+        System.out.println(id);
+        playlistService.deleteById(id);
         showAllPlaylistOfUser(request, response);
     }
 }
