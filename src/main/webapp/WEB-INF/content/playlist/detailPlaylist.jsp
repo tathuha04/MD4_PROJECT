@@ -925,11 +925,10 @@
             <div class="playlist-wrap">
                 <h2>Mythium</h2>
                 <ol>
+<c:forEach items="${songlist}" var="sl">
                     <li><a href="//archive.org/download/mythium/JLS_ATI.mp3" data-artist="track 1">All This Is - Joe L.'s Studio</a></li>
-                    <li><a href="//archive.org/download/mythium/BS_TF.mp3" data-artist="track 2">The Forsaken - Broadwing Studio (Final Mix)</a></li>
-                    <li><a href="//archive.org/download/mythium/BS_ATKM.mp3" data-artist="track 3">All The King's Men - Broadwing Studio (Final Mix)</a></li>
-                    <li><a href="//archive.org/download/mythium/BSFM_TF.mp3" data-artist="track 4">The Forsaken - Broadwing Studio (First Mix)</a></li>
-                    <li><a href="//archive.org/download/mythium/BSFM_ATKM.mp3" data-artist="track 5">All The King's Men - Broadwing Studio (First Mix)</a></li>
+
+</c:forEach>
                 </ol>
             </div>
 

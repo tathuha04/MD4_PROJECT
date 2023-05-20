@@ -314,8 +314,8 @@ MzmaWxL+JrxPvt93ySPR4z4f9TsTogsqmwmHIhcJQX/nsA+9phNCY96Mk+DV+kUQl4oF4Qu8LtPbHSa/
       <span class="tooltip">Song</span>
     </li>
     <li>
-      <a href="/category?action=create">
-        <i class='/playlist?action=playlistmanager' ></i>
+      <a href="/playlist?action=showAllPlaylist">
+        <i class='bx bx-folder' ></i>
         <span class="links_name">Playlist</span>
       </a>
       <span class="tooltip">Playlist</span>

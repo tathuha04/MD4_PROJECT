@@ -205,7 +205,7 @@ public class SongController extends HttpServlet {
         System.out.println(id);
         Song song = (Song) songService.findById(id);
         System.out.println(song.getSrc());
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/song/detail.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/song/edit_playlist.jsp");
         request.setAttribute("song", song);
         try {
             dispatcher.forward(request, response);

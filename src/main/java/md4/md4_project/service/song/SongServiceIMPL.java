@@ -69,6 +69,7 @@ public class SongServiceIMPL implements ISongService {
                 for (int i = 0; i < listSingerId.size(); i++) {
                     preparedStatement2.setInt(1, id);
                     preparedStatement2.setInt(2, listSingerId.get(i));
+                    preparedStatement2.executeUpdate();
                 }
                 connection.commit();
             } catch (SQLException e) {
@@ -96,6 +97,7 @@ public class SongServiceIMPL implements ISongService {
                 for (int i = 0; i < listBandId.size(); i++) {
                     preparedStatement1.setInt(1, id);
                     preparedStatement1.setInt(2, listBandId.get(i));
+                    preparedStatement1.executeUpdate();
                 }
                 connection.commit();
             } catch (SQLException e) {
@@ -162,6 +164,7 @@ public class SongServiceIMPL implements ISongService {
             connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_SONG_BY_ID);
             preparedStatement.setInt(1,id);
+            preparedStatement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -207,7 +210,7 @@ public class SongServiceIMPL implements ISongService {
             preparedStatement.setInt(1,id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-               int idSong = resultSet.getInt("singerId");
+               int idSong = resultSet.getInt("songId");
                songList.add(findById(idSong));
             }
         } catch (SQLException e) {

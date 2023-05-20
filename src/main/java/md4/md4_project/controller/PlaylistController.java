@@ -39,9 +39,15 @@ public class PlaylistController extends HttpServlet {
             case "showAllPlaylist":
                 showAllPlaylist(request, response);
                 break;
-            case "showPlaylist":
-                showDetailPlaylist(request, response);
+            case "detailPlaylist":
+                detailPlaylist(request, response);
                 break;
+            case "editPlaylist":
+                showFormEditPlaylist(request, response);
+                break;
+
+
+
         }
     }
 
@@ -58,11 +64,18 @@ public class PlaylistController extends HttpServlet {
             case "create":
                 actionCreatePlaylist(request, response);
                 break;
+            case "addSong":
+                actionAddSongToPlaylist(request, response);
+                break;
+            case "removeSong":
+                actionRemoveSongToPlaylist(request, response);
+                break;
+
         }
     }
 
     private void showFormCreatePlaylist(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/playlist/creat.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/playlist/create.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -75,8 +88,7 @@ public class PlaylistController extends HttpServlet {
     private void showAllPlaylist(HttpServletRequest request, HttpServletResponse response) {
         List<Playlist> playlists = new ArrayList<>();
         playlists = playlistService.findAll();
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/playlist/AllPlaylist.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/playlist/list_playlist.jsp");
         request.setAttribute("playlists", playlists);
         try {
             dispatcher.forward(request, response);
@@ -93,7 +105,7 @@ public class PlaylistController extends HttpServlet {
         User user = (User) session.getAttribute("user");
         int userId = user.getId();
         playlists = playlistService.findAllPlaylistByUserId(userId);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/playlist/AllPlaylist.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/playlist/list_playlist.jsp");
         request.setAttribute("playlists", playlists);
         try {
             dispatcher.forward(request, response);
@@ -104,10 +116,10 @@ public class PlaylistController extends HttpServlet {
         }
     }
 
-    private void showDetailPlaylist(HttpServletRequest request, HttpServletResponse response) {
+    private void detailPlaylist(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         List<Song> songList = songService.findAllSongOfPlaylistByPlaylistId(id);
-        Playlist playlist = (Playlist) playlistService.findById(id);
+        Playlist playlist =  playlistService.findById(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/playlist/detailPlaylist.jsp");
         request.setAttribute("playlist", playlist);
         request.setAttribute("songList", songList);
@@ -128,7 +140,58 @@ public class PlaylistController extends HttpServlet {
         int userId = user.getId();
         Playlist playlist = new Playlist(name, avatar, userId);
         playlistService.save(playlist);
-        showAllPlaylist(request, response);
+        showAllPlaylistOfUser(request, response);
+    }
+    private void showFormEditPlaylist(HttpServletRequest request,HttpServletResponse response){
+        int id = Integer.parseInt(request.getParameter("id"));
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/playlist/edit_playlist.jsp");
+        request.setAttribute("songOfPlaylist",songService.findAllSongOfPlaylistByPlaylistId(id));
+        request.setAttribute("song", songService.findAll());
+        request.setAttribute("playlist",playlistService.findById(id));
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void  actionAddSongToPlaylist(HttpServletRequest request,HttpServletResponse response){
+        int playlistId = Integer.parseInt(request.getParameter("id"));
+
+        String[] songIdStr = request.getParameterValues("addSong");
+        if (songIdStr!=null) {
+            int[] songIds = new int[songIdStr.length];
+            for (int i = 0; i < songIdStr.length; i++) {
+                songIds[i] = Integer.parseInt(songIdStr[i]);
+            }
+            List<Integer> listSongId = new ArrayList<>();
+            for (int i = 0; i < songIds.length; i++) {
+                listSongId.add(Integer.valueOf(songIds[i]));
+            }
+            playlistService.addSongToPlaylist(playlistId, listSongId);
+            System.out.println(listSongId);
+        }
+
+        showAllPlaylistOfUser(request, response);
+    }
+
+    private void actionRemoveSongToPlaylist(HttpServletRequest request,HttpServletResponse response){
+        int playlistId = Integer.parseInt(request.getParameter("id"));
+
+        String[] songIdStr = request.getParameterValues("removeSong");
+        if (songIdStr!=null) {
+            int[] songIds = new int[songIdStr.length];
+            for (int i = 0; i < songIdStr.length; i++) {
+                songIds[i] = Integer.parseInt(songIdStr[i]);
+            }
+            List<Integer> listSongId = new ArrayList<>();
+            for (int i = 0; i < songIds.length; i++) {
+                listSongId.add(Integer.valueOf(songIds[i]));
+            }
+            playlistService.removeSongToPlaylist(playlistId, listSongId);
+        }
+        showAllPlaylistOfUser(request, response);
     }
 }
 

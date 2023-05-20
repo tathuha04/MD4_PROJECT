@@ -1,11 +1,14 @@
 package md4.md4_project.model;
 
+import java.util.List;
+
 public class Playlist {
     private int id;
     private String playlistName;
     private int userId;
     private byte status = 0;
     private String avatar;
+
 
     public Playlist(String playlistName, String avatar, int userId) {
         this.playlistName = playlistName;
