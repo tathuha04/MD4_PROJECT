@@ -17,6 +17,7 @@ public class BandServiceIMPL implements IBandService {
     private final String SELECT_ALL_BAND = "SELECT * FROM band";
     private final String INSERT_INTO_BAND= "INSERT INTO band (name, avatar) values (?,?)";
     private final String DELETE_BY_ID= "DELETE FROM band where id= ?";
+    private final String EDIT_BY_ID = "UPDATE BAND SET name =?, avatar=? where id=?";
     @Override
     public List<Band> findAll() {
         List<Band> bandList = new ArrayList<>();
@@ -72,4 +73,20 @@ public class BandServiceIMPL implements IBandService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public void editById(String name, String avatar, int id) {
+        try {
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(EDIT_BY_ID);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, avatar);
+            preparedStatement.setInt(3, id);
+            preparedStatement.executeUpdate();
+            connection.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

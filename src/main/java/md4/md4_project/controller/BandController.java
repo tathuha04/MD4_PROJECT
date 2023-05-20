@@ -17,7 +17,7 @@ public class BandController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        System.out.println("action o DoGet-->"+ action);
+//        System.out.println("action o DoGet-->"+ action);
         switch (action) {
             case "showband":
                 showBand(request, response);
@@ -34,9 +34,13 @@ public class BandController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        System.out.println("action o DoPost-->"+ action);
         switch (action){
             case "create":
                 createBand(request, response);
+                break;
+            case "update":
+                editBand(request, response);
                 break;
         }
 
@@ -74,6 +78,13 @@ public class BandController extends HttpServlet {
     public void deleteBand(HttpServletRequest request, HttpServletResponse response){
         int id = Integer.parseInt(request.getParameter("id"));
         bandService.deleteById(id);
+        showBand(request, response);
+    }
+    public void editBand(HttpServletRequest request, HttpServletResponse response){
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String avatar= request.getParameter("avatar");
+        bandService.editById(name, avatar, id);
         showBand(request, response);
     }
 }

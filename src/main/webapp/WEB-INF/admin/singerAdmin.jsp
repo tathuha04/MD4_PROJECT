@@ -135,16 +135,16 @@
             <th scope="row">${ctm.getId()}</th>
             <td><img width="100px" height="100px" style="border-radius: 5px" src="${ctm.getAvatar()}"></td>
             <td>${ctm.getName()}</td>
-            <td>
-                <a data-toggle="modal"
-                   data-target="#edit${ctm.id}">
-                    <button type="button" class="buttonEdit">Edit</button>
-                </a>
-                <a data-toggle="modal"
-                   data-target="#delete${ctm.id}">
-                    <button type="button" class="buttonDelete"> Delete</button>
-                </a>
-            </td>
+                <td>
+                    <a data-toggle="modal"
+                       data-target="#edit${ctm.id}">
+                        <button type="button" class="buttonEdit">Edit</button>
+                    </a>
+                    <a data-toggle="modal"
+                       data-target="#delete${ctm.id}">
+                        <button type="button" class="buttonDelete"> Delete</button>
+                    </a>
+                </td>
             <!-- Modal Delete-->
             <div class="modal fade" id="delete${ctm.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">

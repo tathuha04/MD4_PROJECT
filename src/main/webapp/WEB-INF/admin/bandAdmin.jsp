@@ -170,7 +170,7 @@
             </div>
             <div class="modal-body">
               <p>Please fill in the following information according to the template to update the information for the singer with id : ${ctm.id}.</p>
-              <form method="post" style="height: 50px">
+              <form method="post" style="height: 50px" action="band?action=update&id=${ctm.id}">
                 <label>Name</label>
                 <input name="name" value=${ctm.getName()}>
                 <br>
@@ -181,7 +181,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
-              <a  href="/singers?action=update&id=${ctm.id}"><button type="submit" class="btn btn-danger">Save</button></a>
+              <button type="submit" class="btn btn-danger">Save</button>
             </div>
             </form>
           </div>
