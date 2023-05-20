@@ -21,12 +21,12 @@ public class PlaylistServiceIMPL implements IPlaylistService {
     private final String FIND_ALL_PLAYLIST = "SELECT * FROM PLAYLIST";
     private final String CREATE_PLAYLIST="INSERT INTO PLAYLIST(name,user_id,status,avatar) value(?,?,?,?)";
     private final String FIND_PLAYLIST_BY_ID="SELECT * FROM PLAYLIST WHERE ID =?";
-    private final String DELETE_PLAYLIST_BY_ID="DELETE PLAYLIST WHERE ID =?";
+    private final String DELETE_PLAYLIST_BY_ID="DELETE FROM PLAYLIST WHERE ID =?";
     private final String DELETE_PLAYLIST_BY_ID_IN_SONG_OF_PLAYLIST="DELETE SONG_OF_PLAYLIST WHERE playlistId =?";
     private final String FIND_ALL_PLAYLIST_BY_USER_ID="SELECT * FROM PLAYLIST WHERE USER_ID=?";
     private final String FIND_ALL_SONG_OF_PLAYLIST_BY_ID="SELECT * FROM SONG_OF_PLAYLIST WHERE PlaylistId=?";
     private final String ADD_SONG_TO_PLAYLIST="INSERT INTO SONG_OF_PLAYLIST(playlistid,songid) value(?,?)";
-    private final String REMOVE_SONG_TO_PLAYLIST="DELETE SONG_OF_PLAYLIST WHERE playlistId=? AND songId=?";
+    private final String REMOVE_SONG_TO_PLAYLIST="DELETE FROM SONG_OF_PLAYLIST WHERE (playlistid=? AND songid=?)";
 
     @Override
     public List findAll() {
@@ -145,8 +145,10 @@ public class PlaylistServiceIMPL implements IPlaylistService {
         try {
             connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(REMOVE_SONG_TO_PLAYLIST);
-            for (int i = 0; i < songId.size(); i++) {
 
+            for (int i = 0; i < songId.size(); i++) {
+                System.out.println(songId.get(i));
+                System.out.println(playlistId);
                 preparedStatement.setInt(1,playlistId);
                 preparedStatement.setInt(2,songId.get(i));
                 preparedStatement.executeUpdate();

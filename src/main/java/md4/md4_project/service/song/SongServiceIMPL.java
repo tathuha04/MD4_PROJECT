@@ -18,7 +18,7 @@ public class SongServiceIMPL implements ISongService {
     private final String ADD_SONG_ID_TO_BAND = "INSERT INTO SONG_OF_BAND (songId,bandId) values (?,?)";
     private final String ADD_SONG_ID_TO_SINGER = "INSERT INTO SONG_OF_SINGER (songId,singerId) values (?,?)";
     private final String FIND_SONG_BY_ID="SELECT * FROM SONG WHERE ID=?";
-    private final String DELETE_SONG_BY_ID="DELETE SONG WHERE ID=?";
+    private final String DELETE_SONG_BY_ID="DELETE FROM SONG WHERE ID=?";
     private final String GET_ALL_SONG_ID_OF_PLAYLIST_BY_PL_ID="SELECT * FROM SONG_OF_PLAYLIST WHERE PLAYLISTID=?";
 
     @Override
