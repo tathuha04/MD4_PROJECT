@@ -179,4 +179,21 @@ public class Song {
     public void setCommentId(List<Integer> commentId) {
         this.commentId = commentId;
     }
+
+    @Override
+    public String toString() {
+        return "Song{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", singerId=" + singerId +
+                ", categoryId=" + categoryId +
+                ", bandId=" + bandId +
+                ", userId=" + userId +
+                ", numberOfView=" + numberOfView +
+                ", avatar='" + avatar + '\'' +
+                ", src='" + src + '\'' +
+                ", likeUserId=" + likeUserId +
+                ", commentId=" + commentId +
+                '}';
+    }
 }

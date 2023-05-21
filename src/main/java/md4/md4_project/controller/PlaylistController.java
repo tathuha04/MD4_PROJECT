@@ -124,6 +124,7 @@ public class PlaylistController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         System.out.println(id);
         List<Song> song = songService.findAllSongOfPlaylistByPlaylistId(id);
+        System.out.println(song);
         Playlist playlist =  playlistService.findById(id);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/playlist/detail_playlist.jsp");
