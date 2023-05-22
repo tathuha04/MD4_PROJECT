@@ -1,12 +1,12 @@
 package md4.md4_project.controller;
 
-import md4.md4_project.model.Playlist;
-import md4.md4_project.model.Song;
-import md4.md4_project.model.User;
+import md4.md4_project.model.*;
 import md4.md4_project.service.playlist.IPlaylistService;
 import md4.md4_project.service.playlist.PlaylistServiceIMPL;
 import md4.md4_project.service.song.ISongService;
 import md4.md4_project.service.song.SongServiceIMPL;
+import md4.md4_project.service.user.IUserService;
+import md4.md4_project.service.user.UserServiceIMPL;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,11 +18,13 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @WebServlet(value = "/playlist")
 public class PlaylistController extends HttpServlet {
     IPlaylistService playlistService = new PlaylistServiceIMPL();
     ISongService songService = new SongServiceIMPL();
+    IUserService userService = new UserServiceIMPL();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -51,8 +53,6 @@ public class PlaylistController extends HttpServlet {
             case "back":
                 backToAdmin(request, response);
                 break;
-
-
         }
     }
 
@@ -125,12 +125,12 @@ public class PlaylistController extends HttpServlet {
     private void detailPlaylist(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         List<Song> songOfPlaylist = songService.findAllSongOfPlaylistByPlaylistId(id);
-        List<Song> songs =songService.findAll();
-        Playlist playlist =  playlistService.findById(id);
+        List<Song> songs = songService.findAll();
+        Playlist playlist = playlistService.findById(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/playlist/detail_playlist.jsp");
         request.setAttribute("playlist", playlist);
         request.setAttribute("songOfPlaylist", songOfPlaylist);
-        request.setAttribute("song",songs);
+        request.setAttribute("song", songs);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -150,12 +150,13 @@ public class PlaylistController extends HttpServlet {
         playlistService.save(playlist);
         showAllPlaylistOfUser(request, response);
     }
-    private void showFormEditPlaylist(HttpServletRequest request,HttpServletResponse response){
+
+    private void showFormEditPlaylist(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/playlist/edit_playlist.jsp");
-        request.setAttribute("songOfPlaylist",songService.findAllSongOfPlaylistByPlaylistId(id));
+        request.setAttribute("songOfPlaylist", songService.findAllSongOfPlaylistByPlaylistId(id));
         request.setAttribute("song", songService.findAll());
-        request.setAttribute("playlist",playlistService.findById(id));
+        request.setAttribute("playlist", playlistService.findById(id));
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -164,11 +165,12 @@ public class PlaylistController extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
-    private void  actionAddSongToPlaylist(HttpServletRequest request,HttpServletResponse response){
+
+    private void actionAddSongToPlaylist(HttpServletRequest request, HttpServletResponse response) {
         int playlistId = Integer.parseInt(request.getParameter("id"));
 
         String[] songIdStr = request.getParameterValues("addSong");
-        if (songIdStr!=null) {
+        if (songIdStr != null) {
             int[] songIds = new int[songIdStr.length];
             for (int i = 0; i < songIdStr.length; i++) {
                 songIds[i] = Integer.parseInt(songIdStr[i]);
@@ -184,11 +186,11 @@ public class PlaylistController extends HttpServlet {
 
     }
 
-    private void actionRemoveSongToPlaylist(HttpServletRequest request,HttpServletResponse response){
+    private void actionRemoveSongToPlaylist(HttpServletRequest request, HttpServletResponse response) {
         int playlistId = Integer.parseInt(request.getParameter("id"));
-        System.out.println("idPL-->"+playlistId);
+        System.out.println("idPL-->" + playlistId);
         String[] songIdStr = request.getParameterValues("removeSong");
-        if (songIdStr!=null) {
+        if (songIdStr != null) {
             int[] songIds = new int[songIdStr.length];
             for (int i = 0; i < songIdStr.length; i++) {
                 songIds[i] = Integer.parseInt(songIdStr[i]);
@@ -197,26 +199,59 @@ public class PlaylistController extends HttpServlet {
             for (int i = 0; i < songIds.length; i++) {
                 listSongId.add(Integer.valueOf(songIds[i]));
             }
-            System.out.println("remove-->"+listSongId);
+            System.out.println("remove-->" + listSongId);
             playlistService.removeSongToPlaylist(playlistId, listSongId);
         }
         detailPlaylist(request, response);
 
     }
-    private void deletePlaylist(HttpServletRequest request,HttpServletResponse response){
+
+    private void deletePlaylist(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         System.out.println(id);
         playlistService.deleteById(id);
         showAllPlaylistOfUser(request, response);
     }
-    private void backToAdmin(HttpServletRequest request, HttpServletResponse response){
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/admin2.jsp");
-        try {
-            dispatcher.forward(request, response);
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+
+    private void backToAdmin(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        RequestDispatcher dispatcher;
+        if (user != null) {
+            Set<Role> roleSet = userService.findRoleByUserId(user.getId());
+            System.out.println(userService.findRoleByUserId(user.getId()));
+            String roleName = String.valueOf(UserRole.USER);
+            for (Role role : roleSet) {
+                if (role.getId() == 3) {
+                    System.out.println("3");
+                    roleName = String.valueOf(UserRole.ADMIN);
+                } else if ((role.getId() == 2) && (roleName == String.valueOf(UserRole.USER))) {
+                    System.out.println("2");
+                    roleName = String.valueOf(UserRole.PM);
+                }
+            }
+            session.setAttribute("role", roleName);
+            if (roleName.equals("USER")) {
+                dispatcher = request.getRequestDispatcher("index.jsp");
+            } else {
+                dispatcher = request.getRequestDispatcher("/WEB-INF/admin/admin2.jsp");
+            }
+            try {
+                dispatcher.forward(request, response);
+            } catch (ServletException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            dispatcher = request.getRequestDispatcher("index.jsp");
+            try {
+                dispatcher.forward(request, response);
+            } catch (ServletException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
