@@ -217,7 +217,7 @@
       top: 50%;
       right: 0;
       transform: translateY(-50%);
-      background: #1d1b31;
+      background: #721799;
       width: 100%;
       height: 60px;
       line-height: 60px;
@@ -265,6 +265,7 @@
   <link rel="stylesheet" href="style.css">
   <!-- Boxicons CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://kit.fontawesome.com/38bc39f5d7.js" crossorigin="anonymous"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -287,52 +288,38 @@ MzmaWxL+JrxPvt93ySPR4z4f9TsTogsqmwmHIhcJQX/nsA+9phNCY96Mk+DV+kUQl4oF4Qu8LtPbHSa/
     </li>
     <li>
       <a href="/singers?action=singer">
-        <i class='bx bx-chat' ></i>
+        <i class='bx bxs-microphone-alt'></i>
         <span class="links_name">Singer</span>
       </a>
       <span class="tooltip">Singer</span>
     </li>
     <li>
       <a href="/band?action=showband">
-        <i class='bx bx-pie-chart-alt-2' ></i>
+        <i class='bx bxl-microsoft-teams'></i>
         <span class="links_name">Band</span>
       </a>
       <span class="tooltip">Band</span>
     </li>
     <li>
-      <a href="/category?action=createcategoryAD">
-        <i class='bx bx-folder' ></i>
-        <span class="links_name">Category</span>
+      <a href="/category?action=categoryAD">
+      <i class='bx bxs-category-alt'></i>
+      <span class="links_name">Category</span>
       </a>
       <span class="tooltip">Category</span>
     </li>
     <li>
       <a href="/song?action=songManager">
-        <i class='bx bx-folder' ></i>
+        <i class='bx bx-album'></i>
         <span class="links_name">Song</span>
       </a>
       <span class="tooltip">Song</span>
     </li>
     <li>
       <a href="/playlist?action=showAllPlaylist">
-        <i class='bx bx-folder' ></i>
+        <i class='bx bxs-playlist'></i>
         <span class="links_name">Playlist</span>
       </a>
       <span class="tooltip">Playlist</span>
-    </li>
-    <li>
-      <a href="#">
-        <i class='bx bx-heart' ></i>
-        <span class="links_name">Saved</span>
-      </a>
-      <span class="tooltip">Saved</span>
-    </li>
-    <li>
-      <a href="#">
-        <i class='bx bx-cog' ></i>
-        <span class="links_name">Setting</span>
-      </a>
-      <span class="tooltip">Setting</span>
     </li>
     <li class="profile">
       <div class="profile-details">
