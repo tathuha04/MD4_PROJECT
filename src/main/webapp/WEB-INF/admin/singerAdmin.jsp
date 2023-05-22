@@ -1,14 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-=======
->>>>>>> dev
-</head>
 <!DOCTYPE html>
 <!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
 <html lang="en" dir="ltr">
@@ -40,15 +31,6 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 </head>
-<<<<<<< HEAD
-    <STYLE>
-        .table {
-            margin: auto;
-            width: 80%;
-            height: 100%;
-            text-align: center;
-        }
-=======
 <STYLE>
     .table {
         margin: auto;
@@ -78,8 +60,8 @@
         color: #E4E9F7;
         border: none;
     }
->>>>>>> dev
 
+    >>> >>> > dev
     body {
         font-family: Arial, Helvetica, sans-serif;
     }
@@ -126,6 +108,9 @@
     <div class="category">
         <p>Singer Manager</p>
         <div class="w3-container">
+            <a href="/singers?action=back">
+                <button > Back Menu</button>
+            </a>
             <a href="/singers?action=create">
                 <button onclick="document.getElementById('id01').style.display='block'">+ Create Singer</button>
             </a>
@@ -166,16 +151,16 @@
             <th scope="row">${ctm.getId()}</th>
             <td><img width="100px" height="100px" style="border-radius: 5px" src="${ctm.getAvatar()}"></td>
             <td>${ctm.getName()}</td>
-                <td>
-                    <a data-toggle="modal"
-                       data-target="#edit${ctm.id}">
-                        <button type="button" class="buttonEdit">Edit</button>
-                    </a>
-                    <a data-toggle="modal"
-                       data-target="#delete${ctm.id}">
-                        <button type="submit" class="buttonDelete"> Delete</button>
-                    </a>
-                </td>
+            <td>
+                <a data-toggle="modal"
+                   data-target="#edit${ctm.id}">
+                    <button type="button" class="buttonEdit">Edit</button>
+                </a>
+                <a data-toggle="modal"
+                   data-target="#delete${ctm.id}">
+                    <button type="submit" class="buttonDelete"> Delete</button>
+                </a>
+            </td>
             <!-- Modal Delete-->
             <div class="modal fade" id="delete${ctm.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
@@ -214,10 +199,12 @@
                         </div>
                         <div class="modal-body">
                             <p>Please fill in the following information according to the template to update the
-                                information for the singer with id : ${ctm.id}.</p>
-                            <form method="post" style="height: 50px" action="/singers?action=update&id=${ctm.id}">
+                                information for the category with id : ${ctm.id}.</p>
+                            <form method="post" style="height: 50px"
+                                  action="/singers?action=update&id=${ctm.id}"
+                            >
                                 <label>Name</label>
-                                <input name="name" value=${ctm.getName()}>
+                                <input name="name" value="${ctm.getName()}">
                                 <br>
                                 <label>Avatar</label>
                                 <jsp:include page="../upload/upload_avatar.jsp">
@@ -226,7 +213,10 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                                <%--                            <a href="/category?action=updatecategory&id=${ctm.id}">--%>
                             <button type="submit" class="btn btn-danger">Save</button>
+                                <%--                            </a>--%>
+
                         </div>
                         </form>
                     </div>

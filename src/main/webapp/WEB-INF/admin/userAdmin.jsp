@@ -23,6 +23,15 @@
             margin: auto;
 
         }
+        .w3-container button {
+            border-radius: 5px;
+            padding: 8px;
+            background-color: #721799;
+            color: #E4E9F7;
+            border: none;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
     </style>
 
 </head>
@@ -44,6 +53,11 @@
 <section class="home-section">
     <div class="text">
         <p style="text-align: center"> User Controller</p>
+    </div>
+    <div class="w3-container">
+        <a href="/user?action=back">
+            <button > Back Menu</button>
+        </a>
     </div>
     <table class="table" style="width: 100%">
         <thead>

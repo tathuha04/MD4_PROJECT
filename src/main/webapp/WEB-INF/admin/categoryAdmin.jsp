@@ -94,6 +94,9 @@
     <div class="category">
         <p>Category Manager</p>
         <div class="w3-container">
+            <a href="/category?action=back">
+                <button> Back Menu</button>
+            </a>
             <a href="/category?action=create">
                 <button onclick="document.getElementById('id01').style.display='block'">+ Create Category</button>
             </a>

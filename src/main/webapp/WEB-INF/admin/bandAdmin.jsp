@@ -29,11 +29,11 @@
     }
 
     .category .w3-container button {
-      border-radius: 5px;
-      padding: 8px;
-      background-color: #721799;
-      color: #E4E9F7;
-      border: none;
+        border-radius: 5px;
+        padding: 8px;
+        background-color: #721799;
+        color: #E4E9F7;
+        border: none;
     }
 
     body {
@@ -84,6 +84,9 @@
   <div class="category">
     <p>Band Manager</p>
     <div class="w3-container">
+        <a href="/band?action=back">
+            <button> Back Menu</button>
+        </a>
       <a href="/band?action=create">
         <button onclick="document.getElementById('id01').style.display='block'">+ Create Band</button>
       </a>

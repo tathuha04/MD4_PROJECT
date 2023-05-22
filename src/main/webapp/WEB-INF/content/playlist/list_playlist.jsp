@@ -35,13 +35,20 @@
             background-color: #8221ac;
             color: #DDDDDD;
             border-radius: 8px;
-            margin: 20px 0px 20px 20px;
+            margin-top: 30px;
+            margin-bottom: 20px;
             border:none;
         }
     </style>
 </head>
 <body>
+
+<%--        <button class="button_create">BACK MENU</button>--%>
+
 <div>
+    <a href="/playlist?action=back">
+        <button class="button_create">BACK MENU</button>
+    </a>
     <a href="/playlist?action=create">
         <button class="button_create">CREATE NEW PLAYLIST</button>
     </a>

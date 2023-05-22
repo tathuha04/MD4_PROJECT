@@ -28,6 +28,9 @@ public class BandController extends HttpServlet {
             case "delete":
                 deleteBand(request, response);
                 break;
+            case "back":
+                backToAdmin(request, response);
+                break;
         }
     }
 
@@ -87,4 +90,14 @@ public class BandController extends HttpServlet {
 //        bandService.editById(name, avatar, id);
 //        showBand(request, response);
 //    }
+    public void backToAdmin(HttpServletRequest request, HttpServletResponse response){
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/admin2.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
