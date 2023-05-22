@@ -159,9 +159,6 @@
             transition: 0.5s;
             background: rgba(255, 255, 255, 0.1);
         }
-        .right .middle button i{
-            font-size: 35px;
-        }
 
         .right #title {
             position: absolute;
@@ -220,7 +217,6 @@
 
         #play {
             background: #ff8a65;
-            font-size: 35px;
         }
 
         .right button:hover {
@@ -260,8 +256,16 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">ADD SONG</button>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">REMOVE SONG</button>
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
+            ADD SONG
+        </button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#removeModal">
+            REMOVE SONG
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">New message</h5>
@@ -438,7 +442,7 @@
                 '<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>'+
                 '<path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>'+
                 '</svg>';
-            
+
         }
     }
 
