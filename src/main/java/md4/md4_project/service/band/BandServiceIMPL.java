@@ -18,6 +18,7 @@ public class BandServiceIMPL implements IBandService {
     private final String SELECT_ALL_BAND = "SELECT * FROM band";
     private final String INSERT_INTO_BAND= "INSERT INTO band (name, avatar) values (?,?)";
     private final String DELETE_BY_ID= "DELETE FROM band where id= ?";
+    private final String UPDATE_BAND = "UPDATE band set name=?,avatar=? where id=?";
     private final String FIND_BAND_BY_ID="SELECT * FROM BAND WHERE ID=?";
 
     @Override
@@ -85,6 +86,11 @@ public class BandServiceIMPL implements IBandService {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void editById(String name, String avatar, int id) {
+        
     }
 
     @Override
