@@ -363,11 +363,10 @@
     function justplay() {
         if (Playing_song == false) {
 
-
             playsong();
             document.getElementById("play").className="bi bi-play-circle";
         } else {
-            pausesong();
+            pausesong()
             document.getElementById("play").className="bi bi-pause-circle";
         }
     }
