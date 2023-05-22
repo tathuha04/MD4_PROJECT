@@ -124,11 +124,13 @@ public class PlaylistController extends HttpServlet {
 
     private void detailPlaylist(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        List<Song> song = songService.findAllSongOfPlaylistByPlaylistId(id);
+        List<Song> songOfPlaylist = songService.findAllSongOfPlaylistByPlaylistId(id);
+        List<Song> songs =songService.findAll();
         Playlist playlist =  playlistService.findById(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/playlist/detail_playlist.jsp");
         request.setAttribute("playlist", playlist);
-        request.setAttribute("song", song);
+        request.setAttribute("songOfPlaylist", songOfPlaylist);
+        request.setAttribute("song",songs);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -175,16 +177,16 @@ public class PlaylistController extends HttpServlet {
             for (int i = 0; i < songIds.length; i++) {
                 listSongId.add(Integer.valueOf(songIds[i]));
             }
-            playlistService.addSongToPlaylist(playlistId, listSongId);
-            System.out.println(listSongId);
-        }
 
-        showAllPlaylistOfUser(request, response);
+            playlistService.addSongToPlaylist(playlistId, listSongId);
+        }
+        detailPlaylist(request, response);
+
     }
 
     private void actionRemoveSongToPlaylist(HttpServletRequest request,HttpServletResponse response){
         int playlistId = Integer.parseInt(request.getParameter("id"));
-
+        System.out.println("idPL-->"+playlistId);
         String[] songIdStr = request.getParameterValues("removeSong");
         if (songIdStr!=null) {
             int[] songIds = new int[songIdStr.length];
@@ -195,9 +197,11 @@ public class PlaylistController extends HttpServlet {
             for (int i = 0; i < songIds.length; i++) {
                 listSongId.add(Integer.valueOf(songIds[i]));
             }
+            System.out.println("remove-->"+listSongId);
             playlistService.removeSongToPlaylist(playlistId, listSongId);
         }
-        showAllPlaylistOfUser(request, response);
+        detailPlaylist(request, response);
+
     }
     private void deletePlaylist(HttpServletRequest request,HttpServletResponse response){
         int id = Integer.parseInt(request.getParameter("id"));
