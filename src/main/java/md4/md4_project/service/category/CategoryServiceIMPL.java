@@ -2,7 +2,6 @@ package md4.md4_project.service.category;
 
 import md4.md4_project.config.ConnectSQL;
 import md4.md4_project.model.Category;
-import md4.md4_project.model.User;
 import md4.md4_project.service.user.IUserService;
 import md4.md4_project.service.user.UserServiceIMPL;
 
@@ -17,19 +16,26 @@ public class CategoryServiceIMPL implements ICategoryService{
     IUserService userService = new UserServiceIMPL();
     private final String CREATE_CATEGORY = "INSERT INTO category(name, avatar) VALUES (?,?);";
     private final String FIND_ALL_CATEGORY = "SELECT * FROM CATEGORY";
-
+    private final String UPDATE_CATEGORY = "UPDATE category set name =?, avatar =? where id =?";
+    private  final String DELETE_CATEGORY = "DELETE from category where id =?";
+    private final String INSERT_INTO_CATEGORY = "INSERT INTO category (name,avatar) values (?,?)";
     @Override
-    public void save(Category category, HttpServletRequest request) {
-        User user = userService.getCurrentUser(request);
+    public void save(String name, String avatar) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(CREATE_CATEGORY);
-            preparedStatement.setString(1,category.getName());
-            preparedStatement.setString(2,category.getAvatar());
-//            preparedStatement.setInt(3,category.getId());
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_INTO_CATEGORY);
+            preparedStatement.setString(1,name);
+            preparedStatement.setString(2,avatar);
             preparedStatement.executeUpdate();
+            connection.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void save(Category category, HttpServletRequest request) {
+
     }
 
     @Override
@@ -94,7 +100,28 @@ public class CategoryServiceIMPL implements ICategoryService{
 
     @Override
     public void updateCategory(int id, String name, String avatar) {
+        try {
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CATEGORY);
+            preparedStatement.setString(1,name);
+            preparedStatement.setString(2,avatar);
+            preparedStatement.setInt(3,id);
+            preparedStatement.executeUpdate();
+            connection.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    @Override
+    public void deleteCategory(int id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CATEGORY);
+            preparedStatement.setInt(1,id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

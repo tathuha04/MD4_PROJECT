@@ -9,12 +9,16 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
   <style>
     .colum {
-      width: 33.3%;
-      padding: 10px 10px;
+      width: 33%;
+      padding: 20px 20px;
     }
     .card {
-      box-shadow: 10px 10px 2px 1px rgba(230, 0, 255, 0.97);
-      background-color: aqua;
+      box-shadow: 4px 4px 2px 0px #c4c2c2;
+      background-color: #f1efef;
+    }
+    .card img {
+      border-radius: 2px;
+      height: 260px;
     }
     div.card {
       padding: 10px;
@@ -24,10 +28,34 @@
       height: 200px;
       border-radius: 15%;
     }
+    .btn_create{
+      margin-left: 125px;
+      margin-top: 30px;
+      width: 110px;
+      height: 35px;
+      border-radius: 8px;
+      border: none;
+      background-color: #8221ac;
+      color: #DDDDDD;
+    }
+    .buttonNP{
+      width: auto;
+      height: 37.33px;
+      background-color: white;
+      border: 1px #d7d6d6;
+    }
+    .namesong{
+      color: black;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
-<a href="/song?action=create">create song</a>
+<a href="/song?action=create">
+  <button class="btn_create">
+    Create song
+  </button>
+</a>
 <div class="container">
   <div class="col-12" style="margin-top: 20px">
     <div class="row">
@@ -35,9 +63,8 @@
         <div class="colum">
           <a href="/song?action=detail&id=${song.getId()}">
             <div class="card">
-
               <img  src="${song.getAvatar()}" alt="">
-              <b>${song.getName()}</b>
+              <p class="namesong">${song.getName()}</p>
             </div>
           </a>
         </div>
@@ -46,7 +73,7 @@
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <c:if test="${pageNumber != 1}">
-          <li class="page-item"><a class="page-link" href="/song?action=page_grid&page=${pageNumber-1}">Previous</a>
+          <li class="page-item"><a class="page-link" href="/song?action=page_grid&page=${pageNumber-1}"><button class="buttonNP">Previous</button></a>
           </li>
         </c:if>
         <c:forEach begin="1" end="${sumOfPage}" var="i" varStatus="red">
@@ -61,7 +88,7 @@
 
         </c:forEach>
         <c:if test="${pageNumber lt sumOfPage}">
-          <li class="page-item"><a href="/song?action=page_grid&page=${pageNumber + 1}">Next</a></li>
+          <li class="page-item"><a href="/song?action=page_grid&page=${pageNumber + 1}"><button class="buttonNP">Next</button></a></li>
         </c:if>
       </ul>
     </nav>

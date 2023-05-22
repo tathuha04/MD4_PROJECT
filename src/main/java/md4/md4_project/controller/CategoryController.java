@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -37,8 +38,19 @@ public class CategoryController extends HttpServlet {
                 break;
             case "page_grid":
                 pageGridCategory(request, response);
+                break;
+            case "categoryAD":
+                showFormCategoryAD(request, response);
+                break;
+            case "deletecategory":
+                actionDeleteCategory(request, response);
+                break;
+            case "updatecategory":
+                formUpdateCategory(request,response);
+                break;
             default:
                 showFormCategory(request, response);
+                break;
         }
     }
 
@@ -47,6 +59,7 @@ public class CategoryController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         String action = request.getParameter("action");
+        System.out.println("action --->" + action);
         if (action == null) {
             action = "";
         }
@@ -54,6 +67,13 @@ public class CategoryController extends HttpServlet {
             case "create":
                 actionCreateCategory(request, response);
                 break;
+            case "createCategoryAD":
+                actionCreateCategory(request, response);
+                break;
+            case "updatecategory":
+                formUpdateCategory(request,response);
+                break;
+
         }
     }
 
@@ -98,7 +118,7 @@ public class CategoryController extends HttpServlet {
         }
         System.out.println("pageNumber --->" + pageNumber);
         int elementOfPage = 6;
-        int start = (pageNumber -1) * elementOfPage;
+        int start = (pageNumber - 1) * elementOfPage;
 
         List<Category> categoryList = categoryService.findAll(start, elementOfPage);
         int totalElement = categoryService.getNoOfRecords();
@@ -139,5 +159,37 @@ public class CategoryController extends HttpServlet {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void showFormCategoryAD(HttpServletRequest request, HttpServletResponse response) {
+        List<Category> categoryList = categoryService.findAll();
+        request.setAttribute("listCategory", categoryList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/categoryAdmin.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void actionDeleteCategory(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("goi ham delete");
+        int id = Integer.parseInt(request.getParameter("id"));
+//        String xoa = request.getParameter("delete");
+//        System.out.println("id ---<"+id);
+//        System.out.println("xoa ===>"+xoa);
+        categoryService.deleteById(id);
+        showFormCategoryAD(request, response);
+
+    }
+
+    private void formUpdateCategory(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String avatar =request.getParameter("avatar");
+        categoryService.updateCategory(id,name,avatar);
+        showFormCategoryAD(request,response);
     }
 }

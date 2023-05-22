@@ -1,15 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<<<<<<< HEAD
-=======
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
->>>>>>> c7f6715468c6c712d59d99eadfaa8eb5472b5842
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-<<<<<<< HEAD
 </head>
 <!DOCTYPE html>
 <!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
@@ -42,161 +32,73 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 </head>
-<body>
-<jsp:include page='../admin/sidebar.jsp'>
-    <jsp:param name="articleId" value=""/>
-</jsp:include>
-<section class="home-section">
-    <div class="text">
-        <p style="text-align: center"> Singer</p>
-    </div>
-    <div style="margin: 20px 30px">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                data-whatever="@mdo">
-            Create Singer
-        </button>
-    </div>
-    <table class="table" style="width: 100%">
-        <thead>
-        <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Name</th>
-            <th scope="col">Avatar</th>
-            <th scope="col">Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items='${requestScope["singerList"]}' var="singer">
-            <tr>
-                <th scope="row">${singer.getId()}</th>
-                <td>${singer.getName()}</td>
-                <td>${singer.getAvatar()}</td>
-                <td>
-                    <button type="button" class="btn btn-primary">Edit</button>
-                    <a href="/singers?action=delete&id=${singer.getId()}">
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </a>
-                </td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-</section>
+<STYLE>
+    .table {
+        margin: auto;
+        width: 80%;
+        height: 100%;
+        text-align: center;
+    }
 
-<%--Begin modal--%>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"
-<%--                    id="exampleModalLabel"--%>
-                >New message</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Recipient:</label>
-                        <input type="text" class="form-control" id="recipient-name">
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="col-form-label">Message:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
-            </div>
-        </div>
-    </div>
-</div>
-<%--End modal--%>
+    .category {
+        margin-left: 10%;
+        margin-bottom: 30px;
+    }
 
-<%--<script>--%>
-<%--    $('#exampleModal').on('show.bs.modal', function (event) {--%>
-<%--        var button = $(event.relatedTarget) // Button that triggered the modal--%>
-<%--        var recipient = button.data('whatever') // Extract info from data-* attributes--%>
-<%--        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).--%>
-<%--        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.--%>
-<%--        var modal = $(this)--%>
-<%--        modal.find('.modal-title').text('New message to ' + recipient)--%>
-<%--        modal.find('.modal-body input').val(recipient)--%>
-<%--    })--%>
-<%--</script>--%>
-</body>
-=======
+    .category p {
+        font-family: sans-serif;
+        font-size: 25px;
+        font-weight: 600;
+        text-align: center;
+        margin-right: 100px;
+        margin-top: 50px;
+    }
 
-    <STYLE>
-        .table {
-            margin: auto;
-            width: 80%;
-            height: 100%;
-            text-align: center;
-        }
+    .category .w3-container button {
+        border-radius: 5px;
+        padding: 8px;
+        background-color: #721799;
+        color: #E4E9F7;
+        border: none;
+    }
 
-        .category {
-            margin-left: 10%;
-            margin-bottom: 30px;
-        }
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
-        .category p {
-            font-family: sans-serif;
-            font-size: 25px;
-            font-weight: 600;
-            text-align: center;
-            margin-right: 100px;
-            margin-top: 50px;
-        }
-
-        .category .w3-container button {
-            border-radius: 5px;
-            padding: 8px;
-            background-color: #721799;
-            color: #E4E9F7;
-            border: none;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
+    * {
+        box-sizing: border-box;
+    }
 
 
-        .buttonDelete {
-            background-color: crimson;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            width: 20%;
-            opacity: 0.9;
-            border-radius: 8px;
-        }
+    .buttonDelete {
+        background-color: crimson;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        width: 20%;
+        opacity: 0.9;
+        border-radius: 8px;
+    }
 
-        .buttonEdit {
-            background-color: orange;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            width: 20%;
-            opacity: 0.9;
-            border-radius: 8px;
-        }
+    .buttonEdit {
+        background-color: orange;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        width: 20%;
+        opacity: 0.9;
+        border-radius: 8px;
+    }
 
-        button:hover {
-            opacity: 1;
-        }
+    button:hover {
+        opacity: 1;
+    }
 
 
-    </STYLE>
+</STYLE>
 
 </head>
 <body>
@@ -254,7 +156,6 @@
         <c:forEach items='${requestScope["singerList"]}' var="ctm">
         <tbody>
         <tr>
-
             <th scope="row">${ctm.getId()}</th>
             <td><img width="100px" height="100px" style="border-radius: 5px" src="${ctm.getAvatar()}"></td>
             <td>${ctm.getName()}</td>
@@ -339,5 +240,4 @@
                 }
             }
         </script>
->>>>>>> c7f6715468c6c712d59d99eadfaa8eb5472b5842
 </html>
