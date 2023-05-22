@@ -1,6 +1,7 @@
 package md4.md4_project.service.song;
 
 import md4.md4_project.config.ConnectSQL;
+import md4.md4_project.model.Playlist;
 import md4.md4_project.model.Song;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,9 +13,9 @@ public class SongServiceIMPL implements ISongService {
     private Connection connection = ConnectSQL.getConnection();
     private int totalElement;
     private final String SELECT_ALL_SONG = "SELECT * FROM SONG";
-    private final String CREAT_NEW_SONG = "INSERT INTO SONG (name,category_Id,bandId,singerId,user_Id,avatar,src) values(?,?,?,?,?,?,?)";
-    private final String CREAT_NEW_SONG_1 = "INSERT INTO SONG (name,category_Id,bandId,user_Id,avatar,src) values(?,?,?,?,?,?)";
-    private final String CREAT_NEW_SONG_2 = "INSERT INTO SONG (name,category_Id,singerId,user_Id,avatar,src) values(?,?,?,?,?,?)";
+    private final String CREAT_NEW_SONG = "INSERT INTO SONG (name,category_Id,bandId,singerId,user_Id,avatar,src,artist) values(?,?,?,?,?,?,?,?)";
+    private final String CREAT_NEW_SONG_1 = "INSERT INTO SONG (name,category_Id,bandId,user_Id,avatar,src,artist) values(?,?,?,?,?,?,?)";
+    private final String CREAT_NEW_SONG_2 = "INSERT INTO SONG (name,category_Id,singerId,user_Id,avatar,src,artist) values(?,?,?,?,?,?,?)";
     private final String ADD_SONG_ID_TO_BAND = "INSERT INTO SONG_OF_BAND (songId,bandId) values (?,?)";
     private final String ADD_SONG_ID_TO_SINGER = "INSERT INTO SONG_OF_SINGER (songId,singerId) values (?,?)";
     private final String FIND_SONG_BY_ID = "SELECT * FROM SONG WHERE ID=?";
@@ -22,6 +23,7 @@ public class SongServiceIMPL implements ISongService {
     private final String GET_ALL_SONG_ID_OF_PLAYLIST_BY_PL_ID = "SELECT * FROM SONG_OF_PLAYLIST WHERE PLAYLISTID=?";
     private final String UPDATE_VIEW_OF_SONG = "UPDATE SONG SET VIEW =? WHERE ID=?";
     private final String GET_VIEW_OF_SONG = "SELECT VIEW FROM SONG WHERE ID=?";
+    private final String GET_TOP_VIEW_MUSIC="select * from song order by view desc limit 10";
 
     @Override
     public List findAll() {
@@ -30,7 +32,7 @@ public class SongServiceIMPL implements ISongService {
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_SONG);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Song song = new Song(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("category_Id"), resultSet.getInt("user_id"), resultSet.getString("avatar"), resultSet.getString("src"));
+                Song song = new Song(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("category_Id"), resultSet.getInt("user_id"), resultSet.getString("avatar"), resultSet.getString("src"),resultSet.getString("artist"));
                 songList.add(song);
             }
         } catch (SQLException e) {
@@ -59,6 +61,7 @@ public class SongServiceIMPL implements ISongService {
                 preparedStatement.setInt(4, song.getUserId());
                 preparedStatement.setString(5, song.getAvatar());
                 preparedStatement.setString(6, song.getSrc());
+                preparedStatement.setString(7,song.getArtist());
                 preparedStatement.executeUpdate();
                 int id = 0;
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -87,6 +90,7 @@ public class SongServiceIMPL implements ISongService {
                 preparedStatement.setInt(4, song.getUserId());
                 preparedStatement.setString(5, song.getAvatar());
                 preparedStatement.setString(6, song.getSrc());
+                preparedStatement.setString(7,song.getArtist());
 
                 preparedStatement.executeUpdate();
                 int id = 0;
@@ -117,6 +121,7 @@ public class SongServiceIMPL implements ISongService {
                 preparedStatement.setInt(5, song.getUserId());
                 preparedStatement.setString(6, song.getAvatar());
                 preparedStatement.setString(7, song.getSrc());
+                preparedStatement.setString(8,song.getArtist());
 
                 preparedStatement.executeUpdate();
                 int id = 0;
@@ -151,12 +156,17 @@ public class SongServiceIMPL implements ISongService {
     @Override
     public Song findById(int id) {
         Song song = new Song();
-        List<Song> songList = findAll();
-        for (int i = 0; i < songList.size(); i++) {
-            if (songList.get(i).getId() == id) {
-                song = songList.get(i);
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(FIND_SONG_BY_ID);
+            preparedStatement.setInt(1,id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                song = new Song(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("category_Id"), resultSet.getInt("user_id"), resultSet.getString("avatar"), resultSet.getString("src"),resultSet.getString("artist"));
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
+
         return song;
     }
 
@@ -187,6 +197,7 @@ public class SongServiceIMPL implements ISongService {
                 song.setName(resultSet.getString("name"));
                 song.setAvatar(resultSet.getString("avatar"));
                 song.setSrc(resultSet.getString("src"));
+                song.setArtist(resultSet.getString("artist"));
                 songList.add(song);
             }
             resultSet = statement.executeQuery("SELECT FOUND_ROWS()");
@@ -243,6 +254,24 @@ public class SongServiceIMPL implements ISongService {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public List<Song> showTopSong() {
+        List<Song> songList = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_TOP_VIEW_MUSIC);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Song song = new Song(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("category_Id"), resultSet.getInt("user_id"), resultSet.getString("avatar"), resultSet.getString("src"),resultSet.getString("artist"));
+                songList.add(song);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return songList;
+    }
+
 }
 
 

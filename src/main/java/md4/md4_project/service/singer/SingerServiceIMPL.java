@@ -1,6 +1,7 @@
 package md4.md4_project.service.singer;
 
 import md4.md4_project.config.ConnectSQL;
+import md4.md4_project.model.Band;
 import md4.md4_project.model.Singer;
 import md4.md4_project.model.Song;
 
@@ -20,6 +21,7 @@ public class SingerServiceIMPL implements ISingerService {
 
     private final String INSERT_INTO_SINGER = "INSERT INTO SINGER (name, avatar) values (?,?)";
     private final String UPDATE_SINGER = "UPDATE SINGER SET name = ?, avatar= ? where id = ?";
+    private final String FIND_SINGER_BY_ID ="SELECT *FROM SINGER WHERE ID=?";
 
 
     @Override
@@ -55,13 +57,19 @@ public class SingerServiceIMPL implements ISingerService {
 
     @Override
     public Singer findById(int id) {
-        List<Singer> singerList = findAll();
-        for (int i = 0; i < singerList.size(); i++) {
-            if (id == singerList.get(i).getId()) {
-                return singerList.get(i);
+        Singer singer = new Singer();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(FIND_SINGER_BY_ID);
+            preparedStatement.setInt(1,id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                singer=new Singer(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("avatar"));
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-        return null;
+
+        return singer;
     }
 
     @Override

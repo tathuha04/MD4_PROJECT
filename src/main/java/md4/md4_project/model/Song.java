@@ -1,7 +1,6 @@
 package md4.md4_project.model;
 
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,10 +14,40 @@ public class Song {
     private int numberOfView;
     private String avatar;
     private String src;
-    private List<Integer> likeUserId=new ArrayList<>();
+    private List<Integer> likeUserId = new ArrayList<>();
     private List<Integer> commentId;
 
+    private String artist;
 
+    public Song(String name, int categoryId, List<Integer> bandId, List<Integer> singerId, int userId, String avatar, String src, String artist) {
+        this.name = name;
+        this.singerId = singerId;
+        this.categoryId = categoryId;
+        this.bandId = bandId;
+        this.userId = userId;
+        this.avatar = avatar;
+        this.src = src;
+        this.artist = artist;
+    }
+
+    public Song(int id, String name, int categoryId, int userId, String avatar, String src, String artist) {
+        this.id = id;
+        this.name = name;
+        this.categoryId = categoryId;
+        this.userId = userId;
+        this.avatar = avatar;
+        this.src = src;
+        this.artist = artist;
+    }
+
+    public String getArtist() {
+
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
 
     public Song() {
     }
@@ -51,7 +80,7 @@ public class Song {
         this.userId = userId;
     }
 
-    public Song(int id, String name,int categoryId, List<Integer> singerId, List<Integer> bandId, int userId, String src) {
+    public Song(int id, String name, int categoryId, List<Integer> singerId, List<Integer> bandId, int userId, String src) {
         this.name = name;
         this.singerId = singerId;
         this.categoryId = categoryId;
@@ -60,7 +89,7 @@ public class Song {
         this.src = src;
     }
 
-    public Song(String name, int categoryId, List<Integer> bandId, List<Integer> singerId, int userId,String avatar, String src) {
+    public Song(String name, int categoryId, List<Integer> bandId, List<Integer> singerId, int userId, String avatar, String src) {
         this.name = name;
         this.singerId = singerId;
         this.categoryId = categoryId;
@@ -70,12 +99,12 @@ public class Song {
         this.src = src;
     }
 
-    public Song(int id, String name, int categoryId, int userId,String avatar, String src) {
+    public Song(int id, String name, int categoryId, int userId, String avatar, String src) {
         this.id = id;
         this.name = name;
         this.categoryId = categoryId;
         this.userId = userId;
-        this.avatar =avatar;
+        this.avatar = avatar;
         this.src = src;
     }
 
@@ -88,8 +117,6 @@ public class Song {
         this.userId = userId;
 
     }
-
-
 
 
     public String getAvatar() {

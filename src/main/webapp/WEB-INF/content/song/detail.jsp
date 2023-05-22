@@ -261,7 +261,8 @@
         id: "${song.getId()}",
         name:"${song.getName()}",
         avatar:"${song.getAvatar()}",
-        mp3: "${song.getSrc()}"
+        mp3: "${song.getSrc()}",
+        singer:"${song.getArtist()}"
     }
 
 
@@ -327,7 +328,7 @@
         track.src = song.mp3;
         title.innerHTML = song.name;
         track_image.src = song.avatar;
-        // artist.innerHTML = All_song[index_no].singer;
+        artist.innerHTML = song.singer;
         track.load();
 
         timer = setInterval(range_slider, 1000);
