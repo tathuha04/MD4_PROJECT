@@ -324,9 +324,9 @@
     let All_song = [
         <c:forEach items="${song}" var="song">
         {
-            <%--id: "${song.getId()}",--%>
+            id: "${song.getId()}",
             name: "${song.getName()}",
-            path: "${song.getSrc()}",
+            mp3: "${song.getSrc()}",
             img: "${song.getAvatar()}"
         },
         </c:forEach>
