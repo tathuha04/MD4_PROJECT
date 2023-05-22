@@ -1,8 +1,13 @@
 package md4.md4_project.controller;
 
 import md4.md4_project.model.Category;
+import md4.md4_project.model.Role;
+import md4.md4_project.model.User;
+import md4.md4_project.model.UserRole;
 import md4.md4_project.service.category.CategoryServiceIMPL;
 import md4.md4_project.service.category.ICategoryService;
+import md4.md4_project.service.user.IUserService;
+import md4.md4_project.service.user.UserServiceIMPL;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,11 +18,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 @WebServlet(value = {"/category"})
 
 public class CategoryController extends HttpServlet {
     private ICategoryService categoryService = new CategoryServiceIMPL();
+    private IUserService userService = new UserServiceIMPL();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -180,12 +187,8 @@ public class CategoryController extends HttpServlet {
     private void actionDeleteCategory(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("goi ham delete");
         int id = Integer.parseInt(request.getParameter("id"));
-//        String xoa = request.getParameter("delete");
-//        System.out.println("id ---<"+id);
-//        System.out.println("xoa ===>"+xoa);
-        categoryService.deleteById(id);
+        categoryService.deleteCategory(id);
         showFormCategoryAD(request, response);
-
     }
 
     private void formUpdateCategory(HttpServletRequest request, HttpServletResponse response) {
@@ -196,13 +199,44 @@ public class CategoryController extends HttpServlet {
         showFormCategoryAD(request,response);
     }
     public void backToAdmin(HttpServletRequest request, HttpServletResponse response){
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/admin2.jsp");
-        try {
-            dispatcher.forward(request,response);
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        RequestDispatcher dispatcher;
+        if (user != null) {
+            Set<Role> roleSet = userService.findRoleByUserId(user.getId());
+            System.out.println(userService.findRoleByUserId(user.getId()));
+            String roleName = String.valueOf(UserRole.USER);
+            for (Role role : roleSet) {
+                if (role.getId() == 3) {
+                    System.out.println("3");
+                    roleName = String.valueOf(UserRole.ADMIN);
+                } else if ((role.getId() == 2) && (roleName == String.valueOf(UserRole.USER))) {
+                    System.out.println("2");
+                    roleName = String.valueOf(UserRole.PM);
+                }
+            }
+            session.setAttribute("role", roleName);
+            if (roleName.equals("USER")) {
+                dispatcher = request.getRequestDispatcher("index.jsp");
+            } else {
+                dispatcher = request.getRequestDispatcher("/WEB-INF/admin/admin2.jsp");
+            }
+            try {
+                dispatcher.forward(request, response);
+            } catch (ServletException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }else{
+            dispatcher = request.getRequestDispatcher("index.jsp");
+            try {
+                dispatcher.forward(request, response);
+            } catch (ServletException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

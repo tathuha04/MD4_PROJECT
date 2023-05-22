@@ -107,32 +107,33 @@
 <section class="home-section">
     <div class="category">
         <p>Singer Manager</p>
-        <c:if test='${role.equals("ADMIN")}'>
-            <div class="w3-container">
-                <a href="/singers?action=back">
-                    <button > Back Menu</button>
-                </a>
-                <a href="/singers?action=create">
-                    <button onclick="document.getElementById('id01').style.display='block'">+ Create Singer</button>
-                </a>
-                <div id="" class="w3-modal">
-                    <div class="w3-modal-content">
-                        <div class="w3-container">
-                        </div>
+        <div class="w3-container">
+            <a href="/singers?action=back">
+                <button> Back Menu</button>
+            </a>
+            <c:if test='${role.equals("ADMIN")}'>
+
+            <a href="/singers?action=create">
+                <button onclick="document.getElementById('id01').style.display='block'">+ Create Singer</button>
+            </a>
+            <div id="" class="w3-modal">
+                <div class="w3-modal-content">
+                    <div class="w3-container">
                     </div>
                 </div>
             </div>
+        </div>
         </c:if>
-
     </div>
-
     <table class="table">
         <thead>
         <tr>
             <th scope="col">STT</th>
             <th scope="col">Avatar</th>
             <th scope="col">Name</th>
-            <th scope="col">Action</th>
+            <c:if test='${role.equals("ADMIN")}'>
+                <th scope="col">Action</th>
+            </c:if>
         </tr>
         </thead>
         <script>
@@ -153,77 +154,80 @@
             <th scope="row">${ctm.getId()}</th>
             <td><img width="100px" height="100px" style="border-radius: 5px" src="${ctm.getAvatar()}"></td>
             <td>${ctm.getName()}</td>
-            <td>
-                <a data-toggle="modal"
-                   data-target="#edit${ctm.id}">
-                    <button type="button" class="buttonEdit">Edit</button>
-                </a>
-                <a data-toggle="modal"
-                   data-target="#delete${ctm.id}">
-                    <button type="submit" class="buttonDelete"> Delete</button>
-                </a>
-            </td>
-            <!-- Modal Delete-->
-            <div class="modal fade" id="delete${ctm.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">FORM DELETE SINGER</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Do you want to delete the singer with id : ${ctm.id}?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
-                            <a href="/singers?action=delete&id=${ctm.id}">
-                                <button type="submit" class="btn btn-danger">Yes</button>
-                            </a>
+            <c:if test='${role.equals("ADMIN")}'>
+                <td>
+                    <a data-toggle="modal"
+                       data-target="#edit${ctm.id}">
+                        <button type="button" class="buttonEdit">Edit</button>
+                    </a>
+                    <a data-toggle="modal"
+                       data-target="#delete${ctm.id}">
+                        <button type="submit" class="buttonDelete"> Delete</button>
+                    </a>
+                </td>
+                <!-- Modal Delete-->
+                <div class="modal fade" id="delete${ctm.id}" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">FORM DELETE SINGER</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Do you want to delete the singer with id : ${ctm.id}?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
+                                <a href="/singers?action=delete&id=${ctm.id}">
+                                    <button type="submit" class="btn btn-danger">Yes</button>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
                 <%--                modal edit--%>
 
-            <div class="modal fade" id="edit${ctm.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">FORM UPDATE SINGER</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                <div class="modal fade" id="edit${ctm.id}" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">FORM UPDATE SINGER</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Please fill in the following information according to the template to update the
+                                    information for the category with id : ${ctm.id}.</p>
+                                <form method="post" style="height: 50px"
+                                      action="/singers?action=update&id=${ctm.id}"
+                                >
+                                    <label>Name</label>
+                                    <input name="name" value="${ctm.getName()}">
+                                    <br>
+                                    <label>Avatar</label>
+                                    <jsp:include page="../upload/upload_avatar.jsp">
+                                        <jsp:param name="articleId" value="${ctm.getId()}"/>
+                                    </jsp:include>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                                    <%--                            <a href="/category?action=updatecategory&id=${ctm.id}">--%>
+                                <button type="submit" class="btn btn-danger">Save</button>
+                                    <%--                            </a>--%>
+                            </div>
+                            </form>
                         </div>
-                        <div class="modal-body">
-                            <p>Please fill in the following information according to the template to update the
-                                information for the category with id : ${ctm.id}.</p>
-                            <form method="post" style="height: 50px"
-                                  action="/singers?action=update&id=${ctm.id}"
-                            >
-                                <label>Name</label>
-                                <input name="name" value="${ctm.getName()}">
-                                <br>
-                                <label>Avatar</label>
-                                <jsp:include page="../upload/upload_avatar.jsp">
-                                    <jsp:param name="articleId" value="${ctm.getId()}"/>
-                                </jsp:include>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
-                                <%--                            <a href="/category?action=updatecategory&id=${ctm.id}">--%>
-                            <button type="submit" class="btn btn-danger">Save</button>
-                                <%--                            </a>--%>
-
-                        </div>
-                        </form>
                     </div>
                 </div>
-            </div>
+            </c:if>
         </tr>
         </tbody>
         </c:forEach>

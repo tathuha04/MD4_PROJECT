@@ -55,6 +55,7 @@ public class UserController extends HttpServlet {
                 break;
         }
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
@@ -93,10 +94,8 @@ public class UserController extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String role = "user";
-
         Set<String> strRole = new HashSet<>();
         strRole.add(role);
-
         Set<Role> roleSet = new HashSet<>();
         strRole.forEach(role1 -> {
             switch (role1) {
@@ -153,24 +152,29 @@ public class UserController extends HttpServlet {
 
         User user = userService.userLogin(username, password);
 //        List<Role> roleList = (List<Role>) userService.findRoleByUserId(user.getId());
-        Set<Role> roleSet = userService.findRoleByUserId(user.getId());
-        System.out.println(userService.findRoleByUserId(user.getId()));
-        String roleName = String.valueOf(UserRole.USER);
-        for (Role role : roleSet) {
-            if (role.getId() == 3) {
-                System.out.println("3");
-                roleName = String.valueOf(UserRole.ADMIN);
-            } else if ((role.getId() == 2) && (roleName == String.valueOf(UserRole.USER))) {
-                System.out.println("2");
-                roleName = String.valueOf(UserRole.PM);
-            }
-        }
-        System.out.println(roleName);
         if (user != null) {
+            Set<Role> roleSet = userService.findRoleByUserId(user.getId());
+            System.out.println(userService.findRoleByUserId(user.getId()));
+            String roleName = String.valueOf(UserRole.USER);
+            for (Role role : roleSet) {
+                if (role.getId() == 3) {
+                    System.out.println("3");
+                    roleName = String.valueOf(UserRole.ADMIN);
+                } else if ((role.getId() == 2) && (roleName == String.valueOf(UserRole.USER))) {
+                    System.out.println("2");
+                    roleName = String.valueOf(UserRole.PM);
+                }
+            }
+            System.out.println(roleName);
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             session.setAttribute("role", roleName);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/admin/admin2.jsp");
+            RequestDispatcher dispatcher;
+            if (roleName.equals("USER")) {
+                dispatcher = request.getRequestDispatcher("index.jsp");
+            } else {
+                dispatcher = request.getRequestDispatcher("/WEB-INF/admin/admin2.jsp");
+            }
             try {
                 dispatcher.forward(request, response);
             } catch (ServletException e) {
@@ -178,7 +182,6 @@ public class UserController extends HttpServlet {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
         } else {
             request.setAttribute("validate", "Login failed! Please check your account!");
             showFormLogin(request, response);
@@ -237,6 +240,7 @@ public class UserController extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
+
     public void backToAdmin(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/admin2.jsp");
         try {

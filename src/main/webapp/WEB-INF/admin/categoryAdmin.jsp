@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -94,9 +93,6 @@
     <div class="category">
         <p>Category Manager</p>
         <div class="w3-container">
-            <a href="/category?action=back">
-                <button> Back Menu</button>
-            </a>
             <a href="/category?action=create">
                 <button onclick="document.getElementById('id01').style.display='block'">+ Create Category</button>
             </a>
@@ -197,9 +193,9 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
-<%--                            <a href="/category?action=updatecategory&id=${ctm.id}">--%>
-                                <button type="submit" class="btn btn-danger">Save</button>
-<%--                            </a>--%>
+                                <%--                            <a href="/category?action=updatecategory&id=${ctm.id}">--%>
+                            <button type="submit" class="btn btn-danger">Save</button>
+                                <%--                            </a>--%>
 
                         </div>
                         </form>
