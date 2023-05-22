@@ -197,6 +197,7 @@
 <%--                            <a href="/category?action=updatecategory&id=${ctm.id}">--%>
                                 <button type="submit" class="btn btn-danger">Save</button>
 <%--                            </a>--%>
+
                         </div>
                         </form>
                     </div>
