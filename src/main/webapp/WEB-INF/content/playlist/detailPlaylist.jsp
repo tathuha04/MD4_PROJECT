@@ -1057,11 +1057,11 @@
             <div class="playlist-wrap">
                 <h2>Mythium</h2>
                 <ol>
-                    <c:forEach items="${songlist}" var="sl">
-                        <li><a href="//archive.org/download/mythium/JLS_ATI.mp3" data-artist="track 1">All This Is - Joe
-                            L.'s Studio</a></li>
+<%--                    <c:forEach items="${songlist}" var="sl">--%>
+<%--                        <li><a href="//archive.org/download/mythium/JLS_ATI.mp3" data-artist="track 1">All This Is - Joe--%>
+<%--                            L.'s Studio</a></li>--%>
 
-                    </c:forEach>
+<%--                    </c:forEach>--%>
                 </ol>
             </div>
 
@@ -1069,8 +1069,16 @@
     </div>
 </div>
 <script>
-    let songs[] = ${songlist};
-    console.log(songs);
+    let All_song = [
+        <c:forEach items="${song}" var="song">
+        {
+            <%--id: "${song.getId()}",--%>
+            name: "${song.getName()}",
+            path: "${song.getSrc()}",
+            img: "${song.getAvatar()}"
+        },
+        </c:forEach>
+    ];
     var jsPlayer = document.querySelector('.player-wrap');
     if (jsPlayer) {
         jsPlayer = {
@@ -1092,7 +1100,7 @@
             seekInterval: null,
             trackCount: 0,
             playing: false,
-            playlist: [songs],
+            playlist: All_song,
             tracks: [],
             idx: 0
         };
