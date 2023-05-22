@@ -3,7 +3,6 @@ package md4.md4_project.service.band;
 import jdk.nashorn.internal.ir.SplitReturn;
 import md4.md4_project.config.ConnectSQL;
 import md4.md4_project.model.Band;
-import md4.md4_project.model.Playlist;
 import md4.md4_project.model.Song;
 
 import java.sql.Connection;
@@ -90,7 +89,7 @@ public class BandServiceIMPL implements IBandService {
 
     @Override
     public void editById(String name, String avatar, int id) {
-        
+
     }
 
     @Override
