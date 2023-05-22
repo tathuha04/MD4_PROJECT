@@ -195,6 +195,10 @@ public class SongController extends HttpServlet {
         for (int i = 0; i < singerIds.length; i++) {
             listSingerId.add(Integer.valueOf(singerIds[i]));
         }
+        System.out.println(listBandId);
+        System.out.println(listSingerId);
+        System.out.println(avatar);
+        System.out.println(src);
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
         int userId = user.getId();
