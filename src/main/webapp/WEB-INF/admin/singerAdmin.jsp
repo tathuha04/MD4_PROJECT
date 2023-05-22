@@ -107,20 +107,22 @@
 <section class="home-section">
     <div class="category">
         <p>Singer Manager</p>
-        <div class="w3-container">
-            <a href="/singers?action=back">
-                <button > Back Menu</button>
-            </a>
-            <a href="/singers?action=create">
-                <button onclick="document.getElementById('id01').style.display='block'">+ Create Singer</button>
-            </a>
-            <div id="" class="w3-modal">
-                <div class="w3-modal-content">
-                    <div class="w3-container">
+        <c:if test='${role.equals("ADMIN")}'>
+            <div class="w3-container">
+                <a href="/singers?action=back">
+                    <button > Back Menu</button>
+                </a>
+                <a href="/singers?action=create">
+                    <button onclick="document.getElementById('id01').style.display='block'">+ Create Singer</button>
+                </a>
+                <div id="" class="w3-modal">
+                    <div class="w3-modal-content">
+                        <div class="w3-container">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </c:if>
 
     </div>
 

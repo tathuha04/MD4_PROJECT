@@ -33,7 +33,7 @@ public class UserController extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        System.out.println("action Do Get "+action);
+        System.out.println("action Do Get " + action);
         switch (action) {
             case "register":
                 showFormRegister(req, resp);
@@ -54,9 +54,7 @@ public class UserController extends HttpServlet {
                 backToAdmin(req, resp);
                 break;
         }
-
     }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
@@ -135,9 +133,7 @@ public class UserController extends HttpServlet {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-//
         }
-
     }
 
     private void showFormLogin(HttpServletRequest request, HttpServletResponse response) {
@@ -241,9 +237,8 @@ public class UserController extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
-
     public void backToAdmin(HttpServletRequest request, HttpServletResponse response) {
-     RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/admin2.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/admin2.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {

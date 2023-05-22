@@ -619,8 +619,6 @@
                 <i class="uil uil-arrow-right "></i>
             </a>
         </div>
-
-
         <div class="search-box">
             <i class="uil uil-search"></i>
             <input type="text" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát...">
@@ -691,16 +689,12 @@
                 </a>
             </div>
         </c:if>
-
-
     </div>
 
     <div class="dash-content">
 
     </div>
 </section>
-
-
 <script>
     const body = document.querySelector("body"),
         modeToggle = body.querySelector(".mode-toggle");
