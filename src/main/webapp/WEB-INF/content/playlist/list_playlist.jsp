@@ -93,9 +93,9 @@
                         EDIT
                     </button>
                 </a>
-                <a href="/playlist?action=removeSong&id=${pl.id}">
+                <a href="/playlist?action=deletePlaylist&id=${pl.id}">
                     <button type="button" class="btn btn-link btn-sm btn-rounded">
-                        REMOVE SONG
+                        DELETE
                     </button>
                 </a>
             </td>

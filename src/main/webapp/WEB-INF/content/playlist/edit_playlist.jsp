@@ -41,7 +41,7 @@
 
         <div class="form-group">
             <label style="color: white">Chon bai hat</label>
-            <select class="form-control" name="removeSong" id="">
+            <select class="form-control" name="removeSong" id="" multiple>
                 <c:forEach items="${songOfPlaylist}" var="spl">
                     <option value="${spl.id}">${spl.name}</option>
                 </c:forEach>

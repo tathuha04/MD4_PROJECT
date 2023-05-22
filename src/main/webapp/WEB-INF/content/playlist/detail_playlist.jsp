@@ -9,7 +9,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <head>
     <title>Title</title>
     <style>
@@ -18,6 +26,7 @@
             padding: 0;
             font-family: Arial, Helvetica, sans-serif;
         }
+
         body {
             height: 100vh;
             width: 100%;
@@ -25,6 +34,7 @@
             align-items: center;
             justify-content: center;
         }
+
         .main {
             position: relative;
             height: 80%;
@@ -34,10 +44,12 @@
             justify-content: center;
             background: linear-gradient(to right, #5d6d7e, #566573);
         }
+
         .main button {
             padding: 10px 12px;
             margin: 0 10px;
         }
+
         .main #logo {
             position: absolute;
             top: 10px;
@@ -45,6 +57,7 @@
             font-size: 25px;
             color: #ccc;
         }
+
         .main #logo i {
             margin-right: 15px;
         }
@@ -77,6 +90,7 @@
             height: 2px;
             margin: 0 15px;
         }
+
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             height: 20px;
@@ -85,6 +99,7 @@
             border-radius: 50%;
             cursor: pointer;
         }
+
         .right input[type="range"] {
             width: 40%;
         }
@@ -101,17 +116,21 @@
             justify-content: center;
             color: #fff;
         }
+
         .left .volume p {
             font-size: 15px;
         }
+
         .left .volume i {
             cursor: pointer;
             padding: 8px 12px;
             background: #ff8a65;
         }
+
         .left .volume i:hover {
             background: rgba(245, 245, 245, 0.1);
         }
+
         .volume #volume_show {
             padding: 8px 12px;
             margin: 0 5px 0 0;
@@ -125,6 +144,7 @@
             align-items: center;
             justify-content: center;
         }
+
         .right .middle button {
             border: none;
             height: 70px;
@@ -138,6 +158,7 @@
             transition: 0.5s;
             background: rgba(255, 255, 255, 0.1);
         }
+
         .right #title {
             position: absolute;
             top: 60px;
@@ -147,6 +168,7 @@
             color: #fff;
             font-size: 35px;
         }
+
         .right #artist {
             position: absolute;
             top: 110px;
@@ -156,6 +178,7 @@
             color: #fff;
             font-size: 18px;
         }
+
         .right .duration {
             position: absolute;
             bottom: 20%;
@@ -168,11 +191,13 @@
             height: 20px;
             margin-top: 40px;
         }
+
         .right .duration p {
             color: #fff;
             font-size: 15px;
             margin-left: 20px;
         }
+
         .right #auto {
             font-size: 18px;
             cursor: pointer;
@@ -184,15 +209,19 @@
             outline: none;
             border-radius: 10px;
         }
+
         .right #auto i {
             margin-left: 8px;
         }
+
         #play {
             background: #ff8a65;
         }
+
         .right button:hover {
             background: #ff8a65;
         }
+
         .right i:before {
             color: #fff;
             font-size: 20px;
@@ -212,6 +241,7 @@
             border-radius: 5px;
             background: rgba(255, 255, 255, 0.2);
         }
+
         .right .show_song_no p:nth-child(2) {
             margin: 0 5px;
         }
@@ -219,57 +249,86 @@
     </style>
 </head>
 <body>
-<div class="main">
-    <p id="logo"><i class="fa fa-music"></i>Music</p>
-    <!--- left part --->
-    <div class="left">
-        <!--- song img --->
-        <img id="track_image">
-        <div class="volume">
-            <p id="volume_show">90</p>
-            <i onclick="mute_sound()" id="volume_icon" class="bi bi-megaphone-fill"></i>
-<%--            <i class="fa fa-volume-up" aria-hidden="true" onclick="mute_sound()" id="volume_icon"></i>--%>
-            <input type="range" min="0" max="100" value="90" onchange="volume_change()" id="volume">
-        </div>
-    </div>
-    <!--- right part --->
-    <div class="right">
-<%--        <div class="show_song_no">--%>
-<%--            <p id="present">1</p>--%>
-<%--            <p>/</p>--%>
-<%--            <p id="total">5</p>--%>
-<%--        </div>--%>
 
-        <!--- song title & artist name --->
-        <p id="title">title.mp3</p>
-        <p id="artist">Artist name</p>
-        <!--- middle part --->
-        <div class="middle">
-<%--            <button onclick="previous_song()" id="pre"><i class="fa fa-step-backward" aria-hidden="true"></i></button>--%>
-            <button onclick="justplay()" id="play"><i class="bi bi-play-circle"></i></button>
-<%--            <button onclick="next_song()" id="next"><i class="fa fa-step-forward" aria-hidden="true"></i></button>--%>
+<div class="main">
+    <div class="show modal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">ADD SONG</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">REMOVE SONG</button>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Message:</label>
+                                <textarea class="form-control" id="message-text"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Send message</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!--- song duration part --->
-        <div class="duration">
-            <input type="range" min="0" max="100" value="0" id="duration_slider" onchange="change_duration()">
-        </div>
-        <button id="auto" onclick="autoplay_switch()">Auto play <i class="fa fa-circle-o-notch" aria-hidden="true"></i></button>
     </div>
+
+        <p id="logo"><i class="fa fa-music"></i>Music</p>
+        <!--- left part --->
+        <div class="left">
+            <!--- song img --->
+            <img id="track_image">
+            <div class="volume">
+                <p id="volume_show">90</p>
+                <i onclick="mute_sound()" id="volume_icon" class="bi bi-megaphone-fill"></i>
+                <%--            <i class="fa fa-volume-up" aria-hidden="true" onclick="mute_sound()" id="volume_icon"></i>--%>
+                <input type="range" min="0" max="100" value="90" onchange="volume_change()" id="volume">
+            </div>
+        </div>
+        <!--- right part --->
+        <div class="right">
+
+            <div class="show_song_no">
+                <p id="present">1</p>
+                <p>/</p>
+                <p id="total">5</p>
+            </div>
+            <!--- song title & artist name --->
+            <p id="title">title.mp3</p>
+            <p id="artist">Artist name</p>
+            <!--- middle part --->
+            <div class="middle">
+                <button onclick="previous_song()" id="pre"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
+                <button onclick="justplay()" id="play"><i class="bi bi-play-circle"></i></button>
+                <button onclick="next_song()" id="next"><i class="fa fa-step-forward" aria-hidden="true"></i></button>
+            </div>
+            <!--- song duration part --->
+            <div class="duration">
+                <input type="range" min="0" max="100" value="0" id="duration_slider" onchange="change_duration()">
+            </div>
+            <button id="auto" onclick="autoplay_switch()">Auto play <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
+            </button>
+        </div>
+
+
 </div>
 <script>
-    let song = {
-        id: "${song.getId()}",
-        name:"${song.getName()}",
-        avatar:"${song.getAvatar()}",
-        mp3: "${song.getSrc()}"
-    }
 
-
-    console.log(song)
-
-    // let previous = document.querySelector('#pre');
+    let previous = document.querySelector('#pre');
     let play = document.querySelector('#play');
-    // let next = document.querySelector('#next');
+    let next = document.querySelector('#next');
     let title = document.querySelector('#title');
     let recent_volume = document.querySelector('#volume');
     let volume_show = document.querySelector('#volume_show');
@@ -290,85 +349,72 @@
 
     //create a audio Element
     let track = document.createElement('audio');
-    console.log("xuong day ko")
+
 
     //All songs list
-    // let All_song = [
-    //     {
-    //         name: "first song",
-    //         path: "https://firebasestorage.googleapis.com/v0/b/chinhcomhut-cff0e.appspot.com/o/Sneaky-Snitch.mp3?alt=media&token=d69403c6-efd4-45d5-be54-1a071fe4d9d7",
-    //         img: "https://firebasestorage.googleapis.com/v0/b/chinhcomhut-cff0e.appspot.com/o/luffy1.jpg?alt=media&token=20f255c5-f4c7-4dad-a1fb-df78a2e079d0",
-    //         singer: "1"
-    //     }
-    //     ,
-    //     {
-    //         name: "second song",
-    //         path: "https://firebasestorage.googleapis.com/v0/b/chinhcomhut-cff0e.appspot.com/o/Am-thanh-u-hu-www_tiengdong_com.mp3?alt=media&token=69a26b53-8ede-4477-9f4c-89756ba4ea4e",
-    //         img: "https://firebasestorage.googleapis.com/v0/b/chinhcomhut-cff0e.appspot.com/o/Nami.webp?alt=media&token=b5787064-d6b9-4a74-8716-8b699026817c",
-    //         singer: "2"
-    //     },
-    //     {
-    //         name: "first song",
-    //         path: "https://firebasestorage.googleapis.com/v0/b/chinhcomhut-cff0e.appspot.com/o/Sneaky-Snitch.mp3?alt=media&token=d69403c6-efd4-45d5-be54-1a071fe4d9d7",
-    //         img: "https://firebasestorage.googleapis.com/v0/b/chinhcomhut-cff0e.appspot.com/o/luffy1.jpg?alt=media&token=20f255c5-f4c7-4dad-a1fb-df78a2e079d0",
-    //         singer: "1"
-    //     }
-    // ];
+    <%--let All_song = [];--%>
 
+    <%--for (let i = 0; i < '${song.size()}'; i++) {--%>
+    <%--    console.log(i);--%>
+    <%--    console.log('${song.get(i).name}');--%>
+    <%--    All_song.push({--%>
+    <%--        name: '${song.get(i).name}',--%>
+    <%--        path: '${song.get(i).src}',--%>
+    <%--        img: '${song.get(i).avatar}',--%>
+    <%--        singer:"1"--%>
+    <%--    });--%>
+
+    <%--};--%>
+    console.log('${song.size()}');
+    let All_song = [
+        <c:forEach items="${song}" var="song">
+        {
+            id: "${song.getId()}",
+            name: "${song.getName()}",
+            mp3: "${song.getSrc()}",
+            img: "${song.getAvatar()}"
+        },
+        </c:forEach>
+    ];
+    console.log(All_song);
 
     // All functions
 
 
     // function load the track
-    function load_track() {
+    function load_track(index_no) {
         clearInterval(timer);
         reset_slider();
 
-        track.src = song.mp3;
-        title.innerHTML = song.name;
-        track_image.src = song.avatar;
-        // artist.innerHTML = All_song[index_no].singer;
+        track.src = All_song[index_no].mp3;
+        title.innerHTML = All_song[index_no].name;
+        track_image.src = All_song[index_no].img;
+        artist.innerHTML = All_song[index_no].singer;
         track.load();
 
         timer = setInterval(range_slider, 1000);
-        // total.innerHTML = song.length;
-        // present.innerHTML = index_no + 1;
+        total.innerHTML = All_song.length;
+        present.innerHTML = index_no + 1;
     }
 
     load_track(index_no);
 
 
     //mute sound function
-    let mute = false;
-    console.log('mute truoc goi -->', mute)
     function mute_sound() {
-        console.log("gọi mute")
-        mute = !mute;
-        if (mute){
-            document.getElementById("volume_icon").className="bi bi-volume-mute";
-            track.volume = 0;
-            volume_show.innerHTML="0";
-            recent_volume.value=0;
-            console.log()
-        }else {
-            document.getElementById("volume_icon").className='bi bi-megaphone-fill';
-            recent_volume.value=10;
-            volume_show.innerHTML="10";
-        }
-
+        track.volume = 0;
+        volume.value = 0;
+        volume_show.innerHTML = 0;
     }
 
 
     // checking.. the song is playing or not
     function justplay() {
         if (Playing_song == false) {
-
-
             playsong();
-            document.getElementById("play").className="bi bi-play-circle";
+
         } else {
             pausesong();
-            document.getElementById("play").className="bi bi-pause-circle";
         }
     }
 
@@ -394,33 +440,33 @@
 
 
     // next song
-    // function next_song() {
-    //     if (index_no < song.length - 1) {
-    //         index_no += 1;
-    //         load_track(index_no);
-    //         playsong();
-    //     } else {
-    //         index_no = 0;
-    //         load_track(index_no);
-    //         playsong();
-    //
-    //     }
-    // }
+    function next_song() {
+        if (index_no < All_song.length - 1) {
+            index_no += 1;
+            load_track(index_no);
+            playsong();
+        } else {
+            index_no = 0;
+            load_track(index_no);
+            playsong();
+
+        }
+    }
 
 
     // previous song
-    // function previous_song() {
-    //     if (index_no > 0) {
-    //         index_no -= 1;
-    //         load_track(index_no);
-    //         playsong();
-    //
-    //     } else {
-    //         index_no = All_song.length;
-    //         load_track(index_no);
-    //         playsong();
-    //     }
-    // }
+    function previous_song() {
+        if (index_no > 0) {
+            index_no -= 1;
+            load_track(index_no);
+            playsong();
+
+        } else {
+            index_no = All_song.length;
+            load_track(index_no);
+            playsong();
+        }
+    }
 
 
     // change volume
@@ -442,9 +488,6 @@
             autoplay = 0;
             auto_play.style.background = "rgba(255,255,255,0.2)";
         } else {
-            if(track.ended){
-                track.play();
-            }
             autoplay = 1;
             auto_play.style.background = "#FF8A65";
         }
@@ -474,3 +517,4 @@
 </script>
 </body>
 </html>
+
