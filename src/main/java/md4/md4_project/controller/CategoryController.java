@@ -42,7 +42,7 @@ public class CategoryController extends HttpServlet {
             case "categoryAD":
                 showFormCategoryAD(request, response);
                 break;
-            case "deletecategory":
+            case "deletecategoryAD":
                 actionDeleteCategory(request, response);
                 break;
             case "updatecategory":

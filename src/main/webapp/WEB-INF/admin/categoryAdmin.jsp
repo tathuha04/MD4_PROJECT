@@ -194,9 +194,9 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
-                            <a href="/category?action=updatecategory&id=${ctm.id}">
-                                <button type="button" class="btn btn-danger">Save</button>
-                            </a>
+<%--                            <a href="/category?action=updatecategory&id=${ctm.id}">--%>
+                                <button type="submit" class="btn btn-danger">Save</button>
+<%--                            </a>--%>
                         </div>
                         </form>
                     </div>

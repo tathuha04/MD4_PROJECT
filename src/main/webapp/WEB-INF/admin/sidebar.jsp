@@ -301,7 +301,7 @@ MzmaWxL+JrxPvt93ySPR4z4f9TsTogsqmwmHIhcJQX/nsA+9phNCY96Mk+DV+kUQl4oF4Qu8LtPbHSa/
       <span class="tooltip">Band</span>
     </li>
     <li>
-      <a href="">
+      <a href="/category?action=categoryAD">
       <i class='bx bxs-category-alt'></i>
       <span class="links_name">Category</span>
       </a>
