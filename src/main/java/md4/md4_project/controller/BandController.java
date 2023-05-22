@@ -22,15 +22,11 @@ public class BandController extends HttpServlet {
             case "showband":
                 showBand(request, response);
                 break;
-//            case "delete":
-//                deleteById(request, response);
-//                break;
             case "create":
                 showFormCreate(request, response);
                 break;
             case "delete":
                 deleteBand(request, response);
-
                 break;
         }
     }
@@ -63,9 +59,6 @@ public class BandController extends HttpServlet {
         }
     }
 
-    public void deleteById(HttpServletRequest request, HttpServletResponse response) {
-
-    }
     public void showFormCreate(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/band/create.jsp");
         try {
