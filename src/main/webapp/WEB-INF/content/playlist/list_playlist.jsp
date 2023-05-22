@@ -88,11 +88,6 @@
                         SHOW
                     </button>
                 </a>
-                <a href="/playlist?action=editPlaylist&id=${pl.id}">
-                    <button type="button" class="btn btn-link btn-sm btn-rounded">
-                        EDIT
-                    </button>
-                </a>
                 <a href="/playlist?action=deletePlaylist&id=${pl.id}">
                     <button type="button" class="btn btn-link btn-sm btn-rounded">
                         DELETE
