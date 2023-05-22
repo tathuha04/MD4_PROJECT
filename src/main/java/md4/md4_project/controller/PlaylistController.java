@@ -70,9 +70,9 @@ public class PlaylistController extends HttpServlet {
             case "addSong":
                 actionAddSongToPlaylist(request, response);
                 break;
-            case "removeSong":
-                actionRemoveSongToPlaylist(request, response);
-                break;
+//            case "removeSong":
+//                actionRemoveSongToPlaylist(request, response);
+//                break;
 
 
         }
@@ -122,6 +122,12 @@ public class PlaylistController extends HttpServlet {
 
     private void detailPlaylist(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
+//        String idSongStr = request.getParameter("idSong");
+//        int idSong = 0;
+//        if (idSongStr != null){
+//            idSong = Integer.parseInt(idSongStr);
+//        }
+//        System.out.println(idSong + "<=============idsong");
         List<Song> songOfPlaylist = songService.findAllSongOfPlaylistByPlaylistId(id);
         List<Song> songs =songService.findAll();
         Playlist playlist =  playlistService.findById(id);
@@ -163,44 +169,50 @@ public class PlaylistController extends HttpServlet {
         }
     }
     private void  actionAddSongToPlaylist(HttpServletRequest request,HttpServletResponse response){
-        int playlistId = Integer.parseInt(request.getParameter("id"));
-
-        String[] songIdStr = request.getParameterValues("addSong");
-        if (songIdStr!=null) {
-            int[] songIds = new int[songIdStr.length];
-            for (int i = 0; i < songIdStr.length; i++) {
-                songIds[i] = Integer.parseInt(songIdStr[i]);
-            }
-            List<Integer> listSongId = new ArrayList<>();
-            for (int i = 0; i < songIds.length; i++) {
-                listSongId.add(Integer.valueOf(songIds[i]));
-            }
-
-            playlistService.addSongToPlaylist(playlistId, listSongId);
+        int playlistId = Integer.parseInt(request.getParameter("idPLL"));
+        int songId = Integer.parseInt(request.getParameter("idSong"));
+        playlistService.addSongToPlaylist(playlistId, songId);
+//        String[] songIdStr = request.getParameterValues("addSong");
+//        if (songIdStr!=null) {
+//            int[] songIds = new int[songIdStr.length];
+//            for (int i = 0; i < songIdStr.length; i++) {
+//                songIds[i] = Integer.parseInt(songIdStr[i]);
+//            }
+//            List<Integer> listSongId = new ArrayList<>();
+//            for (int i = 0; i < songIds.length; i++) {
+//                listSongId.add(Integer.valueOf(songIds[i]));
+//            }
+//
+//
+//        }
+        try {
+            response.sendRedirect("/playlist?action=detailPlaylist&id="+playlistId);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        detailPlaylist(request, response);
 
     }
 
-    private void actionRemoveSongToPlaylist(HttpServletRequest request,HttpServletResponse response){
-        int playlistId = Integer.parseInt(request.getParameter("id"));
-        System.out.println("idPL-->"+playlistId);
-        String[] songIdStr = request.getParameterValues("removeSong");
-        if (songIdStr!=null) {
-            int[] songIds = new int[songIdStr.length];
-            for (int i = 0; i < songIdStr.length; i++) {
-                songIds[i] = Integer.parseInt(songIdStr[i]);
-            }
-            List<Integer> listSongId = new ArrayList<>();
-            for (int i = 0; i < songIds.length; i++) {
-                listSongId.add(Integer.valueOf(songIds[i]));
-            }
-            System.out.println("remove-->"+listSongId);
-            playlistService.removeSongToPlaylist(playlistId, listSongId);
-        }
-        detailPlaylist(request, response);
-
-    }
+//    private void actionRemoveSongToPlaylist(HttpServletRequest request,HttpServletResponse response){
+//        int playlistId = Integer.parseInt(request.getParameter("id"));
+//        int
+//        System.out.println("idPL-->"+playlistId);
+//        String[] songIdStr = request.getParameterValues("removeSong");
+//        if (songIdStr!=null) {
+//            int[] songIds = new int[songIdStr.length];
+//            for (int i = 0; i < songIdStr.length; i++) {
+//                songIds[i] = Integer.parseInt(songIdStr[i]);
+//            }
+//            List<Integer> listSongId = new ArrayList<>();
+//            for (int i = 0; i < songIds.length; i++) {
+//                listSongId.add(Integer.valueOf(songIds[i]));
+//            }
+//            System.out.println("remove-->"+listSongId);
+//            playlistService.removeSongToPlaylist(playlistId, s);
+//        }
+//        detailPlaylist(request, response);
+//
+//    }
     private void deletePlaylist(HttpServletRequest request,HttpServletResponse response){
         int id = Integer.parseInt(request.getParameter("id"));
         System.out.println(id);

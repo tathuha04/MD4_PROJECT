@@ -15,6 +15,6 @@ public interface IPlaylistService extends IGenericService<Playlist> {
     Playlist findById(int id);
     void deleteById(int id);
     List<md4.md4_project.model.Playlist> findAllPlaylistByUserId(int id);
-    void addSongToPlaylist(int playlistId,List<Integer> songId);
-    void removeSongToPlaylist(int playlítId,List<Integer> songId);
+    void addSongToPlaylist(int playlistId,int songId);
+    void removeSongToPlaylist(int playlistId,int songId);
 }
