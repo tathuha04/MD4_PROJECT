@@ -586,7 +586,7 @@
             <li><a href="#">
                 <img src="https://img.icons8.com/office/30/line-chart.png" alt="line-chart"/><span class="link-name">Zingchart</span>
             </a></li>
-            <li><a href="/category?action=create">
+            <li><a href="/category?action=categoryAD">
                 <img src="https://img.icons8.com/external-inkubators-gradient-inkubators/25/external-menu-email-inkubators-gradient-inkubators.png"
                      alt="external-menu-email-inkubators-gradient-inkubators"/>
                 <span class="link-name">Chủ đề & thể loại</span>
@@ -619,8 +619,6 @@
                 <i class="uil uil-arrow-right "></i>
             </a>
         </div>
-
-
         <div class="search-box">
             <i class="uil uil-search"></i>
             <input type="text" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát...">
@@ -691,16 +689,12 @@
                 </a>
             </div>
         </c:if>
-
-
     </div>
 
     <div class="dash-content">
 
     </div>
 </section>
-
-
 <script>
     const body = document.querySelector("body"),
         modeToggle = body.querySelector(".mode-toggle");

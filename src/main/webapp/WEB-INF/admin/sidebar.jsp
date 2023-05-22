@@ -327,7 +327,9 @@ MzmaWxL+JrxPvt93ySPR4z4f9TsTogsqmwmHIhcJQX/nsA+9phNCY96Mk+DV+kUQl4oF4Qu8LtPbHSa/
           <div class="name">Logout</div>
         </div>
       </div>
-      <i class='bx bx-log-out' id="log_out" ></i>
+      <a href="/user?action=logout">
+        <i class='bx bx-log-out' id="log_out" ></i>
+      </a>
     </li>
   </ul>
 </div>
