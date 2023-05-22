@@ -30,12 +30,9 @@ public class UserController extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html; charset=UTF-8");
         String action = req.getParameter("action");
-        System.out.println("goi doget");
-        System.out.println("action--> " + action);
         if (action == null) {
             action = "";
         }
-        System.out.println("action--> " + action);
         switch (action) {
             case "register":
                 showFormRegister(req, resp);
@@ -64,7 +61,6 @@ public class UserController extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        System.out.println("action o DoPost" + action);
         switch (action) {
             case "register":
                 actionRegister(req, resp);

@@ -14,9 +14,12 @@ import java.util.List;
 public class SingerServiceIMPL implements ISingerService {
     private Connection connection = ConnectSQL.getConnection();
     private final String SELECT_ALL_SINGER = "SELECT * from singer";
-    private final String DELETE_SINGER = "DELETE FROM SINGER WHERE ID=?";
+
+    private final String DELETE_SINGER_BY_ID= "DELETE from singer where id=? ";
+
     private final String INSERT_INTO_SINGER = "INSERT INTO SINGER (name, avatar) values (?,?)";
     private final String UPDATE_SINGER = "UPDATE SINGER SET name = ?, avatar= ? where id = ?";
+
 
     @Override
     public List<Singer> findAll() {
@@ -63,12 +66,14 @@ public class SingerServiceIMPL implements ISingerService {
     @Override
     public void deleteById(int id) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_SINGER);
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_SINGER_BY_ID);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+
     }
 
     @Override
@@ -99,6 +104,7 @@ public class SingerServiceIMPL implements ISingerService {
             throw new RuntimeException(e);
         }
     }
+
 
 
 }

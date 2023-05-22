@@ -20,15 +20,17 @@ public class SingerController extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        switch (action) {
+        System.out.println("action o DoGet--> "+ action);
+        switch (action){
+
             case "singer":
                 showListSinger(request, response);
                 break;
-            case "delete":
-                deleteSinger(request, response);
-                break;
             case "create":
                 showFormCreate(request, response);
+                break;
+            case "delete":
+                deleteSinger(request, response);
                 break;
         }
     }
@@ -52,7 +54,7 @@ public class SingerController extends HttpServlet {
     public void showListSinger(HttpServletRequest request, HttpServletResponse response) {
         List<Singer> singerList = singerService.findAll();
         request.setAttribute("singerList", singerList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/admin/singerAdmin.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/singerAdmin.jsp");
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -63,6 +65,7 @@ public class SingerController extends HttpServlet {
     }
 
     public void deleteSinger(HttpServletRequest request, HttpServletResponse response) {
+
         int id = Integer.parseInt(request.getParameter("id"));
         singerService.deleteById(id);
         showListSinger(request, response);

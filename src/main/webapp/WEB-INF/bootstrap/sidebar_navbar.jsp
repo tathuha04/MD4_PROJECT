@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Admin
@@ -600,7 +600,7 @@
                 <img src="https://img.icons8.com/fluency/48/music-band.png" alt="music-band"/>
                 <span class="link-name">Band</span>
             </a></li>
-            <li><a href="#">
+            <li><a href="/playlist?action=showAllPlaylist">
                 <img src="https://img.icons8.com/nolan/64/playlist.png" alt="playlist"/> <span
                     class="link-name">Playlist</span>
             </a></li>

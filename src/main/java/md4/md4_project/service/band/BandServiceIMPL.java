@@ -19,6 +19,18 @@ public class BandServiceIMPL implements IBandService {
     private final String DELETE_BY_ID= "DELETE FROM band where id= ?";
     private final String EDIT_BY_ID = "UPDATE BAND SET name =?, avatar=? where id=?";
     @Override
+    public void save(Band band) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_INTO_BAND);
+            preparedStatement.setString(1, band.getName());
+            preparedStatement.setString(2, band.getAvatar());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public List<Band> findAll() {
         List<Band> bandList = new ArrayList<>();
         try {
@@ -73,7 +85,6 @@ public class BandServiceIMPL implements IBandService {
             throw new RuntimeException(e);
         }
     }
-
     @Override
     public void editById(String name, String avatar, int id) {
         try {
@@ -88,5 +99,3 @@ public class BandServiceIMPL implements IBandService {
             throw new RuntimeException(e);
         }
     }
-
-}
