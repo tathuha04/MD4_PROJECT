@@ -295,6 +295,14 @@
                 <path d="M11 6.64a1 1 0 0 0-1.243-.97l-1 .25A1 1 0 0 0 8 6.89v4.306A2.572 2.572 0 0 0 7 11c-.5 0-.974.134-1.338.377-.36.24-.662.628-.662 1.123s.301.883.662 1.123c.364.243.839.377 1.338.377.5 0 .974-.134 1.338-.377.36-.24.662-.628.662-1.123V8.89l2-.5V6.64z"/>
                 <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
             </svg></button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#removeModal" data-whatever="${playlist.getId()}"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+    </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-file-earmark-music" viewBox="0 0 16 16">
+            <path d="M11 6.64a1 1 0 0 0-1.243-.97l-1 .25A1 1 0 0 0 8 6.89v4.306A2.572 2.572 0 0 0 7 11c-.5 0-.974.134-1.338.377-.36.24-.662.628-.662 1.123s.301.883.662 1.123c.364.243.839.377 1.338.377.5 0 .974-.134 1.338-.377.36-.24.662-.628.662-1.123V8.89l2-.5V6.64z"/>
+            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+        </svg></button>
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -307,8 +315,9 @@
                     <div class="modal-body">
                         <form action="/playlist?action=addSong&idPLL=${playlist.getId()}" method="post">
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Enter the name song: </label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <label for="search" class="col-form-label">Enter the name song: </label>
+                                <input type="text" name="search" oninput="actionSearch()" class="form-control" id="search">
+                                <a href=""></a>
                             </div>
                             <div class="form-group">
                                 <label class="col-form-label">List Song :</label>
@@ -328,6 +337,38 @@
                 </div>
             </div>
         </div>
+    <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="removeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <%--                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>--%>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/playlist?action=removeSong&idPLL=${playlist.getId()}" method="post">
+                        <div class="form-group">
+                            <a href=""></a>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">List Song :</label>
+                            <table class="table">
+                                <tr>
+                                    <th scope="col">STT</th>
+                                    <th scope="col">NAME</th>
+                                    <th scope="col"></th>
+                                </tr>
+                                <tbody id="draw_remove">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <%--        /////end modal--%>
 
@@ -451,6 +492,7 @@
     let listSongOfPlaylist = [
         <c:forEach items="${songOfPlaylist}" var="song">
         {
+            id: "${song.getId()}",
             name: "${song.getName()}",
             mp3: "${song.getSrc()}",
             img: "${song.getAvatar()}"
@@ -474,6 +516,7 @@
         console.log(draw_Table)
     }
     drawTable();
+
     // function load the track
     function load_track(index_no) {
         clearInterval(timer);
@@ -489,8 +532,87 @@
         total.innerHTML = listSongOfPlaylist.length;
         present.innerHTML = index_no + 1;
     }
+    // function myFunction() {
+    //     var x = document.getElementById("mySelect").value;
+    //     document.getElementById("demo").innerHTML = "Bạn đã chọn xe: " + x;
+    // }
+    let listSearchSong=[];
+    function actionSearch() {
+        listSearchSong = [];
+        let search = document.getElementById('search').value;
+        console.log(
+            '1111search -->', search
+        )
+        //TÌM KIẾM TUYỆT ĐỐI ĐÚNG CẢ VỚI CHỮ HOA VÀ CHỮ THƯỜNG
+        // if(search.trim()===''){
+        //     showListStudent();
+        //     return;
+        // } else {
+        //     for (let i = 0; i < studentsList.length; i++) {
+        //         if(search.toLowerCase()===studentsList[i].toLowerCase()){
+        //             listStudentSearch.push(studentsList[i])
+        //         }
+        //     }
+        // }
 
+        //TÌM KIẾM TƯƠNG ĐỐI
+        if(search.trim()===''){
+            drawTable();
+            return
+        } else {
+            for (let i = 0; i < All_song.length; i++) {
+                if(All_song[i].name.search(search)!=-1){
+                    console.log('vao if', i)
+                    listSearchSong.push(All_song[i])
+                    console.log(listSearchSong)
+                }
+            }
+        }
+        showListSearch();
+    }
+    function showListSearch() {
+        let drawTable = '';
+        for (let i = 0; i < listSearchSong.length; i++) {
+            // let j = i+1;
+            //Cách 1: Dùng cách ' ' thông thường biding biến qua ++
+            drawTable+=
+                '<tr>' +
+                '<td>' + listSearchSong[i].id + '</td>' +
+                '<td>' + listSearchSong[i].name + '</td>' +
+                '<td>' +
+                '<button name="idSong" type="submit" value="' + listSearchSong[i].id + '">Add</button>' +
+                '</td>' +
+
+                '</tr>'
+
+            //Cách 2: Dùng string template `` biding biến qua
+            <%--drawTable += `<tr>--%>
+            <%--        <td>${i + 1}</td>--%>
+            <%--        <td>${listStudentSearch[i]}</td>--%>
+            <%--        <td><button style="background-color: blue; color: white" onclick="updateStudent(${i})">Edit</button></td>--%>
+            <%--        <td><button style="background-color: red; color: white" onclick="deleteStudent(${i})">Delete</button></td>--%>
+            <%--        </tr>`--%>
+        }
+        document.getElementById('draw').innerHTML = drawTable;
+        console.log(
+            'drawtTable Search', drawTable
+        )
+    }
     load_track(index_no);
+    function drawRemoveTable() {
+        let draw_Table ="";
+        for (let i = 0; i < listSongOfPlaylist.length; i++) {
+            draw_Table += "<tr >" +
+                "<td >"+listSongOfPlaylist[i].id+"</td>"+
+                "<td>"+listSongOfPlaylist[i].name+"</td>"+
+                "<td>"+
+                '<button  type="submit" name="idSong" value="'+listSongOfPlaylist[i].id+'">REMOVE</button>'+
+                "</td>"+
+                "</tr>"
+        }
+        document.getElementById("draw_remove").innerHTML= draw_Table;
+    }
+    drawRemoveTable();
 
 
     //mute sound function

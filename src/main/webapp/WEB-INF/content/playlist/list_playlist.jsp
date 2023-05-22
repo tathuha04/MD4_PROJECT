@@ -49,7 +49,7 @@
     <a href="/playlist?action=back">
         <button class="button_create">BACK MENU</button>
     </a>
-    <a href="/playlist?action=create">
+    <a href="/singers?action=create">
         <button class="button_create">CREATE NEW PLAYLIST</button>
     </a>
 </div>
@@ -95,11 +95,14 @@
                         SHOW
                     </button>
                 </a>
-                <a href="/playlist?action=deletePlaylist&id=${pl.id}">
-                    <button type="button" class="btn btn-link btn-sm btn-rounded">
-                        DELETE
-                    </button>
-                </a>
+                <c:if test="${user!=null}">
+                    <a href="/playlist?action=deletePlaylist&id=${pl.id}">
+                        <button type="button" class="btn btn-link btn-sm btn-rounded">
+                            DELETE
+                        </button>
+                    </a>
+                </c:if>
+
             </td>
         </tr>
     </c:forEach>

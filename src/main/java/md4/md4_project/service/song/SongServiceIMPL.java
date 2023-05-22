@@ -227,6 +227,7 @@ public class SongServiceIMPL implements ISongService {
                 int idSong = resultSet.getInt("songId");
                 songList.add(findById(idSong));
             }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

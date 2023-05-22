@@ -70,9 +70,9 @@ public class PlaylistController extends HttpServlet {
             case "addSong":
                 actionAddSongToPlaylist(request, response);
                 break;
-//            case "removeSong":
-//                actionRemoveSongToPlaylist(request, response);
-//                break;
+            case "removeSong":
+                actionRemoveSongToPlaylist(request, response);
+                break;
 
 
         }
@@ -193,26 +193,20 @@ public class PlaylistController extends HttpServlet {
 
     }
 
-//    private void actionRemoveSongToPlaylist(HttpServletRequest request,HttpServletResponse response){
-//        int playlistId = Integer.parseInt(request.getParameter("id"));
-//        int
-//        System.out.println("idPL-->"+playlistId);
-//        String[] songIdStr = request.getParameterValues("removeSong");
-//        if (songIdStr!=null) {
-//            int[] songIds = new int[songIdStr.length];
-//            for (int i = 0; i < songIdStr.length; i++) {
-//                songIds[i] = Integer.parseInt(songIdStr[i]);
-//            }
-//            List<Integer> listSongId = new ArrayList<>();
-//            for (int i = 0; i < songIds.length; i++) {
-//                listSongId.add(Integer.valueOf(songIds[i]));
-//            }
-//            System.out.println("remove-->"+listSongId);
-//            playlistService.removeSongToPlaylist(playlistId, s);
-//        }
-//        detailPlaylist(request, response);
-//
-//    }
+    private void actionRemoveSongToPlaylist(HttpServletRequest request,HttpServletResponse response){
+        int playlistId = Integer.parseInt(request.getParameter("idPLL"));
+        int songId = Integer.parseInt(request.getParameter("idSong"));
+        System.out.println(playlistId);
+        System.out.println(songId);
+        playlistService.removeSongToPlaylist(playlistId, songId);
+        try {
+            response.sendRedirect("/playlist?action=detailPlaylist&id="+playlistId);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
     private void deletePlaylist(HttpServletRequest request,HttpServletResponse response){
         int id = Integer.parseInt(request.getParameter("id"));
         System.out.println(id);
