@@ -1,10 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+=======
+>>>>>>> dev
 </head>
 <!DOCTYPE html>
 <!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
@@ -37,6 +40,7 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 </head>
+<<<<<<< HEAD
     <STYLE>
         .table {
             margin: auto;
@@ -44,66 +48,75 @@
             height: 100%;
             text-align: center;
         }
+=======
+<STYLE>
+    .table {
+        margin: auto;
+        width: 80%;
+        height: 100%;
+        text-align: center;
+    }
 
-        .category {
-            margin-left: 10%;
-            margin-bottom: 30px;
-        }
+    .category {
+        margin-left: 10%;
+        margin-bottom: 30px;
+    }
 
-        .category p {
-            font-family: sans-serif;
-            font-size: 25px;
-            font-weight: 600;
-            text-align: center;
-            margin-right: 100px;
-            margin-top: 50px;
-        }
+    .category p {
+        font-family: sans-serif;
+        font-size: 25px;
+        font-weight: 600;
+        text-align: center;
+        margin-right: 100px;
+        margin-top: 50px;
+    }
 
-        .category .w3-container button {
-            border-radius: 5px;
-            padding: 8px;
-            background-color: #721799;
-            color: #E4E9F7;
-            border: none;
-        }
+    .category .w3-container button {
+        border-radius: 5px;
+        padding: 8px;
+        background-color: #721799;
+        color: #E4E9F7;
+        border: none;
+    }
+>>>>>>> dev
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
-        * {
-            box-sizing: border-box;
-        }
-
-
-        .buttonDelete {
-            background-color: crimson;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            width: 20%;
-            opacity: 0.9;
-            border-radius: 8px;
-        }
-
-        .buttonEdit {
-            background-color: orange;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            width: 20%;
-            opacity: 0.9;
-            border-radius: 8px;
-        }
-
-        button:hover {
-            opacity: 1;
-        }
+    * {
+        box-sizing: border-box;
+    }
 
 
-    </STYLE>
+    .buttonDelete {
+        background-color: crimson;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        width: 20%;
+        opacity: 0.9;
+        border-radius: 8px;
+    }
+
+    .buttonEdit {
+        background-color: orange;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        width: 20%;
+        opacity: 0.9;
+        border-radius: 8px;
+    }
+
+    button:hover {
+        opacity: 1;
+    }
+
+
+</STYLE>
 
 </head>
 <body>
@@ -150,7 +163,6 @@
         <c:forEach items='${requestScope["singerList"]}' var="ctm">
         <tbody>
         <tr>
-
             <th scope="row">${ctm.getId()}</th>
             <td><img width="100px" height="100px" style="border-radius: 5px" src="${ctm.getAvatar()}"></td>
             <td>${ctm.getName()}</td>

@@ -195,7 +195,7 @@ public class SongController extends HttpServlet {
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
         int userId = user.getId();
-        Song song = new Song(name, categoryId,listBandId,listSingerId,userId,src,avatar);
+        Song song = new Song(name, categoryId,listBandId,listSingerId,userId,avatar,src);
         songService.save(song,request);
        showAllSong(request, response);
     }
@@ -215,4 +215,5 @@ public class SongController extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
+
 }

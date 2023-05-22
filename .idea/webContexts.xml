@@ -10,6 +10,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bootstrap/sidebar_navbar.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/bootstrap" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/content/category/create.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/content/category" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/content/category/page.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/content/category" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/content/song/detail.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/content/song" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/content/song/listSong.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/content/song" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/content/song/page.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/content/song" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/form_login/login.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/form_login" />

@@ -183,4 +183,10 @@ public class UserServiceIMPL implements IUserService {
         return userList;
     }
 
+    public List<Role> getRoleOfUser(User user) {
+        List<Role> roleList = new ArrayList<>();
+        Set<Role> roleSet = user.getRoleSet();
+        roleList = (List<Role>) roleSet;
+        return roleList;
+    }
 }

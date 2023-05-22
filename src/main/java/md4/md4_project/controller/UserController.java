@@ -90,7 +90,7 @@ public class UserController extends HttpServlet {
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String role = "admin";
+        String role = "user";
 
         Set<String> strRole = new HashSet<>();
         strRole.add(role);
@@ -150,10 +150,26 @@ public class UserController extends HttpServlet {
     private void actionLogin(HttpServletRequest request, HttpServletResponse response) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+
         User user = userService.userLogin(username, password);
+//        List<Role> roleList = (List<Role>) userService.findRoleByUserId(user.getId());
+        Set<Role> roleSet = userService.findRoleByUserId(user.getId());
+        System.out.println(userService.findRoleByUserId(user.getId()));
+        String roleName= String.valueOf(UserRole.USER);
+        for (Role role: roleSet) {
+            if (role.getId()==3){
+                System.out.println("3");
+                roleName= String.valueOf(UserRole.ADMIN);
+            } else if ((role.getId()==2)&&(roleName==String.valueOf(UserRole.USER))) {
+                System.out.println("2");
+                roleName=String.valueOf(UserRole.PM);
+            }
+        }
+        System.out.println(roleName);
         if (user != null) {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
+            session.setAttribute("role",roleName);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/admin/admin2.jsp");
             try {
                 dispatcher.forward(request, response);
@@ -220,4 +236,7 @@ public class UserController extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
+
+
+
 }

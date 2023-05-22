@@ -30,11 +30,20 @@
             type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.0/mdb.min.js"
     ></script>
+    <style>
+        .button_create{
+            background-color: #8221ac;
+            color: #DDDDDD;
+            border-radius: 8px;
+            margin: 20px 0px 20px 20px;
+            border:none;
+        }
+    </style>
 </head>
 <body>
 <div>
     <a href="/playlist?action=create">
-        <button>CREATE NEW PLAYLIST</button>
+        <button class="button_create">CREATE NEW PLAYLIST</button>
     </a>
 </div>
 <table class="table align-middle mb-0 bg-white">
