@@ -18,6 +18,7 @@
             padding: 0;
             font-family: Arial, Helvetica, sans-serif;
         }
+
         body {
             height: 100vh;
             width: 100%;
@@ -25,6 +26,7 @@
             align-items: center;
             justify-content: center;
         }
+
         .main {
             position: relative;
             height: 80%;
@@ -34,10 +36,12 @@
             justify-content: center;
             background: linear-gradient(to right, #5d6d7e, #566573);
         }
+
         .main button {
             padding: 10px 12px;
             margin: 0 10px;
         }
+
         .main #logo {
             position: absolute;
             top: 10px;
@@ -45,6 +49,7 @@
             font-size: 25px;
             color: #ccc;
         }
+
         .main #logo i {
             margin-right: 15px;
         }
@@ -77,6 +82,7 @@
             height: 2px;
             margin: 0 15px;
         }
+
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             height: 20px;
@@ -85,6 +91,7 @@
             border-radius: 50%;
             cursor: pointer;
         }
+
         .right input[type="range"] {
             width: 40%;
         }
@@ -101,17 +108,21 @@
             justify-content: center;
             color: #fff;
         }
+
         .left .volume p {
             font-size: 15px;
         }
+
         .left .volume i {
             cursor: pointer;
             padding: 8px 12px;
             background: #ff8a65;
         }
+
         .left .volume i:hover {
             background: rgba(245, 245, 245, 0.1);
         }
+
         .volume #volume_show {
             padding: 8px 12px;
             margin: 0 5px 0 0;
@@ -125,6 +136,7 @@
             align-items: center;
             justify-content: center;
         }
+
         .right .middle button {
             border: none;
             height: 70px;
@@ -138,6 +150,7 @@
             transition: 0.5s;
             background: rgba(255, 255, 255, 0.1);
         }
+
         .right #title {
             position: absolute;
             top: 60px;
@@ -147,6 +160,7 @@
             color: #fff;
             font-size: 35px;
         }
+
         .right #artist {
             position: absolute;
             top: 110px;
@@ -156,6 +170,7 @@
             color: #fff;
             font-size: 18px;
         }
+
         .right .duration {
             position: absolute;
             bottom: 20%;
@@ -168,11 +183,13 @@
             height: 20px;
             margin-top: 40px;
         }
+
         .right .duration p {
             color: #fff;
             font-size: 15px;
             margin-left: 20px;
         }
+
         .right #auto {
             font-size: 18px;
             cursor: pointer;
@@ -184,15 +201,19 @@
             outline: none;
             border-radius: 10px;
         }
+
         .right #auto i {
             margin-left: 8px;
         }
+
         #play {
             background: #ff8a65;
         }
+
         .right button:hover {
             background: #ff8a65;
         }
+
         .right i:before {
             color: #fff;
             font-size: 20px;
@@ -212,6 +233,7 @@
             border-radius: 5px;
             background: rgba(255, 255, 255, 0.2);
         }
+
         .right .show_song_no p:nth-child(2) {
             margin: 0 5px;
         }
@@ -264,40 +286,50 @@
         <img id="track_image">
         <div class="volume">
             <p id="volume_show">90</p>
-            <i onclick="mute_sound()" id="volume_icon" class="bi bi-megaphone-fill"></i>
-<%--            <i class="fa fa-volume-up" aria-hidden="true" onclick="mute_sound()" id="volume_icon"></i>--%>
+            <svg onclick="mute_sound()" id="volume_icon" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                 fill="currentColor" class="bi bi-volume-up" viewBox="0 0 16 16">
+                <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/>
+                <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/>
+                <path d="M10.025 8a4.486 4.486 0 0 1-1.318 3.182L8 10.475A3.489 3.489 0 0 0 9.025 8c0-.966-.392-1.841-1.025-2.475l.707-.707A4.486 4.486 0 0 1 10.025 8zM7 4a.5.5 0 0 0-.812-.39L3.825 5.5H1.5A.5.5 0 0 0 1 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 7 12V4zM4.312 6.39 6 5.04v5.92L4.312 9.61A.5.5 0 0 0 4 9.5H2v-3h2a.5.5 0 0 0 .312-.11z"/>
+            </svg>
             <input type="range" min="0" max="100" value="90" onchange="volume_change()" id="volume">
         </div>
     </div>
     <!--- right part --->
     <div class="right">
-<%--        <div class="show_song_no">--%>
-<%--            <p id="present">1</p>--%>
-<%--            <p>/</p>--%>
-<%--            <p id="total">5</p>--%>
-<%--        </div>--%>
+        <%--        <div class="show_song_no">--%>
+        <%--            <p id="present">1</p>--%>
+        <%--            <p>/</p>--%>
+        <%--            <p id="total">5</p>--%>
+        <%--        </div>--%>
 
         <!--- song title & artist name --->
         <p id="title">title.mp3</p>
         <p id="artist">Artist name</p>
         <!--- middle part --->
         <div class="middle">
-<%--            <button onclick="previous_song()" id="pre"><i class="fa fa-step-backward" aria-hidden="true"></i></button>--%>
-            <button onclick="justplay()" id="play"><i class="bi bi-play-circle"></i></button>
-<%--            <button onclick="next_song()" id="next"><i class="fa fa-step-forward" aria-hidden="true"></i></button>--%>
+            <%--            <button onclick="previous_song()" id="pre"><i class="fa fa-step-backward" aria-hidden="true"></i></button>--%>
+            <button onclick="justplay()" id="play">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+                     class="bi bi-play-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
+                </svg>
+            </button>
         </div>
         <!--- song duration part --->
         <div class="duration">
             <input type="range" min="0" max="100" value="0" id="duration_slider" onchange="change_duration()">
         </div>
-        <button id="auto" onclick="autoplay_switch()">Auto play <i class="fa fa-circle-o-notch" aria-hidden="true"></i></button>
+        <button id="auto" onclick="autoplay_switch()">Auto play <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
+        </button>
     </div>
 </div>
 <script>
     let song = {
         id: "${song.getId()}",
-        name:"${song.getName()}",
-        avatar:"${song.getAvatar()}",
+        name: "${song.getName()}",
+        avatar: "${song.getAvatar()}",
         mp3: "${song.getSrc()}"
     }
 
@@ -329,33 +361,6 @@
     let track = document.createElement('audio');
     console.log("xuong day ko")
 
-    //All songs list
-    // let All_song = [
-    //     {
-    //         name: "first song",
-    //         path: "https://firebasestorage.googleapis.com/v0/b/chinhcomhut-cff0e.appspot.com/o/Sneaky-Snitch.mp3?alt=media&token=d69403c6-efd4-45d5-be54-1a071fe4d9d7",
-    //         img: "https://firebasestorage.googleapis.com/v0/b/chinhcomhut-cff0e.appspot.com/o/luffy1.jpg?alt=media&token=20f255c5-f4c7-4dad-a1fb-df78a2e079d0",
-    //         singer: "1"
-    //     }
-    //     ,
-    //     {
-    //         name: "second song",
-    //         path: "https://firebasestorage.googleapis.com/v0/b/chinhcomhut-cff0e.appspot.com/o/Am-thanh-u-hu-www_tiengdong_com.mp3?alt=media&token=69a26b53-8ede-4477-9f4c-89756ba4ea4e",
-    //         img: "https://firebasestorage.googleapis.com/v0/b/chinhcomhut-cff0e.appspot.com/o/Nami.webp?alt=media&token=b5787064-d6b9-4a74-8716-8b699026817c",
-    //         singer: "2"
-    //     },
-    //     {
-    //         name: "first song",
-    //         path: "https://firebasestorage.googleapis.com/v0/b/chinhcomhut-cff0e.appspot.com/o/Sneaky-Snitch.mp3?alt=media&token=d69403c6-efd4-45d5-be54-1a071fe4d9d7",
-    //         img: "https://firebasestorage.googleapis.com/v0/b/chinhcomhut-cff0e.appspot.com/o/luffy1.jpg?alt=media&token=20f255c5-f4c7-4dad-a1fb-df78a2e079d0",
-    //         singer: "1"
-    //     }
-    // ];
-
-
-    // All functions
-
-
     // function load the track
     function load_track() {
         clearInterval(timer);
@@ -364,12 +369,9 @@
         track.src = song.mp3;
         title.innerHTML = song.name;
         track_image.src = song.avatar;
-        // artist.innerHTML = All_song[index_no].singer;
         track.load();
 
         timer = setInterval(range_slider, 1000);
-        // total.innerHTML = song.length;
-        // present.innerHTML = index_no + 1;
     }
 
     load_track(index_no);
@@ -377,33 +379,44 @@
 
     //mute sound function
     let mute = false;
+
     function mute_sound() {
         mute = !mute;
-        if (mute){
-            document.getElementById("volume_icon").className="bi bi-volume-mute";
+        if (mute) {
+            document.getElementById("volume_icon").innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-mute-fill" viewBox="0 0 16 16">' +
+                '<path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zm7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0z"/>' +
+                '</svg>';
             track.volume = 0;
-            volume_show.innerHTML="0";
-            recent_volume.value=0;
-            console.log()
-        }else {
-            document.getElementById("volume_icon").className='bi bi-megaphone-fill';
-            recent_volume.value=30;
+            volume_show.innerHTML = "0";
+            recent_volume.value = 0;
+        } else {
+            document.getElementById("volume_icon").innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up" viewBox="0 0 16 16">' +
+                '<path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/>' +
+                '<path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/>' +
+                '<path d="M10.025 8a4.486 4.486 0 0 1-1.318 3.182L8 10.475A3.489 3.489 0 0 0 9.025 8c0-.966-.392-1.841-1.025-2.475l.707-.707A4.486 4.486 0 0 1 10.025 8zM7 4a.5.5 0 0 0-.812-.39L3.825 5.5H1.5A.5.5 0 0 0 1 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 7 12V4zM4.312 6.39 6 5.04v5.92L4.312 9.61A.5.5 0 0 0 4 9.5H2v-3h2a.5.5 0 0 0 .312-.11z"/>' +
+                +'</svg>';
+            volume_show.innerHTML = "30";
             track.volume = recent_volume.value / 100;
-            volume_show.innerHTML="30";
+            recent_volume.value = 30;
         }
-
     }
 
 
     // checking.. the song is playing or not
     function justplay() {
         if (Playing_song == false) {
-
             playsong();
-            document.getElementById("play").className="bi bi-play-circle";
+            document.getElementById("play").innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-pause-circle" viewBox="0 0 16 16">'
+                + '<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>'
+                + '<path d="M5 6.25a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0v-3.5zm3.5 0a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0v-3.5z"/>' +
+                '</svg>';
         } else {
-            pausesong()
-            document.getElementById("play").className="bi bi-pause-circle";
+            pausesong();
+            document.getElementById("play").innerHTML = ' <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">' +
+                '<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>' +
+                '<path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>' +
+                '</svg>';
+
         }
     }
 
@@ -427,37 +440,6 @@
         play.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
     }
 
-
-    // next song
-    // function next_song() {
-    //     if (index_no < song.length - 1) {
-    //         index_no += 1;
-    //         load_track(index_no);
-    //         playsong();
-    //     } else {
-    //         index_no = 0;
-    //         load_track(index_no);
-    //         playsong();
-    //
-    //     }
-    // }
-
-
-    // previous song
-    // function previous_song() {
-    //     if (index_no > 0) {
-    //         index_no -= 1;
-    //         load_track(index_no);
-    //         playsong();
-    //
-    //     } else {
-    //         index_no = All_song.length;
-    //         load_track(index_no);
-    //         playsong();
-    //     }
-    // }
-
-
     // change volume
     function volume_change() {
         volume_show.innerHTML = recent_volume.value;
@@ -477,7 +459,7 @@
             autoplay = 0;
             auto_play.style.background = "rgba(255,255,255,0.2)";
         } else {
-            if(track.ended){
+            if (track.ended) {
                 track.play();
             }
             autoplay = 1;

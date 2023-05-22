@@ -17,7 +17,7 @@
 
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href="css/font-awesome.min.css" rel="stylesheet"/>
@@ -552,6 +552,49 @@
                 width: 100%;
             }
         }
+         .mySlides {
+             display: none;
+         }
+
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: green;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.5s ease;
+        }
+
+        .active {
+            background-color: #e31b1b;
+        }
+
+        /* Fading animation */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+            to {
+                opacity: 1
+            }
+        }
+        img {
+            height: 300px;
+            width: auto;
+            border-radius: 15%;
+        }
+        /* On smaller screens, decrease text size */
+        @media only screen and (max-width: 300px) {
+            .text {
+                font-size: 11px
+            }
+        }
     </style>
 
 </head>
@@ -697,11 +740,101 @@
 
     <div class="dash-content">
 
+        <h2 class="w3-center">Manual Slideshow</h2>
+
+        <div class="w3-content w3-display-container">
+            <c:forEach items="${songrandom}" var="songRD">
+                <a href="/song?action=detail&id=${songRD.getId()}">
+                    <img class="mySlides"
+                         src="${songRD.getAvatar()}"
+                         style="width:100%">
+                </a>
+            </c:forEach>
+
+            <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+        </div>
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+        </div>
     </div>
 </section>
 
 
 <script>
+
+    var slideIndex = 0;
+
+    // showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showDivs(slideIndex = n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        let y = document.getElementsByClassName("dot")
+        console.log('y ===>', y)
+        console.log('n====, ', n)
+        if (n > x.length-1) {
+            slideIndex = 0
+            n=0;
+        }
+        if (n < 0) {
+            console.log('vao if')
+            slideIndex = x.length-1
+            console.log('slideIndex', slideIndex)
+            n=2;
+        }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex].style.display = "block";
+        for (let j = 0; j < y.length; j++) {
+            if (j == n) {
+                y[j].className += " active";
+            } else {
+                y[j].className = y[j].className.replace("active", "");
+            }
+
+
+        }
+    }
+
+
+    //AUTO NEXT
+    let slideIndex2 = 0;
+    showSlides();
+
+    function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex2++;
+        if (slideIndex2 > slides.length) {
+            slideIndex2 = 1
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace("active", "");
+            console.log('i ==== ',i,  'className -->', dots[i].className.replace("active", ""))
+        }
+        slides[slideIndex2 - 1].style.display = "block";
+        dots[slideIndex2 - 1].className += " active";
+        console.log('dots slide -->', dots[slideIndex2-1].className)
+        setTimeout(showSlides, 4000); // Change image every 2 seconds
+    }
+
+
     const body = document.querySelector("body"),
         modeToggle = body.querySelector(".mode-toggle");
     sidebar = body.querySelector("nav");

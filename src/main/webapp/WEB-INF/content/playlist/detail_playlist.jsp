@@ -261,16 +261,55 @@
             margin: 0 5px;
         }
 
-        #buttonAddSong{
+        #buttonAddSong {
             border-radius: 5px;
             border: none;
         }
-        #buttonAddSong:hover{
+
+        #buttonAddSong:hover {
             border-radius: 5px;
             border: none;
             background-color: #888888;
             color: #fafafa;
         }
+
+        @-webkit-keyframes xoayvong {
+            from {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+            }
+            to {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+            }
+        }
+
+        /* Standard syntax */
+        @keyframes xoayvong {
+            from {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+            }
+            to {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+            }
+        }
+
+        #track_image {
+            animation: xoayvong 5s linear 0s infinite;
+            -webkit-animation: xoayvong 5s linear 0s infinite;
+            -moz-animation: xoayvong 5s linear 0s infinite;
+            -o-animation: xoayvong 5s linear 0s infinite;
+            border-radius: 50%;
+            width: 250px;
+            height: 250px;
+        }
+
     </style>
 </head>
 <body>
@@ -286,58 +325,61 @@
         Music
     </p>
 
-<%--        ///// modal--%>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="${playlist.getId()}"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+    <%--        ///// modal--%>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+            data-whatever="${playlist.getId()}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-plus-circle"
+             viewBox="0 0 16 16">
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
         </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-file-earmark-music" viewBox="0 0 16 16">
-                <path d="M11 6.64a1 1 0 0 0-1.243-.97l-1 .25A1 1 0 0 0 8 6.89v4.306A2.572 2.572 0 0 0 7 11c-.5 0-.974.134-1.338.377-.36.24-.662.628-.662 1.123s.301.883.662 1.123c.364.243.839.377 1.338.377.5 0 .974-.134 1.338-.377.36-.24.662-.628.662-1.123V8.89l2-.5V6.64z"/>
-                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
-            </svg></button>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-<%--                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>--%>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="/playlist?action=addSong&idPLL=${playlist.getId()}" method="post">
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Enter the name song: </label>
-                                <input type="text" class="form-control" id="recipient-name">
-                            </div>
-                            <div class="form-group">
-                                <label class="col-form-label">List Song :</label>
-                                <table class="table">
-                                    <tr>
-                                        <th scope="col">STT</th>
-                                        <th scope="col">NAME</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                    <tbody id="draw">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+             class="bi bi-file-earmark-music" viewBox="0 0 16 16">
+            <path d="M11 6.64a1 1 0 0 0-1.243-.97l-1 .25A1 1 0 0 0 8 6.89v4.306A2.572 2.572 0 0 0 7 11c-.5 0-.974.134-1.338.377-.36.24-.662.628-.662 1.123s.301.883.662 1.123c.364.243.839.377 1.338.377.5 0 .974-.134 1.338-.377.36-.24.662-.628.662-1.123V8.89l2-.5V6.64z"/>
+            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+        </svg>
+    </button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <%--                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>--%>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/playlist?action=addSong&idPLL=${playlist.getId()}" method="post">
+                        <div class="form-group">
+                            <label class="col-form-label">Enter the name song: </label>
+                            <input oninput="actionSearch()" type="text" class="form-control" id="search">
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">List Song :</label>
+                            <table class="table">
+                                <tr>
+                                    <th scope="col">STT</th>
+                                    <th scope="col">NAME</th>
+                                    <th scope="col"></th>
+                                </tr>
+                                <tbody id="draw">
 
-                                    </tbody>
-                                </table>
-                            </div>
-                        </form>
-                    </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-
-<%--        /////end modal--%>
-
+    </div>
     <!--- left part --->
     <div class="left">
         <!--- song img --->
         <img id="track_image">
         <div class="volume">
             <p id="volume_show">90</p>
-            <svg onclick="mute_sound()" id="volume_icon" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-volume-up" viewBox="0 0 16 16">
+            <svg onclick="mute_sound()" id="volume_icon" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                 fill="currentColor" class="bi bi-volume-up" viewBox="0 0 16 16">
                 <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/>
                 <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/>
                 <path d="M10.025 8a4.486 4.486 0 0 1-1.318 3.182L8 10.475A3.489 3.489 0 0 0 9.025 8c0-.966-.392-1.841-1.025-2.475l.707-.707A4.486 4.486 0 0 1 10.025 8zM7 4a.5.5 0 0 0-.812-.39L3.825 5.5H1.5A.5.5 0 0 0 1 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 7 12V4zM4.312 6.39 6 5.04v5.92L4.312 9.61A.5.5 0 0 0 4 9.5H2v-3h2a.5.5 0 0 0 .312-.11z"/>
@@ -444,8 +486,7 @@
         },
         </c:forEach>
     ];
-    console.log("all song ----->",All_song);
-
+    console.log("all song ----->", All_song);
 
 
     let listSongOfPlaylist = [
@@ -457,23 +498,26 @@
         },
         </c:forEach>
     ]
-    console.log("songOfPlaylist  ----->",listSongOfPlaylist);
+    console.log("songOfPlaylist  ----->", listSongOfPlaylist);
+
     // All functions
 
 
     function drawTable() {
-        let draw_Table ="";
+        let draw_Table = "";
         for (let i = 0; i < All_song.length; i++) {
             draw_Table += "<tr >" +
-                "<td >"+All_song[i].id+"</td>"+
-                "<td>"+All_song[i].name+"</td>"+
-                "<td>"+'<button id="buttonAddSong" type="submit" name="idSong" value="'+All_song[i].id+'">ADD</button>'+"</td>"+
+                "<td >" + All_song[i].id + "</td>" +
+                "<td>" + All_song[i].name + "</td>" +
+                "<td>" + '<button id="buttonAddSong" type="submit" name="idSong" value="' + All_song[i].id + '">ADD</button>' + "</td>" +
                 "</tr>"
         }
-        document.getElementById("draw").innerHTML= draw_Table;
+        document.getElementById("draw").innerHTML = draw_Table;
         console.log(draw_Table)
     }
+
     drawTable();
+
     // function load the track
     function load_track(index_no) {
         clearInterval(timer);
@@ -490,29 +534,117 @@
         present.innerHTML = index_no + 1;
     }
 
+    ///////// search
+
+    let listSearchSong = [];
+    // function drawTable() {
+    //     let drawTable = '';
+    //     for (let i = 0; i < All_song.length; i++) {
+    //         // drawTable +=
+    //         //     '<tr>' +
+    //         //     '<td>' + listSongAll[i].id + '</td>' +
+    //         //     '<td>' + listSongAll[i].name + '</td>' +
+    //         //     '<td>' +
+    //         //     '<button name="idSong" type="submit" value="' + listSongAll[i].id + '">Add</button>' +
+    //         //     '</td>' +
+    //         //
+    //         //     '</tr>'
+    //
+    // //     }
+    //     document.getElementById('drawTable').innerHTML = drawTable;
+    //     console.log('drawTable ---->', drawTable)
+    // }
+
+
+    drawTable();
+
+    function actionSearch() {
+        listSearchSong = [];
+        let search = document.getElementById('search').value;
+        console.log(
+            'search -->', search
+        )
+        //TÌM KIẾM TUYỆT ĐỐI ĐÚNG CẢ VỚI CHỮ HOA VÀ CHỮ THƯỜNG
+        // if(search.trim()===''){
+        //     showListStudent();
+        //     return;
+        // } else {
+        //     for (let i = 0; i < studentsList.length; i++) {
+        //         if(search.toLowerCase()===studentsList[i].toLowerCase()){
+        //             listStudentSearch.push(studentsList[i])
+        //         }
+        //     }
+        // }
+
+        //TÌM KIẾM TƯƠNG ĐỐI
+        if (search.trim() === '') {
+            drawTable();
+            return
+        } else {
+            for (let i = 0; i < All_song.length; i++) {
+                if (All_song[i].name.search(search) != -1) {
+                    console.log('vao if', i)
+                    listSearchSong.push(All_song[i])
+                }
+            }
+        }
+        showListSearch();
+    }
+
+    function showListSearch() {
+        let drawTable = '';
+        for (let i = 0; i < listSearchSong.length; i++) {
+            // let j = i+1;
+            //Cách 1: Dùng cách ' ' thông thường biding biến qua ++
+            drawTable +=
+                '<tr>' +
+                '<td>' + listSearchSong[i].id + '</td>' +
+                '<td>' + listSearchSong[i].name + '</td>' +
+                '<td>' +
+                '<button name="idSong" type="submit" value="' + listSearchSong[i].id + '">Add</button>' +
+                '</td>' +
+
+                '</tr>'
+
+            //Cách 2: Dùng string template `` biding biến qua
+            <%--drawTable += `<tr>--%>
+            <%--        <td>${i + 1}</td>--%>
+            <%--        <td>${listStudentSearch[i]}</td>--%>
+            <%--        <td><button style="background-color: blue; color: white" onclick="updateStudent(${i})">Edit</button></td>--%>
+            <%--        <td><button style="background-color: red; color: white" onclick="deleteStudent(${i})">Delete</button></td>--%>
+            <%--        </tr>`--%>
+        }
+        document.getElementById('draw').innerHTML = drawTable;
+        console.log(
+            'drawtTable Search', drawTable
+        )
+    }
+
+    ///////end search
     load_track(index_no);
 
 
     //mute sound function
     let mute = false;
+
     function mute_sound() {
         mute = !mute;
-        if (mute){
-            document.getElementById("volume_icon").innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-mute-fill" viewBox="0 0 16 16">'+
-                '<path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zm7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0z"/>'+
+        if (mute) {
+            document.getElementById("volume_icon").innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-mute-fill" viewBox="0 0 16 16">' +
+                '<path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zm7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0z"/>' +
                 '</svg>';
             track.volume = 0;
-            volume_show.innerHTML="0";
-            recent_volume.value=0;
-        }else {
-            document.getElementById("volume_icon").innerHTML='<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up" viewBox="0 0 16 16">'+
-                '<path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/>'+
-                '<path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/>'+
-                '<path d="M10.025 8a4.486 4.486 0 0 1-1.318 3.182L8 10.475A3.489 3.489 0 0 0 9.025 8c0-.966-.392-1.841-1.025-2.475l.707-.707A4.486 4.486 0 0 1 10.025 8zM7 4a.5.5 0 0 0-.812-.39L3.825 5.5H1.5A.5.5 0 0 0 1 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 7 12V4zM4.312 6.39 6 5.04v5.92L4.312 9.61A.5.5 0 0 0 4 9.5H2v-3h2a.5.5 0 0 0 .312-.11z"/>'+
+            volume_show.innerHTML = "0";
+            recent_volume.value = 0;
+        } else {
+            document.getElementById("volume_icon").innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up" viewBox="0 0 16 16">' +
+                '<path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/>' +
+                '<path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/>' +
+                '<path d="M10.025 8a4.486 4.486 0 0 1-1.318 3.182L8 10.475A3.489 3.489 0 0 0 9.025 8c0-.966-.392-1.841-1.025-2.475l.707-.707A4.486 4.486 0 0 1 10.025 8zM7 4a.5.5 0 0 0-.812-.39L3.825 5.5H1.5A.5.5 0 0 0 1 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 7 12V4zM4.312 6.39 6 5.04v5.92L4.312 9.61A.5.5 0 0 0 4 9.5H2v-3h2a.5.5 0 0 0 .312-.11z"/>' +
                 +'</svg>';
-            volume_show.innerHTML="30";
+            volume_show.innerHTML = "30";
             track.volume = recent_volume.value / 100;
-            recent_volume.value=30;
+            recent_volume.value = 30;
         }
     }
 
@@ -545,7 +677,11 @@
     function playsong() {
         track.play();
         Playing_song = true;
-        play.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>';
+        // play.innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>';
+        document.getElementById("play").innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-pause-circle" viewBox="0 0 16 16">'
+            + '<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>'
+            + '<path d="M5 6.25a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0v-3.5zm3.5 0a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0v-3.5z"/>' +
+            '</svg>';
     }
 
     //pause song
@@ -558,6 +694,7 @@
 
     // next song
     function next_song() {
+
         if (index_no < All_song.length - 1) {
             index_no += 1;
             load_track(index_no);
