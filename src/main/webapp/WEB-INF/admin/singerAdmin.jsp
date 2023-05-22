@@ -186,7 +186,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
                             <a href="/singers?action=delete&id=${ctm.id}">
-                                <button type="button" class="btn btn-danger">Yes</button>
+                                <button type="submit" class="btn btn-danger">Yes</button>
                             </a>
                         </div>
                     </div>
