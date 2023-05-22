@@ -42,9 +42,9 @@ public class BandController extends HttpServlet {
             case "create":
                 createBand(request, response);
                 break;
-//            case "update":
-//                editBand(request, response);
-//                break;
+            case "update":
+                editBand(request, response);
+                break;
         }
 
     }
@@ -83,13 +83,13 @@ public class BandController extends HttpServlet {
         bandService.deleteById(id);
         showBand(request, response);
     }
-//    public void editBand(HttpServletRequest request, HttpServletResponse response){
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        String name = request.getParameter("name");
-//        String avatar= request.getParameter("avatar");
-//        bandService.editById(name, avatar, id);
-//        showBand(request, response);
-//    }
+    public void editBand(HttpServletRequest request, HttpServletResponse response){
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String avatar= request.getParameter("avatar");
+        bandService.editById(name, avatar, id);
+        showBand(request, response);
+    }
     public void backToAdmin(HttpServletRequest request, HttpServletResponse response){
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/admin2.jsp");
         try {

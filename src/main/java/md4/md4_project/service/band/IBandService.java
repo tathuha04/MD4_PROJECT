@@ -15,4 +15,5 @@ public interface IBandService {
 
     void save(String name, String avatar);
 
+    void editById(String name, String avatar, int id);
 }
