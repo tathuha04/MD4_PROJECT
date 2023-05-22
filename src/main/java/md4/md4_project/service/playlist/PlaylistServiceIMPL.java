@@ -111,6 +111,7 @@ public class PlaylistServiceIMPL implements IPlaylistService {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL_PLAYLIST_BY_USER_ID);
             preparedStatement.setInt(1,id);
+
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 playlists.add(new Playlist(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("user_id"), resultSet.getByte("status"), resultSet.getString("avatar")));
@@ -123,16 +124,19 @@ public class PlaylistServiceIMPL implements IPlaylistService {
     }
 
     @Override
-    public void addSongToPlaylist(int playlistId, List<Integer> songId) {
+    public void addSongToPlaylist(int playlistId, int songId) {
         try {
             connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(ADD_SONG_TO_PLAYLIST);
 
-            for (int i = 0; i < songId.size(); i++) {
-                preparedStatement.setInt(1,playlistId);
-                preparedStatement.setInt(2,songId.get(i));
-                preparedStatement.executeUpdate();
-            }
+            preparedStatement.setInt(1,playlistId);
+            preparedStatement.setInt(2,songId);
+            preparedStatement.executeUpdate();
+//            for (int i = 0; i < songId.size(); i++) {
+//                preparedStatement.setInt(1,playlistId);
+//                preparedStatement.setInt(2,songId.get(i));
+//                preparedStatement.executeUpdate();
+//            }
             connection.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -140,16 +144,10 @@ public class PlaylistServiceIMPL implements IPlaylistService {
     }
 
     @Override
-    public void removeSongToPlaylist(int playlistId, List<Integer> songId) {
+    public void removeSongToPlaylist(int playlistId, int songId) {
         try {
             connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(REMOVE_SONG_TO_PLAYLIST);
-            for (int i = 0; i < songId.size(); i++) {
-
-                preparedStatement.setInt(1,playlistId);
-                preparedStatement.setInt(2,songId.get(i));
-                preparedStatement.executeUpdate();
-            }
             connection.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);

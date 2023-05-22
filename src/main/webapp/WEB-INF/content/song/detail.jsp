@@ -216,6 +216,43 @@
             margin: 0 5px;
         }
 
+        @-webkit-keyframes xoayvong {
+            from {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+            }
+            to {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+            }
+        }
+
+        /* Standard syntax */
+        @keyframes xoayvong {
+            from {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+            }
+            to {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+            }
+        }
+
+        #track_image {
+            animation: xoayvong 5s linear 0s infinite;
+            -webkit-animation: xoayvong 5s linear 0s infinite;
+            -moz-animation: xoayvong 5s linear 0s infinite;
+            -o-animation: xoayvong 5s linear 0s infinite;
+            border-radius: 50%;
+            width: 250px;
+            height: 250px;
+        }
+
     </style>
 </head>
 <body>
@@ -341,9 +378,7 @@
 
     //mute sound function
     let mute = false;
-    console.log('mute truoc goi -->', mute)
     function mute_sound() {
-        console.log("gọi mute")
         mute = !mute;
         if (mute){
             document.getElementById("volume_icon").className="bi bi-volume-mute";
@@ -353,8 +388,9 @@
             console.log()
         }else {
             document.getElementById("volume_icon").className='bi bi-megaphone-fill';
-            recent_volume.value=10;
-            volume_show.innerHTML="10";
+            recent_volume.value=30;
+            track.volume = recent_volume.value / 100;
+            volume_show.innerHTML="30";
         }
 
     }
@@ -364,11 +400,10 @@
     function justplay() {
         if (Playing_song == false) {
 
-
             playsong();
             document.getElementById("play").className="bi bi-play-circle";
         } else {
-            pausesong();
+            pausesong()
             document.getElementById("play").className="bi bi-pause-circle";
         }
     }
