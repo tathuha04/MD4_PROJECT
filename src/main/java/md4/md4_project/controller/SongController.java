@@ -29,7 +29,7 @@ public class SongController extends HttpServlet {
     IBandService bandService = new BandServiceIMPL();
     ICategoryService categoryService = new CategoryServiceIMPL();
     ISingerService singerService = new SingerServiceIMPL();
-   ISongService songService = new SongServiceIMPL();
+    ISongService songService = new SongServiceIMPL();
     IUserService userService = new UserServiceIMPL();
 
 
@@ -38,7 +38,7 @@ public class SongController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         String action = request.getParameter("action");
-        System.out.println("action tren doget --->"+action);
+        System.out.println("action tren doget --->" + action);
         if (action == null) {
             action = "";
         }
@@ -199,16 +199,15 @@ public class SongController extends HttpServlet {
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("user");
         int userId = user.getId();
-        Song song = new Song(name, categoryId,listBandId,listSingerId,userId,avatar,src);
-        songService.save(song,request);
-       showAllSong(request, response);
+        Song song = new Song(name, categoryId, listBandId, listSingerId, userId, avatar, src);
+        songService.save(song, request);
+        showAllSong(request, response);
     }
 
     private void detailSong(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        System.out.println(id);
-        Song song = (Song) songService.findById(id);
-        System.out.println(song.getSrc());
+        Song song = songService.findById(id);
+        songService.updateView(song);
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/song/detail.jsp");
         request.setAttribute("song", song);
         try {
@@ -219,7 +218,8 @@ public class SongController extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
-    public void backToAdmin(HttpServletRequest request, HttpServletResponse response){
+
+    public void backToAdmin(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/admin2.jsp");
         try {
             dispatcher.forward(request, response);

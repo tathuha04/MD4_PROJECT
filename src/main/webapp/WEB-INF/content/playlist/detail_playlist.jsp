@@ -407,16 +407,29 @@
 
     <%--};--%>
     console.log('${song.size()}');
-    let All_song = [
-        <c:forEach items="${song}" var="song">
-        {
-            id: "${song.getId()}",
-            name: "${song.getName()}",
-            mp3: "${song.getSrc()}",
-            img: "${song.getAvatar()}"
-        },
-        </c:forEach>
-    ];
+    let All_song=[];
+    if ('${songOfPlaylist!=null}'){
+        All_song = [
+            <c:forEach items="${songOfPlaylist}" var="song">
+            {
+                id: "${songOfPlaylist.getId()}",
+                name: "${songOfPlaylist.getName()}",
+                mp3: "${songOfPlaylist.getSrc()}",
+                img: "${songOfPlaylist.getAvatar()}"
+            },
+            </c:forEach>
+        ];
+    } else {
+        All_song = [
+            {
+                name: "first song",
+                mp3: "",
+                img: ""
+            }
+
+        ];
+    }
+
     console.log(All_song);
 
     // All functions

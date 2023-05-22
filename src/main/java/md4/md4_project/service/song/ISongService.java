@@ -7,6 +7,10 @@ import java.util.List;
 
 public interface ISongService extends IGenericService<Song> {
     List<Song> findAll();
+
     int getNoOfRecords();
+
     List<md4.md4_project.model.Song> findAllSongOfPlaylistByPlaylistId(int id);
+
+    void updateView(Song song);
 }

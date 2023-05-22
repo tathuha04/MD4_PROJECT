@@ -154,18 +154,14 @@ public class UserController extends HttpServlet {
     private void actionLogin(HttpServletRequest request, HttpServletResponse response) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
         User user = userService.userLogin(username, password);
-//        List<Role> roleList = (List<Role>) userService.findRoleByUserId(user.getId());
         Set<Role> roleSet = userService.findRoleByUserId(user.getId());
         System.out.println(userService.findRoleByUserId(user.getId()));
         String roleName = String.valueOf(UserRole.USER);
         for (Role role : roleSet) {
             if (role.getId() == 3) {
-                System.out.println("3");
                 roleName = String.valueOf(UserRole.ADMIN);
             } else if ((role.getId() == 2) && (roleName == String.valueOf(UserRole.USER))) {
-                System.out.println("2");
                 roleName = String.valueOf(UserRole.PM);
             }
         }
