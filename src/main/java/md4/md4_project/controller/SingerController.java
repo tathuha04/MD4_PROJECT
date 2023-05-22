@@ -32,6 +32,9 @@ public class SingerController extends HttpServlet {
             case "delete":
                 deleteSinger(request, response);
                 break;
+            case "back":
+                backToAdmin(request, response);
+                break;
         }
     }
 
@@ -94,5 +97,15 @@ public class SingerController extends HttpServlet {
         String avatar = request.getParameter("avatar");
         singerService.edit(id, name, avatar);
         showListSinger(request, response);
+    }
+    public void backToAdmin(HttpServletRequest request, HttpServletResponse response){
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/admin2.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

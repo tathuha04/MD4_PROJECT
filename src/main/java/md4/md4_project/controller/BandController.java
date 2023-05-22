@@ -17,20 +17,19 @@ public class BandController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        System.out.println("action o DoGet-->"+ action);
+//        System.out.println("action o DoGet-->"+ action);
         switch (action) {
             case "showband":
                 showBand(request, response);
                 break;
-//            case "delete":
-//                deleteById(request, response);
-//                break;
             case "create":
                 showFormCreate(request, response);
                 break;
             case "delete":
                 deleteBand(request, response);
-
+                break;
+            case "back":
+                backToAdmin(request, response);
                 break;
         }
     }
@@ -38,10 +37,14 @@ public class BandController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        System.out.println("action o DoPost-->"+ action);
         switch (action){
             case "create":
                 createBand(request, response);
                 break;
+//            case "update":
+//                editBand(request, response);
+//                break;
         }
 
     }
@@ -59,9 +62,6 @@ public class BandController extends HttpServlet {
         }
     }
 
-    public void deleteById(HttpServletRequest request, HttpServletResponse response) {
-
-    }
     public void showFormCreate(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/band/create.jsp");
         try {
@@ -82,5 +82,22 @@ public class BandController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         bandService.deleteById(id);
         showBand(request, response);
+    }
+//    public void editBand(HttpServletRequest request, HttpServletResponse response){
+//        int id = Integer.parseInt(request.getParameter("id"));
+//        String name = request.getParameter("name");
+//        String avatar= request.getParameter("avatar");
+//        bandService.editById(name, avatar, id);
+//        showBand(request, response);
+//    }
+    public void backToAdmin(HttpServletRequest request, HttpServletResponse response){
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/admin2.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

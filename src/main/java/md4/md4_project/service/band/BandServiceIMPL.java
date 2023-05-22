@@ -15,22 +15,13 @@ import java.util.List;
 public class BandServiceIMPL implements IBandService {
     private Connection connection = ConnectSQL.getConnection();
     private final String SELECT_ALL_BAND = "SELECT * FROM band";
-    private final String DELETE_BY_ID = "DELETE FROM band where id=?";
-    private final String INSERT_INTO_BAND = "INSERT INTO BAND (name, avatar) values ( ?, ?)";
+    private final String INSERT_INTO_BAND= "INSERT INTO band (name, avatar) values (?,?)";
+    private final String DELETE_BY_ID= "DELETE FROM band where id= ?";
 
     @Override
     public void save(Band band) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_INTO_BAND);
-            preparedStatement.setString(1, band.getName());
-            preparedStatement.setString(2, band.getAvatar());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
     }
-
-
 
     @Override
     public List<Band> findAll() {

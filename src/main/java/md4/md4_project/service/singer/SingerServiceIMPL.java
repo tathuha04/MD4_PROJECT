@@ -16,6 +16,7 @@ public class SingerServiceIMPL implements ISingerService {
     private final String SELECT_ALL_SINGER = "SELECT * from singer";
 
     private final String DELETE_SINGER_BY_ID= "DELETE from singer where id=? ";
+    private final String DELETE_SONG_OF_SINGER = "delete from song_of_singer where singerId= ?;";
 
     private final String INSERT_INTO_SINGER = "INSERT INTO SINGER (name, avatar) values (?,?)";
     private final String UPDATE_SINGER = "UPDATE SINGER SET name = ?, avatar= ? where id = ?";
@@ -66,9 +67,14 @@ public class SingerServiceIMPL implements ISingerService {
     @Override
     public void deleteById(int id) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_SINGER_BY_ID);
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_SONG_OF_SINGER);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
+            PreparedStatement preparedStatement1 = connection.prepareStatement(DELETE_SINGER_BY_ID);
+            preparedStatement1.setInt(1, id);
+            preparedStatement1.executeUpdate();
+            connection.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

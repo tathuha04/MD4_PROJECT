@@ -48,7 +48,9 @@ public class PlaylistController extends HttpServlet {
             case "deletePlaylist":
                 deletePlaylist(request, response);
                 break;
-
+            case "back":
+                backToAdmin(request, response);
+                break;
 
 
         }
@@ -206,6 +208,16 @@ public class PlaylistController extends HttpServlet {
         System.out.println(id);
         playlistService.deleteById(id);
         showAllPlaylistOfUser(request, response);
+    }
+    private void backToAdmin(HttpServletRequest request, HttpServletResponse response){
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/admin2.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

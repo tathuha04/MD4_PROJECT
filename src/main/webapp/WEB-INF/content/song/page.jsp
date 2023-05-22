@@ -29,7 +29,7 @@
       border-radius: 15%;
     }
     .btn_create{
-      margin-left: 125px;
+      /*margin-left: 125px;*/
       margin-top: 30px;
       width: 110px;
       height: 35px;
@@ -51,6 +51,11 @@
   </style>
 </head>
 <body>
+<a href="/song?action=back">
+  <button class="btn_create">
+    Back Menu
+  </button>
+</a>
 <a href="/song?action=create">
   <button class="btn_create">
     Create song
