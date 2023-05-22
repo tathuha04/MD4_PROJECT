@@ -51,18 +51,13 @@ public class Song {
         this.userId = userId;
     }
 
-    public Song(int id, String name, List<Integer> singerId, int categoryId, List<Integer> bandId, int userId, int numberOfView, String avatar, String src, List<Integer> likeUserId, List<Integer> commentId) {
-        this.id = id;
+    public Song(int id, String name,int categoryId, List<Integer> singerId, List<Integer> bandId, int userId, String src) {
         this.name = name;
         this.singerId = singerId;
         this.categoryId = categoryId;
         this.bandId = bandId;
         this.userId = userId;
-        this.numberOfView = numberOfView;
-        this.avatar = avatar;
         this.src = src;
-        this.likeUserId = likeUserId;
-        this.commentId = commentId;
     }
 
     public Song(String name, int categoryId, List<Integer> bandId, List<Integer> singerId, int userId,String avatar, String src) {
@@ -84,9 +79,18 @@ public class Song {
         this.src = src;
     }
 
-//    public Song(String name, int categoryId, List<Integer> listBandId, List<Integer> listSingerId, int userId, String avatar, String src) {
-//    }
-//
+    public Song(String name, int categoryId, List<Integer> bandId, List<Integer> singerId, int userId, String src) {
+        this.src = src;
+        this.name = name;
+        this.singerId = singerId;
+        this.categoryId = categoryId;
+        this.bandId = bandId;
+        this.userId = userId;
+
+    }
+
+
+
 
     public String getAvatar() {
         return avatar;
@@ -174,5 +178,22 @@ public class Song {
 
     public void setCommentId(List<Integer> commentId) {
         this.commentId = commentId;
+    }
+
+    @Override
+    public String toString() {
+        return "Song{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", singerId=" + singerId +
+                ", categoryId=" + categoryId +
+                ", bandId=" + bandId +
+                ", userId=" + userId +
+                ", numberOfView=" + numberOfView +
+                ", avatar='" + avatar + '\'' +
+                ", src='" + src + '\'' +
+                ", likeUserId=" + likeUserId +
+                ", commentId=" + commentId +
+                '}';
     }
 }

@@ -170,17 +170,17 @@
                                 <p>Please fill in the following information according to the template to update the information for the category with id : ${ctm.id}.</p>
                                 <form method="post" style="height: 50px">
                                     <label>Name</label>
-                                    <input name="name">
+                                    <input>
                                     <br>
                                     <label>Avatar</label>
                                     <jsp:include page="../upload/upload_avatar.jsp">
                                         <jsp:param name="articleId" value="${ctm.getId()}"/>
                                     </jsp:include>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
-                                        <a  href="/singers?action=edit&id=${ctm.id}"><button type="submit" class="btn btn-danger">Save</button></a>
-                                    </div>
                                 </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                                <a  href="/category?action=updatecategory&id=${ctm.id}"><button type="button" class="btn btn-danger">Save</button></a>
                             </div>
                         </div>
                     </div>

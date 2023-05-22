@@ -27,7 +27,7 @@
   </style>
 </head>
 <body>
-<a href="/song?action=creat">create song</a>
+<a href="/song?action=create">create song</a>
 <div class="container">
   <div class="col-12" style="margin-top: 20px">
     <div class="row">

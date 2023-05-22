@@ -286,14 +286,14 @@ MzmaWxL+JrxPvt93ySPR4z4f9TsTogsqmwmHIhcJQX/nsA+9phNCY96Mk+DV+kUQl4oF4Qu8LtPbHSa/
       <span class="tooltip">User</span>
     </li>
     <li>
-      <a href="singers?action=singer">
+      <a href="/singers?action=singer">
         <i class='bx bx-chat' ></i>
         <span class="links_name">Singer</span>
       </a>
       <span class="tooltip">Singer</span>
     </li>
     <li>
-      <a href="#">
+      <a href="/band?action=showband">
         <i class='bx bx-pie-chart-alt-2' ></i>
         <span class="links_name">Band</span>
       </a>
@@ -314,8 +314,8 @@ MzmaWxL+JrxPvt93ySPR4z4f9TsTogsqmwmHIhcJQX/nsA+9phNCY96Mk+DV+kUQl4oF4Qu8LtPbHSa/
       <span class="tooltip">Song</span>
     </li>
     <li>
-      <a href="/category?action=create">
-        <i class='/playlist?action=playlistmanager' ></i>
+      <a href="/playlist?action=showAllPlaylist">
+        <i class='bx bx-folder' ></i>
         <span class="links_name">Playlist</span>
       </a>
       <span class="tooltip">Playlist</span>

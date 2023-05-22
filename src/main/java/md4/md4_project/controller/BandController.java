@@ -22,11 +22,15 @@ public class BandController extends HttpServlet {
             case "showband":
                 showBand(request, response);
                 break;
+//            case "delete":
+//                deleteById(request, response);
+//                break;
             case "create":
                 showFormCreate(request, response);
                 break;
             case "delete":
                 deleteBand(request, response);
+
                 break;
         }
     }
@@ -39,9 +43,9 @@ public class BandController extends HttpServlet {
             case "create":
                 createBand(request, response);
                 break;
-            case "update":
-                editBand(request, response);
-                break;
+//            case "update":
+//                editBand(request, response);
+//                break;
         }
 
     }
@@ -59,6 +63,9 @@ public class BandController extends HttpServlet {
         }
     }
 
+    public void deleteById(HttpServletRequest request, HttpServletResponse response) {
+
+    }
     public void showFormCreate(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/band/create.jsp");
         try {
@@ -80,11 +87,11 @@ public class BandController extends HttpServlet {
         bandService.deleteById(id);
         showBand(request, response);
     }
-    public void editBand(HttpServletRequest request, HttpServletResponse response){
-        int id = Integer.parseInt(request.getParameter("id"));
-        String name = request.getParameter("name");
-        String avatar= request.getParameter("avatar");
-        bandService.editById(name, avatar, id);
-        showBand(request, response);
-    }
+//    public void editBand(HttpServletRequest request, HttpServletResponse response){
+//        int id = Integer.parseInt(request.getParameter("id"));
+//        String name = request.getParameter("name");
+//        String avatar= request.getParameter("avatar");
+//        bandService.editById(name, avatar, id);
+//        showBand(request, response);
+//    }
 }

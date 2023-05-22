@@ -307,18 +307,30 @@
 
 
     //All songs list
-    let All_song = [];
+    <%--let All_song = [];--%>
 
-    for (let i = 0; i < '${song.size()}'; i++) {
-        All_song.push({
-            name: '${song.get(i).name}',
-            path: '${song.get(i).src}',
-            imt: '${song.get(i).avatar}',
-            singer:"1"
-        });
-    };
-    console.log(All_song);
+    <%--for (let i = 0; i < '${song.size()}'; i++) {--%>
+    <%--    console.log(i);--%>
+    <%--    console.log('${song.get(i).name}');--%>
+    <%--    All_song.push({--%>
+    <%--        name: '${song.get(i).name}',--%>
+    <%--        path: '${song.get(i).src}',--%>
+    <%--        img: '${song.get(i).avatar}',--%>
+    <%--        singer:"1"--%>
+    <%--    });--%>
 
+    <%--};--%>
+    console.log('${song.size()}');
+    let All_song = [
+        <c:forEach items="${song}" var="song">
+        {
+            id: "${song.getId()}",
+            name: "${song.getName()}",
+            mp3: "${song.getSrc()}",
+            img: "${song.getAvatar()}"
+        },
+        </c:forEach>
+    ];
 
     // All functions
 
