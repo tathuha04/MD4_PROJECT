@@ -177,9 +177,6 @@ public class CategoryController extends HttpServlet {
     private void actionDeleteCategory(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("goi ham delete");
         int id = Integer.parseInt(request.getParameter("id"));
-//        String xoa = request.getParameter("delete");
-//        System.out.println("id ---<"+id);
-//        System.out.println("xoa ===>"+xoa);
         categoryService.deleteById(id);
         showFormCategoryAD(request, response);
 
