@@ -10,7 +10,6 @@
 
 <html>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
 <head>
     <title>Title</title>
     <style>
@@ -242,41 +241,7 @@
     </style>
 </head>
 <body>
-<div class="show modal">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">ADD SONG</button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">REMOVE SONG</button>
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Recipient:</label>
-                            <input type="text" class="form-control" id="recipient-name">
-                        </div>
-                        <div class="form-group">
-                            <label for="message-text" class="col-form-label">Message:</label>
-                            <textarea class="form-control" id="message-text"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Send message</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="main">
-
     <p id="logo"><i class="fa fa-music"></i>Music</p>
     <!--- left part --->
     <div class="left">
@@ -342,18 +307,30 @@
 
 
     //All songs list
-    let All_song = [];
+    <%--let All_song = [];--%>
 
-    for (let i = 0; i < '${song.size()}'; i++) {
-        All_song.push({
-            name: '${song.get(i).name}',
-            pampth: '${song.get(i).src}',
-            imt: '${song.get(i).avatar}',
-            singer:"1"
-        });
-    };
-    console.log(All_song);
+    <%--for (let i = 0; i < '${song.size()}'; i++) {--%>
+    <%--    console.log(i);--%>
+    <%--    console.log('${song.get(i).name}');--%>
+    <%--    All_song.push({--%>
+    <%--        name: '${song.get(i).name}',--%>
+    <%--        path: '${song.get(i).src}',--%>
+    <%--        img: '${song.get(i).avatar}',--%>
+    <%--        singer:"1"--%>
+    <%--    });--%>
 
+    <%--};--%>
+    console.log('${song.size()}');
+    let All_song = [
+        <c:forEach items="${song}" var="song">
+        {
+            id: "${song.getId()}",
+            name: "${song.getName()}",
+            mp3: "${song.getSrc()}",
+            img: "${song.getAvatar()}"
+        },
+        </c:forEach>
+    ];
 
     // All functions
 
