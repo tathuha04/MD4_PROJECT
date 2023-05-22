@@ -17,6 +17,7 @@
 </head>
 <body>
 <div class="main">
+  <h2 style="text-align: center"> TOP 10 VIEW OF SONG</h2>
   <table class="table table-dark">
     <thead>
     <tr>
