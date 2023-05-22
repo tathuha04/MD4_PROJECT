@@ -234,13 +234,12 @@
     </div>
     <!--- right part --->
     <div class="right">
-        ///// dùng cho playlist
 <%--        <div class="show_song_no">--%>
 <%--            <p id="present">1</p>--%>
 <%--            <p>/</p>--%>
 <%--            <p id="total">5</p>--%>
 <%--        </div>--%>
-        ////////
+
         <!--- song title & artist name --->
         <p id="title">title.mp3</p>
         <p id="artist">Artist name</p>

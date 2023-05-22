@@ -10,6 +10,10 @@
 
 <html>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <head>
     <title>Title</title>
     <style>
@@ -241,43 +245,80 @@
     </style>
 </head>
 <body>
-<div class="main">
-    <p id="logo"><i class="fa fa-music"></i>Music</p>
-    <!--- left part --->
-    <div class="left">
-        <!--- song img --->
-        <img id="track_image">
-        <div class="volume">
-            <p id="volume_show">90</p>
-            <i onclick="mute_sound()" id="volume_icon" class="bi bi-megaphone-fill"></i>
-            <%--            <i class="fa fa-volume-up" aria-hidden="true" onclick="mute_sound()" id="volume_icon"></i>--%>
-            <input type="range" min="0" max="100" value="90" onchange="volume_change()" id="volume">
-        </div>
-    </div>
-    <!--- right part --->
-    <div class="right">
 
-                <div class="show_song_no">
-                    <p id="present">1</p>
-                    <p>/</p>
-                    <p id="total">5</p>
+<div class="main">
+    <div class="show modal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">ADD SONG</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">REMOVE SONG</button>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Message:</label>
+                                <textarea class="form-control" id="message-text"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Send message</button>
+                    </div>
                 </div>
-        <!--- song title & artist name --->
-        <p id="title">title.mp3</p>
-        <p id="artist">Artist name</p>
-        <!--- middle part --->
-        <div class="middle">
-            <button onclick="previous_song()" id="pre"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
-            <button onclick="justplay()" id="play"><i class="bi bi-play-circle"></i></button>
-            <button onclick="next_song()" id="next"><i class="fa fa-step-forward" aria-hidden="true"></i></button>
+            </div>
         </div>
-        <!--- song duration part --->
-        <div class="duration">
-            <input type="range" min="0" max="100" value="0" id="duration_slider" onchange="change_duration()">
-        </div>
-        <button id="auto" onclick="autoplay_switch()">Auto play <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
-        </button>
     </div>
+
+        <p id="logo"><i class="fa fa-music"></i>Music</p>
+        <!--- left part --->
+        <div class="left">
+            <!--- song img --->
+            <img id="track_image">
+            <div class="volume">
+                <p id="volume_show">90</p>
+                <i onclick="mute_sound()" id="volume_icon" class="bi bi-megaphone-fill"></i>
+                <%--            <i class="fa fa-volume-up" aria-hidden="true" onclick="mute_sound()" id="volume_icon"></i>--%>
+                <input type="range" min="0" max="100" value="90" onchange="volume_change()" id="volume">
+            </div>
+        </div>
+        <!--- right part --->
+        <div class="right">
+
+            <div class="show_song_no">
+                <p id="present">1</p>
+                <p>/</p>
+                <p id="total">5</p>
+            </div>
+            <!--- song title & artist name --->
+            <p id="title">title.mp3</p>
+            <p id="artist">Artist name</p>
+            <!--- middle part --->
+            <div class="middle">
+                <button onclick="previous_song()" id="pre"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
+                <button onclick="justplay()" id="play"><i class="bi bi-play-circle"></i></button>
+                <button onclick="next_song()" id="next"><i class="fa fa-step-forward" aria-hidden="true"></i></button>
+            </div>
+            <!--- song duration part --->
+            <div class="duration">
+                <input type="range" min="0" max="100" value="0" id="duration_slider" onchange="change_duration()">
+            </div>
+            <button id="auto" onclick="autoplay_switch()">Auto play <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
+            </button>
+        </div>
+
+
 </div>
 <script>
 
@@ -331,6 +372,7 @@
         },
         </c:forEach>
     ];
+    console.log(All_song);
 
     // All functions
 
@@ -340,7 +382,7 @@
         clearInterval(timer);
         reset_slider();
 
-        track.src = All_song[index_no].path;
+        track.src = All_song[index_no].mp3;
         title.innerHTML = All_song[index_no].name;
         track_image.src = All_song[index_no].img;
         artist.innerHTML = All_song[index_no].singer;

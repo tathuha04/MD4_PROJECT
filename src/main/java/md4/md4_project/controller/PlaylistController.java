@@ -122,11 +122,8 @@ public class PlaylistController extends HttpServlet {
 
     private void detailPlaylist(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        System.out.println(id);
         List<Song> song = songService.findAllSongOfPlaylistByPlaylistId(id);
-        System.out.println(song);
         Playlist playlist =  playlistService.findById(id);
-
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/playlist/detail_playlist.jsp");
         request.setAttribute("playlist", playlist);
         request.setAttribute("song", song);
