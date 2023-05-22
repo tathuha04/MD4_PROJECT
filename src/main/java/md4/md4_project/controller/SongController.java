@@ -61,6 +61,9 @@ public class SongController extends HttpServlet {
             case "back":
                 backToAdmin(request, response);
                 break;
+            case "showTop":
+                showTopSong(request,response);
+                break;
 
         }
     }
@@ -231,6 +234,19 @@ public class SongController extends HttpServlet {
 
     public void backToAdmin(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/admin2.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void showTopSong(HttpServletRequest request,HttpServletResponse response){
+        List<Song> songList = songService.showTopSong();
+        System.out.println(songList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/content/song/list_top10_song.jsp");
+        request.setAttribute("song",songList);
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {

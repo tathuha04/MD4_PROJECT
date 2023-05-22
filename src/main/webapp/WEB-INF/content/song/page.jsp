@@ -56,11 +56,14 @@
     Back Menu
   </button>
 </a>
-<a href="/song?action=create">
-  <button class="btn_create">
-    Create song
-  </button>
-</a>
+<c:if test="${user!=null}">
+  <a href="/song?action=create">
+    <button class="btn_create">
+      Create song
+    </button>
+  </a>
+</c:if>
+
 <div class="container">
   <div class="col-12" style="margin-top: 20px">
     <div class="row">

@@ -583,7 +583,7 @@
                 <img src="https://img.icons8.com/dusk/64/circled.png" alt="circled"/>
                 <span class="link-name">Khám phá</span>
             </a></li>
-            <li><a href="#">
+            <li><a href="/song?action=showTop">
                 <img src="https://img.icons8.com/office/30/line-chart.png" alt="line-chart"/><span class="link-name">Zingchart</span>
             </a></li>
             <li><a href="/category?action=categoryAD">
@@ -604,11 +604,15 @@
                 <img src="https://img.icons8.com/nolan/64/playlist.png" alt="playlist"/> <span
                     class="link-name">Playlist</span>
             </a></li>
+            <li><a href="/song?action=page_grid">
+                <img src="https://img.icons8.com/nolan/64/playlist.png" alt="playlist"/> <span
+                    class="link-name">Song</span>
+            </a></li>
         </ul>
     </div>
 </nav>
 
-<section class="dashboard">
+<section class="dashboard" >
     <div class="top">
         <i class="uil uil-bars sidebar-toggle"></i>
         <div style="font-size: 35px;width: 120px">
@@ -691,9 +695,6 @@
         </c:if>
     </div>
 
-    <div class="dash-content">
-
-    </div>
 </section>
 <script>
     const body = document.querySelector("body"),

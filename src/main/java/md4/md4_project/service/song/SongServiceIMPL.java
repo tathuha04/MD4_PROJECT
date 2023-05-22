@@ -263,7 +263,15 @@ public class SongServiceIMPL implements ISongService {
             PreparedStatement preparedStatement = connection.prepareStatement(GET_TOP_VIEW_MUSIC);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Song song = new Song(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("category_Id"), resultSet.getInt("user_id"), resultSet.getString("avatar"), resultSet.getString("src"),resultSet.getString("artist"));
+                Song song = new Song();
+                song.setId(resultSet.getInt("id"));
+                song.setName( resultSet.getString("name"));
+                song.setCategoryId(resultSet.getInt("category_Id"));
+                song.setUserId(resultSet.getInt("user_id"));
+                song.setAvatar(resultSet.getString("avatar"));
+                song.setSrc(resultSet.getString("src"));
+                song.setArtist(resultSet.getString("artist"));
+                song.setNumberOfView(resultSet.getInt("view"));
                 songList.add(song);
             }
         } catch (SQLException e) {
