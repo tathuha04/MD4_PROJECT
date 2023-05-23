@@ -106,7 +106,7 @@
 
 <section class="home-section">
     <div class="category">
-        <p>Singer Manager</p>
+        <p>LIST SINGER</p>
         <div class="w3-container">
             <a href="/singers?action=back">
                 <button> Back Menu</button>

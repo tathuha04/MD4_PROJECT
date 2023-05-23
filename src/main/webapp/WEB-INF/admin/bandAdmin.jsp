@@ -91,7 +91,7 @@
 
 <section class="home-section">
     <div class="category">
-        <p>Band Manager</p>
+        <p>LIST BAND</p>
         <div class="w3-container">
             <a href="/band?action=back">
                 <button> Back Menu</button>

@@ -14,7 +14,8 @@
 <body>
 
 <div class="container">
-    <a href="/song?action=back">BACK MENU</a>
+    <h2 style="text-align: center">LIST SONG</h2>
+    <a href="/singers?action=back">BACK MENU</a>
     <a href="/song?action=create"><button>CREAT SONG</button></a>
     <div class="row">
         <div class="col-12" style="margin-top: 20px; margin-bottom: 20px">

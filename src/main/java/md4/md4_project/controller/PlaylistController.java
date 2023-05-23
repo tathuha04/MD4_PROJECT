@@ -48,6 +48,9 @@ public class PlaylistController extends HttpServlet {
             case "deletePlaylist":
                 deletePlaylist(request, response);
                 break;
+            case "backAdmin":
+                new SongController().backToAdmin(request, response);
+                break;
 
 
 

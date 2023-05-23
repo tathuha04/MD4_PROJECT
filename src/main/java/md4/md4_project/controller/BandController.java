@@ -36,7 +36,7 @@ public class BandController extends HttpServlet {
                 deleteBand(request, response);
                 break;
             case "back":
-                backToAdmin(request, response);
+                new SongController().backToAdmin(request, response);
                 break;
         }
     }
