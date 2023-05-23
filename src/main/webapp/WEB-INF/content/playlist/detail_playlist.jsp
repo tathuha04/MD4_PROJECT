@@ -315,12 +315,12 @@
 <body>
 
 <div class="main">
-    <div>
+    <div id="logo">
         <c:if test="${user!=null}">
             <button style="background-color: #a18cd1; margin-top: 30px" type="button" class="btn btn-primary"
                     data-toggle="modal" data-target="#exampleModal"
                     data-whatever="${playlist.getId()}">
-                <svg style="color: #3A3B3C;" xmlns="http://www.w3.org/2000/svg" width="35" height="35"
+                <svg style="color: #fafafa;" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                      fill="currentColor" class="bi bi-plus-circle"
                      viewBox="0 0 16 16">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -329,7 +329,7 @@
             </button>
             <button style="background-color: #a18cd1; margin-top: 30px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#removeModal"
                     data-whatever="${playlist.getId()}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-trash3"
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3"
                      viewBox="0 0 16 16">
                     <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
                 </svg>
@@ -458,7 +458,7 @@
         <p id="artist"></p>
         <!--- middle part --->
         <div class="middle">
-            <button onclick="previous_song()" id="pre">
+            <button style="background-color: #D7D6D6" onclick="previous_song()" id="pre">
                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
                      style="color: #444646" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -474,7 +474,7 @@
                 </svg>
 
             </button>
-            <button onclick="next_song()" id="next">
+            <button style="background-color: #D7D6D6" onclick="next_song()" id="next">
                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
                      style="color: #444646" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -589,7 +589,7 @@
         track.src = listSongOfPlaylist[index_no].mp3;
         title.innerHTML = listSongOfPlaylist[index_no].name;
         track_image.src = listSongOfPlaylist[index_no].img;
-        // artist.innerHTML = listSongOfPlaylist[index_no].singer;
+        artist.innerHTML = listSongOfPlaylist[index_no].singer;
         track.load();
 
         timer = setInterval(range_slider, 1000);
@@ -743,7 +743,7 @@
                 '</svg>';
         } else {
             pausesong();
-            document.getElementById("play").innerHTML = ' <svg style="color: #7732b4" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">' +
+            document.getElementById("play").innerHTML = ' <svg style="color: #444646" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">' +
                 '<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>' +
                 '<path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>' +
                 '</svg>';
@@ -824,10 +824,10 @@
         console.log('auto play')
         if (autoplay == 1) {
             autoplay = 0;
-            auto_play.style.background = "#444646";
+            auto_play.style.color = "#444646";
         } else {
             autoplay = 1;
-            auto_play.style.background = "#7732b4";
+            auto_play.style.color = "#7732b4";
         }
     }
 
