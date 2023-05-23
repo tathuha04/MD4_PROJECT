@@ -35,7 +35,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-12" style="margin: auto">
-                                    <form class="px-md-2" method="post">
+                                    <form class="px-md-2" method="post" action="/user?action=register">
                                         <div class="form-outline mb-4">
                                             <input type="text" class="form-control" name="name"/>
                                             <label class="form-label" >Name</label>

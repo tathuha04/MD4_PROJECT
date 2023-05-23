@@ -626,10 +626,10 @@
                 <img src="https://img.icons8.com/dusk/64/circled.png" alt="circled"/>
                 <span class="link-name">Khám phá</span>
             </a></li>
-            <li><a href="#">
+            <li><a href="/song?action=showTop">
                 <img src="https://img.icons8.com/office/30/line-chart.png" alt="line-chart"/><span class="link-name">Zingchart</span>
             </a></li>
-            <li><a href="/category?action=create">
+            <li><a href="/category?action=categoryAD">
                 <img src="https://img.icons8.com/external-inkubators-gradient-inkubators/25/external-menu-email-inkubators-gradient-inkubators.png"
                      alt="external-menu-email-inkubators-gradient-inkubators"/>
                 <span class="link-name">Chủ đề & thể loại</span>
@@ -647,11 +647,15 @@
                 <img src="https://img.icons8.com/nolan/64/playlist.png" alt="playlist"/> <span
                     class="link-name">Playlist</span>
             </a></li>
+            <li><a href="/song?action=page_grid">
+                <img src="https://img.icons8.com/nolan/64/playlist.png" alt="playlist"/> <span
+                    class="link-name">Song</span>
+            </a></li>
         </ul>
     </div>
 </nav>
 
-<section class="dashboard">
+<section class="dashboard" >
     <div class="top">
         <i class="uil uil-bars sidebar-toggle"></i>
         <div style="font-size: 35px;width: 120px">
@@ -662,8 +666,6 @@
                 <i class="uil uil-arrow-right "></i>
             </a>
         </div>
-
-
         <div class="search-box">
             <i class="uil uil-search"></i>
             <input type="text" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát...">
@@ -734,8 +736,6 @@
                 </a>
             </div>
         </c:if>
-
-
     </div>
 
     <div class="dash-content">
@@ -760,9 +760,8 @@
             <span class="dot" onclick="currentSlide(2)"></span>
         </div>
     </div>
+
 </section>
-
-
 <script>
 
     var slideIndex = 0;

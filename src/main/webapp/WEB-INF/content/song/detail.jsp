@@ -34,7 +34,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(to right, #5d6d7e, #566573);
+            background: linear-gradient(to right, #a18cd1, #a8a7a7);
         }
 
         .main button {
@@ -87,7 +87,7 @@
             -webkit-appearance: none;
             height: 20px;
             width: 20px;
-            background: #ff8a65;
+            background: #f1efef;
             border-radius: 50%;
             cursor: pointer;
         }
@@ -116,7 +116,7 @@
         .left .volume i {
             cursor: pointer;
             padding: 8px 12px;
-            background: #ff8a65;
+            background: #f1efef;
         }
 
         .left .volume i:hover {
@@ -158,7 +158,7 @@
             transform: translateX(-50%);
             text-transform: capitalize;
             color: #fff;
-            font-size: 35px;
+            font-size: 20px;
         }
 
         .right #artist {
@@ -173,7 +173,7 @@
 
         .right .duration {
             position: absolute;
-            bottom: 20%;
+            bottom: 11%;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -196,8 +196,8 @@
             margin-top: 45px;
             border: none;
             padding: 10px 14px;
-            color: #fff;
-            background: rgba(255, 255, 255, 0.2);
+            color: #444646;
+            background: #D7D6D6;
             outline: none;
             border-radius: 10px;
         }
@@ -207,11 +207,11 @@
         }
 
         #play {
-            background: #ff8a65;
+            background: #d7d6d6;
         }
 
         .right button:hover {
-            background: #ff8a65;
+            background: #d7d6d6;
         }
 
         .right i:before {
@@ -266,10 +266,10 @@
         }
 
         #track_image {
-            animation: xoayvong 5s linear 0s infinite;
-            -webkit-animation: xoayvong 5s linear 0s infinite;
-            -moz-animation: xoayvong 5s linear 0s infinite;
-            -o-animation: xoayvong 5s linear 0s infinite;
+            animation: xoayvong 15s linear 0s infinite;
+            -webkit-animation: xoayvong 15s linear 0s infinite;
+            -moz-animation: xoayvong 15s linear 0s infinite;
+            -o-animation: xoayvong 15s linear 0s infinite;
             border-radius: 50%;
             width: 250px;
             height: 250px;
@@ -279,7 +279,7 @@
 </head>
 <body>
 <div class="main">
-    <p id="logo"><i class="fa fa-music"></i>Music</p>
+<%--    <p id="logo"><i class="fa fa-music"></i>Music</p>--%>
     <!--- left part --->
     <div class="left">
         <!--- song img --->
@@ -304,13 +304,13 @@
         <%--        </div>--%>
 
         <!--- song title & artist name --->
-        <p id="title">title.mp3</p>
-        <p id="artist">Artist name</p>
+        <p id="title"></p>
+        <p id="artist"></p>
         <!--- middle part --->
         <div class="middle">
             <%--            <button onclick="previous_song()" id="pre"><i class="fa fa-step-backward" aria-hidden="true"></i></button>--%>
             <button onclick="justplay()" id="play">
-                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+                <svg style="color: #444646" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
                      class="bi bi-play-circle" viewBox="0 0 16 16">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                     <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
@@ -321,16 +321,24 @@
         <div class="duration">
             <input type="range" min="0" max="100" value="0" id="duration_slider" onchange="change_duration()">
         </div>
-        <button id="auto" onclick="autoplay_switch()">Auto play <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
+        <button id="auto" onclick="autoplay_switch()"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-repeat" viewBox="0 0 16 16">
+            <path d="M11 5.466V4H5a4 4 0 0 0-3.584 5.777.5.5 0 1 1-.896.446A5 5 0 0 1 5 3h6V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192Zm3.81.086a.5.5 0 0 1 .67.225A5 5 0 0 1 11 13H5v1.466a.25.25 0 0 1-.41.192l-2.36-1.966a.25.25 0 0 1 0-.384l2.36-1.966a.25.25 0 0 1 .41.192V12h6a4 4 0 0 0 3.585-5.777.5.5 0 0 1 .225-.67Z"/>
+        </svg>
         </button>
     </div>
 </div>
 <script>
     let song = {
         id: "${song.getId()}",
-        name: "${song.getName()}",
-        avatar: "${song.getAvatar()}",
-        mp3: "${song.getSrc()}"
+<%--<<<<<<< HEAD--%>
+<%--        name: "${song.getName()}",--%>
+<%--        avatar: "${song.getAvatar()}",--%>
+<%--        mp3: "${song.getSrc()}"--%>
+<%--=======--%>
+        name:"${song.getName()}",
+        avatar:"${song.getAvatar()}",
+        mp3: "${song.getSrc()}",
+        singer:"${song.getArtist()}"
     }
 
 
@@ -369,6 +377,8 @@
         track.src = song.mp3;
         title.innerHTML = song.name;
         track_image.src = song.avatar;
+
+        artist.innerHTML = song.singer;
         track.load();
 
         timer = setInterval(range_slider, 1000);
@@ -395,9 +405,10 @@
                 '<path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/>' +
                 '<path d="M10.025 8a4.486 4.486 0 0 1-1.318 3.182L8 10.475A3.489 3.489 0 0 0 9.025 8c0-.966-.392-1.841-1.025-2.475l.707-.707A4.486 4.486 0 0 1 10.025 8zM7 4a.5.5 0 0 0-.812-.39L3.825 5.5H1.5A.5.5 0 0 0 1 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 7 12V4zM4.312 6.39 6 5.04v5.92L4.312 9.61A.5.5 0 0 0 4 9.5H2v-3h2a.5.5 0 0 0 .312-.11z"/>' +
                 +'</svg>';
+            recent_volume.value = 30;
             volume_show.innerHTML = "30";
             track.volume = recent_volume.value / 100;
-            recent_volume.value = 30;
+
         }
     }
 
@@ -406,13 +417,13 @@
     function justplay() {
         if (Playing_song == false) {
             playsong();
-            document.getElementById("play").innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-pause-circle" viewBox="0 0 16 16">'
+            document.getElementById("play").innerHTML = '<svg style="color: #7732b4" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-pause-circle" viewBox="0 0 16 16">'
                 + '<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>'
                 + '<path d="M5 6.25a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0v-3.5zm3.5 0a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0v-3.5z"/>' +
                 '</svg>';
         } else {
             pausesong();
-            document.getElementById("play").innerHTML = ' <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">' +
+            document.getElementById("play").innerHTML = ' <svg style="color: #444646" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">' +
                 '<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>' +
                 '<path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>' +
                 '</svg>';
@@ -457,13 +468,13 @@
         console.log('auto play')
         if (autoplay == 1) {
             autoplay = 0;
-            auto_play.style.background = "rgba(255,255,255,0.2)";
+            auto_play.style.color = "#444646";
         } else {
             if (track.ended) {
                 track.play();
             }
             autoplay = 1;
-            auto_play.style.background = "#FF8A65";
+            auto_play.style.color = "#7732b4";
         }
     }
 

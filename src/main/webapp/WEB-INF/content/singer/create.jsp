@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-<jsp:include page='../../bootstrap/sidebar_navbar.jsp'>
-    <jsp:param name="articleId" value=""/>
-</jsp:include>
+<%--<jsp:include page='../../bootstrap/sidebar_navbar.jsp'>--%>
+<%--    <jsp:param name="articleId" value=""/>--%>
+<%--</jsp:include>--%>
 <head>
   <title>Title</title>
   <style>
@@ -82,4 +82,7 @@
 </script>
 </body>
 </html>
+<%--<jsp:include page='../../bootstrap/footer.jsp'>--%>
+<%--    <jsp:param name="articleId" value=""/>--%>
+<%--</jsp:include>--%>
 

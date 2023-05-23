@@ -29,7 +29,7 @@
       border-radius: 15%;
     }
     .btn_create{
-      margin-left: 125px;
+      /*margin-left: 125px;*/
       margin-top: 30px;
       width: 110px;
       height: 35px;
@@ -42,7 +42,7 @@
       width: auto;
       height: 37.33px;
       background-color: white;
-      border: 1px #d7d6d6;
+      border: 1px none;
     }
     .namesong{
       color: black;
@@ -51,11 +51,19 @@
   </style>
 </head>
 <body>
-<a href="/song?action=create">
+<a href="/song?action=back">
   <button class="btn_create">
-    Create song
+    Back Menu
   </button>
 </a>
+<c:if test="${user!=null}">
+  <a href="/song?action=create">
+    <button class="btn_create">
+      Create song
+    </button>
+  </a>
+</c:if>
+
 <div class="container">
   <div class="col-12" style="margin-top: 20px">
     <div class="row">
@@ -73,8 +81,7 @@
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <c:if test="${pageNumber != 1}">
-          <li class="page-item"><a class="page-link" href="/song?action=page_grid&page=${pageNumber-1}"><button class="buttonNP">Previous</button></a>
-          </li>
+          <li class="page-item"><a href="/song?action=page_grid&page=${pageNumber-1}"><button class="buttonNP">Previous</button></a></li>
         </c:if>
         <c:forEach begin="1" end="${sumOfPage}" var="i" varStatus="red">
           <c:choose>

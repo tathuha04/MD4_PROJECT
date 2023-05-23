@@ -10,7 +10,7 @@ public class User {
     private String email;
     private String password;
     private byte status;
-    private String avatar = "https://firebasestorage.googleapis.com/v0/b/projectmd4-deb2e.appspot.com/o/avatardefault.png?alt=media&token=741b462a-a9f6-40fe-a7c6-8c3550650c9c";
+    private String avatar = "https://firebasestorage.googleapis.com/v0/b/tathuha-2045b.appspot.com/o/8f20c28b-cc56-49ed-b93e-1f66d559d5af.jpg?alt=media&token=e4e7e80f-75a1-460f-a53a-5fbd147cf204";
     private Set<Role> roleSet = new HashSet<>();
     public User() {
     }

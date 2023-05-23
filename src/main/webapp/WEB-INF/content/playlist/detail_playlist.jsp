@@ -57,7 +57,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(to right, #5d6d7e, #566573);
+            background: linear-gradient(to right, #a18cd1, #a8a7a7);
         }
 
         .main button {
@@ -110,7 +110,7 @@
             -webkit-appearance: none;
             height: 20px;
             width: 20px;
-            background: #ff8a65;
+            background: #f1efef;
             border-radius: 50%;
             cursor: pointer;
         }
@@ -139,7 +139,7 @@
         .left .volume i {
             cursor: pointer;
             padding: 8px 12px;
-            background: #ff8a65;
+            background: #f1efef;
         }
 
         .left .volume i:hover {
@@ -181,7 +181,7 @@
             transform: translateX(-50%);
             text-transform: capitalize;
             color: #fff;
-            font-size: 35px;
+            font-size: 20px;
         }
 
         .right #artist {
@@ -196,7 +196,7 @@
 
         .right .duration {
             position: absolute;
-            bottom: 20%;
+            bottom: 11%;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -219,8 +219,8 @@
             margin-top: 45px;
             border: none;
             padding: 10px 14px;
-            color: #fff;
-            background: rgba(255, 255, 255, 0.2);
+            color: #444646;
+            background: #D7D6D6;
             outline: none;
             border-radius: 10px;
         }
@@ -230,11 +230,11 @@
         }
 
         #play {
-            background: #ff8a65;
+            background: #d7d6d6;
         }
 
         .right button:hover {
-            background: #ff8a65;
+            background: #a8a7a7;
         }
 
         .right i:before {
@@ -301,10 +301,10 @@
         }
 
         #track_image {
-            animation: xoayvong 5s linear 0s infinite;
-            -webkit-animation: xoayvong 5s linear 0s infinite;
-            -moz-animation: xoayvong 5s linear 0s infinite;
-            -o-animation: xoayvong 5s linear 0s infinite;
+            animation: xoayvong 15s linear 0s infinite;
+            -webkit-animation: xoayvong 15s linear 0s infinite;
+            -moz-animation: xoayvong 15s linear 0s infinite;
+            -o-animation: xoayvong 15s linear 0s infinite;
             border-radius: 50%;
             width: 250px;
             height: 250px;
@@ -315,35 +315,57 @@
 <body>
 
 <div class="main">
-    <p id="logo">
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-             class="bi bi-music-note-beamed" viewBox="0 0 16 16">
-            <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"/>
-            <path fill-rule="evenodd" d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"/>
-            <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"/>
-        </svg>
-        Music
-    </p>
+    <div>
+        <c:if test="${user!=null}">
+            <button style="background-color: #a18cd1; margin-top: 30px" type="button" class="btn btn-primary"
+                    data-toggle="modal" data-target="#exampleModal"
+                    data-whatever="${playlist.getId()}">
+                <svg style="color: #3A3B3C;" xmlns="http://www.w3.org/2000/svg" width="35" height="35"
+                     fill="currentColor" class="bi bi-plus-circle"
+                     viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+            </button>
+            <button style="background-color: #a18cd1; margin-top: 30px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#removeModal"
+                    data-whatever="${playlist.getId()}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-trash3"
+                     viewBox="0 0 16 16">
+                    <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+                </svg>
+            </button>
+        </c:if>
+
+    </div>
+    <%--        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"--%>
+    <%--             class="bi bi-music-note-beamed" viewBox="0 0 16 16">--%>
+    <%--            <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"/>--%>
+    <%--            <path fill-rule="evenodd" d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"/>--%>
+    <%--            <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"/>--%>
+    <%--        </svg>--%>
 
     <%--        ///// modal--%>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-            data-whatever="${playlist.getId()}">
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-plus-circle"
-             viewBox="0 0 16 16">
-            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-             class="bi bi-file-earmark-music" viewBox="0 0 16 16">
-            <path d="M11 6.64a1 1 0 0 0-1.243-.97l-1 .25A1 1 0 0 0 8 6.89v4.306A2.572 2.572 0 0 0 7 11c-.5 0-.974.134-1.338.377-.36.24-.662.628-.662 1.123s.301.883.662 1.123c.364.243.839.377 1.338.377.5 0 .974-.134 1.338-.377.36-.24.662-.628.662-1.123V8.89l2-.5V6.64z"/>
-            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
-        </svg>
-    </button>
+    <%--<<<<<<< HEAD--%>
+    <%--    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"--%>
+    <%--            data-whatever="${playlist.getId()}">--%>
+    <%--        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-plus-circle"--%>
+    <%--             viewBox="0 0 16 16">--%>
+    <%--            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>--%>
+    <%--            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>--%>
+    <%--        </svg>--%>
+    <%--        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"--%>
+    <%--             class="bi bi-file-earmark-music" viewBox="0 0 16 16">--%>
+    <%--            <path d="M11 6.64a1 1 0 0 0-1.243-.97l-1 .25A1 1 0 0 0 8 6.89v4.306A2.572 2.572 0 0 0 7 11c-.5 0-.974.134-1.338.377-.36.24-.662.628-.662 1.123s.301.883.662 1.123c.364.243.839.377 1.338.377.5 0 .974-.134 1.338-.377.36-.24.662-.628.662-1.123V8.89l2-.5V6.64z"/>--%>
+    <%--            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>--%>
+    <%--        </svg>--%>
+    <%--    </button>--%>
+    <%--=======--%>
+
+
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <%--                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>--%>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -353,6 +375,7 @@
                         <div class="form-group">
                             <label class="col-form-label">Enter the name song: </label>
                             <input oninput="actionSearch()" type="text" class="form-control" id="search">
+
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">List Song :</label>
@@ -372,6 +395,41 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="removeModal" tabindex="-1" aria-labelledby="removeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/playlist?action=removeSong&idPLL=${playlist.getId()}" method="post">
+                        <div class="form-group">
+                            <a href=""></a>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">List Song :</label>
+                            <table class="table">
+                                <tr>
+                                    <th scope="col">STT</th>
+                                    <th scope="col">NAME</th>
+                                    <th scope="col"></th>
+                                </tr>
+                                <tbody id="draw_remove">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%--        /////end modal--%>
+
     <!--- left part --->
     <div class="left">
         <!--- song img --->
@@ -393,16 +451,16 @@
         <div class="show_song_no">
             <p id="present">1</p>
             <p>/</p>
-            <p id="total">5</p>
+            <p id="total"></p>
         </div>
         <!--- song title & artist name --->
-        <p id="title">title.mp3</p>
-        <p id="artist">Artist name</p>
+        <p id="title"></p>
+        <p id="artist"></p>
         <!--- middle part --->
         <div class="middle">
             <button onclick="previous_song()" id="pre">
                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
-                     style="color: #fafafa" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                     style="color: #444646" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                           d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
                 </svg>
@@ -418,7 +476,7 @@
             </button>
             <button onclick="next_song()" id="next">
                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
-                     style="color: #fafafa" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+                     style="color: #444646" class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                           d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
                 </svg>
@@ -428,7 +486,11 @@
         <div class="duration">
             <input type="range" min="0" max="100" value="0" id="duration_slider" onchange="change_duration()">
         </div>
-        <button id="auto" onclick="autoplay_switch()">Auto play <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
+        <button id="auto" onclick="autoplay_switch()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-repeat"
+                 viewBox="0 0 16 16">
+                <path d="M11 5.466V4H5a4 4 0 0 0-3.584 5.777.5.5 0 1 1-.896.446A5 5 0 0 1 5 3h6V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192Zm3.81.086a.5.5 0 0 1 .67.225A5 5 0 0 1 11 13H5v1.466a.25.25 0 0 1-.41.192l-2.36-1.966a.25.25 0 0 1 0-.384l2.36-1.966a.25.25 0 0 1 .41.192V12h6a4 4 0 0 0 3.585-5.777.5.5 0 0 1 .225-.67Z"/>
+            </svg>
         </button>
     </div>
 
@@ -492,6 +554,7 @@
     let listSongOfPlaylist = [
         <c:forEach items="${songOfPlaylist}" var="song">
         {
+            id: "${song.getId()}",
             name: "${song.getName()}",
             mp3: "${song.getSrc()}",
             img: "${song.getAvatar()}"
@@ -557,13 +620,19 @@
 
 
     drawTable();
+    // =======
+    //     // function myFunction() {
+    //     //     var x = document.getElementById("mySelect").value;
+    //     //     document.getElementById("demo").innerHTML = "Bạn đã chọn xe: " + x;
+    //     // }
+    //     let listSearchSong = [];
+    // >>>>>>> dev
 
     function actionSearch() {
         listSearchSong = [];
         let search = document.getElementById('search').value;
         console.log(
-            'search -->', search
-        )
+        );
         //TÌM KIẾM TUYỆT ĐỐI ĐÚNG CẢ VỚI CHỮ HOA VÀ CHỮ THƯỜNG
         // if(search.trim()===''){
         //     showListStudent();
@@ -620,8 +689,23 @@
         )
     }
 
-    ///////end search
     load_track(index_no);
+
+    function drawRemoveTable() {
+        let draw_Table = "";
+        for (let i = 0; i < listSongOfPlaylist.length; i++) {
+            draw_Table += "<tr >" +
+                "<td >" + listSongOfPlaylist[i].id + "</td>" +
+                "<td>" + listSongOfPlaylist[i].name + "</td>" +
+                "<td>" +
+                '<button  type="submit" name="idSong" value="' + listSongOfPlaylist[i].id + '">REMOVE</button>' +
+                "</td>" +
+                "</tr>"
+        }
+        document.getElementById("draw_remove").innerHTML = draw_Table;
+    }
+
+    drawRemoveTable();
 
 
     //mute sound function
@@ -653,13 +737,13 @@
     function justplay() {
         if (Playing_song == false) {
             playsong();
-            document.getElementById("play").innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-pause-circle" viewBox="0 0 16 16">'
+            document.getElementById("play").innerHTML = '<svg style="color: #7732b4" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-pause-circle" viewBox="0 0 16 16">'
                 + '<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>'
                 + '<path d="M5 6.25a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0v-3.5zm3.5 0a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0v-3.5z"/>' +
                 '</svg>';
         } else {
             pausesong();
-            document.getElementById("play").innerHTML = ' <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">' +
+            document.getElementById("play").innerHTML = ' <svg style="color: #7732b4" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">' +
                 '<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>' +
                 '<path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>' +
                 '</svg>';
@@ -740,10 +824,10 @@
         console.log('auto play')
         if (autoplay == 1) {
             autoplay = 0;
-            auto_play.style.background = "rgba(255,255,255,0.2)";
+            auto_play.style.background = "#444646";
         } else {
             autoplay = 1;
-            auto_play.style.background = "#FF8A65";
+            auto_play.style.background = "#7732b4";
         }
     }
 

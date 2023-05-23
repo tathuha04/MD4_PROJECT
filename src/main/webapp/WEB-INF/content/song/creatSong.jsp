@@ -36,19 +36,19 @@
                 <input type="text" name="name" class="form-control" placeholder="Enter the name of Song">
             </div>
             <div class="form-group">
-                <label style="color: white">Chon the loai</label>
+                <label style="color: white">Chọn thể loại :</label>
                 <select class="form-control" name="categories" id="categories">
                     <c:forEach items="${categories}" var="c">
                         <option value="${c.id}">${c.name}</option>
                     </c:forEach>
                 </select>
-                <label style="color:white">Chon ban nhac </label>
+                <label style="color:white">Chọn ban nhạc :</label>
                 <select class="form-control" name="listBand" id="listBand" multiple>
                     <c:forEach items="${listBand}" var="b">
                         <option value="${b.id}">${b.name}</option>
                     </c:forEach>
                 </select>
-                <label style="color: white">Chon ca sy </label>
+                <label style="color: white">Chọn ca sĩ :</label>
                 <select class="form-control" name="listSinger" id="listSinger" multiple>
                     <c:forEach items="${listSinger}" var="s">
                         <option value="${s.id}">${s.name}</option>

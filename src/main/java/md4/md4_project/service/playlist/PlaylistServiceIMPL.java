@@ -26,7 +26,7 @@ public class PlaylistServiceIMPL implements IPlaylistService {
     private final String FIND_ALL_PLAYLIST_BY_USER_ID="SELECT * FROM PLAYLIST WHERE USER_ID=?";
     private final String FIND_ALL_SONG_OF_PLAYLIST_BY_ID="SELECT * FROM SONG_OF_PLAYLIST WHERE PlaylistId=?";
     private final String ADD_SONG_TO_PLAYLIST="INSERT INTO SONG_OF_PLAYLIST(playlistid,songid) value(?,?)";
-    private final String REMOVE_SONG_TO_PLAYLIST="DELETE FROM SONG_OF_PLAYLIST WHERE (playlistid=? AND songid=?)";
+    private final String REMOVE_SONG_TO_PLAYLIST="DELETE FROM SONG_OF_PLAYLIST WHERE playlistid=? AND songid=?";
 
     @Override
     public List findAll() {
@@ -128,7 +128,6 @@ public class PlaylistServiceIMPL implements IPlaylistService {
         try {
             connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(ADD_SONG_TO_PLAYLIST);
-
             preparedStatement.setInt(1,playlistId);
             preparedStatement.setInt(2,songId);
             preparedStatement.executeUpdate();
@@ -148,6 +147,9 @@ public class PlaylistServiceIMPL implements IPlaylistService {
         try {
             connection.setAutoCommit(false);
             PreparedStatement preparedStatement = connection.prepareStatement(REMOVE_SONG_TO_PLAYLIST);
+            preparedStatement.setInt(1,playlistId);
+            preparedStatement.setInt(2,songId);
+            preparedStatement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);

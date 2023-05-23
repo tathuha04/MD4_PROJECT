@@ -33,6 +33,7 @@ public class UserController extends HttpServlet {
         if (action == null) {
             action = "";
         }
+        System.out.println("action Do Get "+action);
         switch (action) {
             case "register":
                 showFormRegister(req, resp);
@@ -48,6 +49,9 @@ public class UserController extends HttpServlet {
                 break;
             case "usercontroller":
                 showFormUserController(req, resp);
+                break;
+            case "back":
+                backToAdmin(req, resp);
                 break;
         }
 
@@ -150,26 +154,22 @@ public class UserController extends HttpServlet {
     private void actionLogin(HttpServletRequest request, HttpServletResponse response) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
         User user = userService.userLogin(username, password);
-//        List<Role> roleList = (List<Role>) userService.findRoleByUserId(user.getId());
         Set<Role> roleSet = userService.findRoleByUserId(user.getId());
         System.out.println(userService.findRoleByUserId(user.getId()));
-        String roleName= String.valueOf(UserRole.USER);
-        for (Role role: roleSet) {
-            if (role.getId()==3){
-                System.out.println("3");
-                roleName= String.valueOf(UserRole.ADMIN);
-            } else if ((role.getId()==2)&&(roleName==String.valueOf(UserRole.USER))) {
-                System.out.println("2");
-                roleName=String.valueOf(UserRole.PM);
+        String roleName = String.valueOf(UserRole.USER);
+        for (Role role : roleSet) {
+            if (role.getId() == 3) {
+                roleName = String.valueOf(UserRole.ADMIN);
+            } else if ((role.getId() == 2) && (roleName == String.valueOf(UserRole.USER))) {
+                roleName = String.valueOf(UserRole.PM);
             }
         }
         System.out.println(roleName);
         if (user != null) {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-            session.setAttribute("role",roleName);
+            session.setAttribute("role", roleName);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/admin/admin2.jsp");
             try {
                 dispatcher.forward(request, response);
@@ -224,12 +224,13 @@ public class UserController extends HttpServlet {
             }
         }
     }
-    public void showFormUserController(HttpServletRequest request, HttpServletResponse response){
+
+    public void showFormUserController(HttpServletRequest request, HttpServletResponse response) {
         List<User> userList = userService.findAll();
         request.setAttribute("userList", userList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/userAdmin.jsp");
         try {
-            dispatcher.forward(request,response);
+            dispatcher.forward(request, response);
         } catch (ServletException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -237,6 +238,14 @@ public class UserController extends HttpServlet {
         }
     }
 
-
-
+    public void backToAdmin(HttpServletRequest request, HttpServletResponse response) {
+     RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/admin2.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

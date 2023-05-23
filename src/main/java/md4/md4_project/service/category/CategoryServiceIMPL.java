@@ -10,6 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class CategoryServiceIMPL implements ICategoryService{
     Connection connection = ConnectSQL.getConnection();
     private int totalElement;
@@ -19,6 +20,7 @@ public class CategoryServiceIMPL implements ICategoryService{
     private final String UPDATE_CATEGORY = "UPDATE category set name =?, avatar =? where id =?";
     private  final String DELETE_CATEGORY = "DELETE from category where id =?";
     private final String INSERT_INTO_CATEGORY = "INSERT INTO category (name,avatar) values (?,?)";
+    private final String UPDATE_BAND = "UPDATE band set name=?,avatar=? where id=?";
     @Override
     public void save(String name, String avatar) {
         try {

@@ -15,22 +15,15 @@ import java.util.List;
 public class BandServiceIMPL implements IBandService {
     private Connection connection = ConnectSQL.getConnection();
     private final String SELECT_ALL_BAND = "SELECT * FROM band";
-    private final String DELETE_BY_ID = "DELETE FROM band where id=?";
-    private final String INSERT_INTO_BAND = "INSERT INTO BAND (name, avatar) values ( ?, ?)";
+    private final String INSERT_INTO_BAND= "INSERT INTO band (name, avatar) values (?,?)";
+    private final String DELETE_BY_ID= "DELETE FROM band where id= ?";
+    private final String UPDATE_BAND = "UPDATE band set name=?,avatar=? where id=?";
+    private final String FIND_BAND_BY_ID="SELECT * FROM BAND WHERE ID=?";
 
     @Override
     public void save(Band band) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_INTO_BAND);
-            preparedStatement.setString(1, band.getName());
-            preparedStatement.setString(2, band.getAvatar());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
     }
-
-
 
     @Override
     public List<Band> findAll() {
@@ -64,6 +57,23 @@ public class BandServiceIMPL implements IBandService {
     }
 
     @Override
+    public Band findById(int id) {
+        Band band = new Band();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(FIND_BAND_BY_ID);
+            preparedStatement.setInt(1,id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                band=new Band(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("avatar"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return band;
+    }
+
+    @Override
     public void save(String name, String avatar) {
         try {
             connection.setAutoCommit(false);
@@ -75,6 +85,11 @@ public class BandServiceIMPL implements IBandService {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void editById(String name, String avatar, int id) {
+
     }
 
     @Override

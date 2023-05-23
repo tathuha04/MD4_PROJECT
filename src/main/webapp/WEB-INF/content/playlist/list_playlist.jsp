@@ -35,22 +35,32 @@
             background-color: #8221ac;
             color: #DDDDDD;
             border-radius: 8px;
-            margin: 20px 0px 20px 20px;
+            margin-top: 30px;
+            margin-bottom: 20px;
             border:none;
+        }
+        table th td {
+            text-align: center;
         }
     </style>
 </head>
 <body>
+
+<%--        <button class="button_create">BACK MENU</button>--%>
+
 <div>
-    <a href="/playlist?action=create">
+    <a href="/playlist?action=back">
+        <button class="button_create">BACK MENU</button>
+    </a>
+    <a href="/singers?action=create">
         <button class="button_create">CREATE NEW PLAYLIST</button>
     </a>
 </div>
 <table class="table align-middle mb-0 bg-white">
     <thead class="bg-light">
     <tr>
+        <th></th>
         <th>Name</th>
-        <th>Title</th>
         <th>Status</th>
         <th>Make By</th>
         <th>Actions</th>
@@ -65,19 +75,21 @@
                     <img
                             src="${pl.avatar}"
                             alt=""
-                            style="width: 45px; height: 45px"
+                            style="width: 60px; height: 60px"
                             class="rounded-circle"
                     />
-                    <div class="ms-3">
-                        <p class="fw-bold mb-1">${pl.playlistName}</p>
-
-                    </div>
                 </div>
             </td>
             <td>
-                <p class="fw-normal mb-1"></p>
-                <p class="text-muted mb-0"></p>
+                <div class="ms-3">
+                    <p class="fw-bold mb-1">${pl.playlistName}</p>
+
+                </div>
             </td>
+<%--            <td>--%>
+<%--                <p class="fw-normal mb-1"></p>--%>
+<%--                <p class="text-muted mb-0"></p>--%>
+<%--            </td>--%>
             <td>
                 <span class="badge badge-success rounded-pill d-inline">Active</span>
             </td>
@@ -88,11 +100,14 @@
                         SHOW
                     </button>
                 </a>
-                <a href="/playlist?action=deletePlaylist&id=${pl.id}">
-                    <button type="button" class="btn btn-link btn-sm btn-rounded">
-                        DELETE
-                    </button>
-                </a>
+                <c:if test="${user!=null}">
+                    <a href="/playlist?action=deletePlaylist&id=${pl.id}">
+                        <button type="button" class="btn btn-link btn-sm btn-rounded">
+                            DELETE
+                        </button>
+                    </a>
+                </c:if>
+
             </td>
         </tr>
     </c:forEach>

@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -94,9 +93,20 @@
     <div class="category">
         <p>Category Manager</p>
         <div class="w3-container">
-            <a href="/category?action=create">
-                <button onclick="document.getElementById('id01').style.display='block'">+ Create Category</button>
+            <a href="/category?action=back">
+                <button> Back Menu</button>
             </a>
+
+            <c:if test="${user!=null})">
+                <c:if test='${role.equals("ADMIN")}'>
+                    <a href="/category?action=create">
+                        <button onclick="document.getElementById('id01').style.display='block'">+ Create Category
+                        </button>
+                    </a>
+                </c:if>
+
+            </c:if>
+
             <div id="" class="w3-modal">
                 <div class="w3-modal-content">
                     <div class="w3-container">
@@ -134,14 +144,19 @@
             <td><img width="100px" height="100px" style="border-radius: 5px" src="${ctm.getAvatar()}"></td>
             <td>${ctm.getName()}</td>
             <td>
-                <a data-toggle="modal"
-                   data-target="#edit${ctm.id}">
-                    <button type="button" class="buttonEdit">Edit</button>
-                </a>
-                <a data-toggle="modal"
-                   data-target="#delete${ctm.id}">
-                    <button type="button" class="buttonDelete"> Delete</button>
-                </a>
+                <c:if test="${user!=null})">
+                    <c:if test='${role.equals("ADMIN")}'>
+                        <a data-toggle="modal"
+                           data-target="#edit${ctm.id}">
+                            <button type="button" class="buttonEdit">Edit</button>
+                        </a>
+                        <a data-toggle="modal"
+                           data-target="#delete${ctm.id}">
+                            <button type="button" class="buttonDelete"> Delete</button>
+                        </a>
+                    </c:if>
+
+                </c:if>
             </td>
             <!-- Modal Delete-->
             <div class="modal fade" id="delete${ctm.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -194,9 +209,9 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
-<%--                            <a href="/category?action=updatecategory&id=${ctm.id}">--%>
-                                <button type="submit" class="btn btn-danger">Save</button>
-<%--                            </a>--%>
+                                <%--                            <a href="/category?action=updatecategory&id=${ctm.id}">--%>
+                            <button type="submit" class="btn btn-danger">Save</button>
+                                <%--                            </a>--%>
 
                         </div>
                         </form>
