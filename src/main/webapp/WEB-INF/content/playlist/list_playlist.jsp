@@ -49,12 +49,16 @@
 <%--        <button class="button_create">BACK MENU</button>--%>
 
 <div>
-    <a href="/playlist?action=back">
+    <h2 style="text-align: center">LIST PLAYLIST</h2>
+    <a href="/song?action=back">
         <button class="button_create">BACK MENU</button>
     </a>
-    <a href="/singers?action=create">
-        <button class="button_create">CREATE NEW PLAYLIST</button>
-    </a>
+    <c:if test="${user!=null}">
+        <a href="/playlist?action=create">
+            <button class="button_create">CREATE NEW PLAYLIST</button>
+        </a>
+    </c:if>
+
 </div>
 <table class="table align-middle mb-0 bg-white">
     <thead class="bg-light">

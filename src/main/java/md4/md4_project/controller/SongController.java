@@ -233,13 +233,26 @@ public class SongController extends HttpServlet {
     }
 
     public void backToAdmin(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/admin2.jsp");
-        try {
-            dispatcher.forward(request, response);
-        } catch (ServletException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        HttpSession session = request.getSession(false);
+        User user = (User) session.getAttribute("user");
+        if (user!=null) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/admin/admin2.jsp");
+            try {
+                dispatcher.forward(request, response);
+            } catch (ServletException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/home/index.jsp");
+            try {
+                dispatcher.forward(request, response);
+            } catch (ServletException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
     private void showTopSong(HttpServletRequest request,HttpServletResponse response){

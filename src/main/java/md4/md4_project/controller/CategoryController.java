@@ -49,7 +49,7 @@ public class CategoryController extends HttpServlet {
                 formUpdateCategory(request,response);
                 break;
             case "back":
-                backToAdmin(request, response);
+                new SongController().backToAdmin(request, response);
                 break;
             default:
                 showFormCategory(request, response);
