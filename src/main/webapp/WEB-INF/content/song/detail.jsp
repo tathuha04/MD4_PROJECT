@@ -279,6 +279,7 @@
 </head>
 <body>
 <a href="/singers?action=back">BACK MENU</a>
+
 <div class="main">
 <%--    <p id="logo"><i class="fa fa-music"></i>Music</p>--%>
     <!--- left part --->
