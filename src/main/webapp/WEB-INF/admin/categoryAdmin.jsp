@@ -91,7 +91,7 @@
 
 <section class="home-section">
     <div class="category">
-        <p>Category Manager</p>
+        <p>LIST CATEGORY</p>
         <div class="w3-container">
             <a href="/category?action=back">
                 <button> Back Menu</button>
